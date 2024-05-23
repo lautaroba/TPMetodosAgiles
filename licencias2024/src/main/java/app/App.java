@@ -1,5 +1,8 @@
 package app;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,6 +19,17 @@ public class App extends Application
         Scene scene = new Scene(new StackPane(l), 640, 480);
         stage.setScene(scene);
         stage.show();
+        
+        try {
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("licencias2024PU");
+            EntityManager em = entityManagerFactory.createEntityManager();
+            em.getTransaction().begin();
+            em.createNativeQuery("CREATE DATABASE licenciasdb").executeUpdate();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
     public static void main(String[] args) {
         launch();
