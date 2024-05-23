@@ -1,2 +1,5 @@
 app\App.class
+app\Entidades\Administrador.class
+app\Entidades\Titular.class
+app\Controladores\LoginController.class
 app\Entidades\Licencia.class
