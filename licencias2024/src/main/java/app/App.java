@@ -10,19 +10,22 @@ import javafx.stage.Stage;
 
 public class App extends Application
 {
+    private EntityManagerFactory entityManagerFactory;
+    public static EntityManager entityManager;
+
     public void start(Stage primaryStage) throws Exception {
 
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("licencias2024PU");
+            entityManager = entityManagerFactory.createEntityManager();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
         Parent root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LoginFXML.fxml"));
         primaryStage.setTitle("Ventana de inicio");
         primaryStage.setScene(new Scene(root, 400, 275));
         primaryStage.show();
-
-        try {
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("licencias2024PU");
-            EntityManager em = entityManagerFactory.createEntityManager();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
     }
     public static void main(String[] args) {
