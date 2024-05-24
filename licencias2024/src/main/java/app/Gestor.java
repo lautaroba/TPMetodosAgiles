@@ -87,32 +87,74 @@ public class Gestor {
     }
 
     public int CalcularCostoLicencia(LicenciaDTO licencia){
-
+        // la idea es que la clase de la licencia se en mayuscula: A B C E G 
         int edad = Period.between(licencia.titular.getFechaDeNacimiento(), LocalDate.now()).getYears();
         int costo;
+        int categoria = 0;
+
+        if(licencia.clase == 'A')
+            categoria = 0;
+        else if(licencia.clase == 'B')
+            categoria = 1;
+        else if(licencia.clase == 'C')
+            categoria = 1;
+        else if(licencia.clase == 'E')
+            categoria = 2;
+        else if(licencia.clase == 'G')
+            categoria = 3;
+
         if(edad < 21){
             if(primeraVez(licencia))
-                costo = costos[licencia.clase - 65][3];
+                costo = costos[categoria][3];
             else
-                costo = costos[licencia.clase - 65][2];
+                costo = costos[categoria][2];
         }
         else if(edad > 21 && edad <= 46) {
-            costo = costos[licencia.clase - 65][0];
+            costo = costos[categoria][0];
         }
         else if(edad > 46 && edad <= 60){
-            costo = costos[licencia.clase - 65][1];
+            costo = costos[categoria][1];
         }
         else if(edad > 60 && edad <= 70){
-            costo = costos[licencia.clase - 65][2];
+            costo = costos[categoria][2];
         }
         else {
-            costo = costos[licencia.clase - 65][3]; 
+            if(licencia.clase == 'D')
+                return 0;
+            else
+                costo = costos[categoria][3]; 
         }
-        return costo;
+        return costo+8;
     }
 
-    public boolean primeraVez(LicenciaDTO licencia){
-        return true;
+    private boolean primeraVez(LicenciaDTO licencia){
+        if(gestorLicencia.getLicencia(licencia) == null)
+            return true;
+        else
+            return false;
     }
 
+    public int CalcularVigenciaLicencia(LicenciaDTO licencia){
+
+        int edad = Period.between(licencia.titular.getFechaDeNacimiento(), LocalDate.now()).getYears();
+        
+        if(edad < 21){
+            if(primeraVez(licencia))
+                return 1;
+            else
+                return 3;
+        }
+        else if(edad > 21 && edad <= 46) {
+            return 5;
+        }
+        else if(edad > 46 && edad <= 60){
+            return 4;
+        }
+        else if(edad > 60 && edad <= 70){
+            return 3;
+        }
+        else {
+            return 1;
+        }
+    }
 }
