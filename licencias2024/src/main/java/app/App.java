@@ -6,6 +6,7 @@ import jakarta.persistence.Persistence;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class App extends Application
@@ -19,9 +20,9 @@ public class App extends Application
             entityManager = entityManagerFactory.createEntityManager();
 
         
-        Parent root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LoginFXML.fxml"));
+        AnchorPane root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login2FXML.fxml"));
         primaryStage.setTitle("Ventana de inicio");
-        primaryStage.setScene(new Scene(root, 400, 275));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
     }
