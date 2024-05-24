@@ -12,7 +12,7 @@ public class Gestor {
     private AdministradorDAO gestorAdministrador;
     private TitularDAO gestorTitular;
     private LicenciaDAO gestorLicencia;
-    private static int[][] costos = {{40, 30, 25, 20}, {40, 30, 25, 20}, {47, 35, 30, 23}, {59, 44, 39, 29}, {40, 30, 25, 20}}
+    private static int[][] costos = {{40, 30, 25, 20}, {40, 30, 25, 20}, {47, 35, 30, 23}, {59, 44, 39, 29}, {40, 30, 25, 20}};
 
     public Titular BuscarTitular(TitularDTO titular){
         return gestorTitular.getTitular(titular);
@@ -86,38 +86,33 @@ public class Gestor {
         gestorLicencia.EliminarLicencia(licencia);
     }
 
-    public Double CalcularCostoLicencia(LicenciaDTO licencia){
+    public int CalcularCostoLicencia(LicenciaDTO licencia){
 
         int edad = Period.between(licencia.titular.getFechaDeNacimiento(), LocalDate.now()).getYears();
         int costo;
         if(edad < 21){
-            if(primeraVez(auxiliar))
-                costo = costos[auxiliar.getClase() - 65][3];
+            if(primeraVez(licencia))
+                costo = costos[licencia.clase - 65][3];
             else
-                costo = costos[auxiliar.getClase() - 65][2];
+                costo = costos[licencia.clase - 65][2];
         }
         else if(edad > 21 && edad <= 46) {
-            costo = costos[auxiliar.getClase() - 65][0];
+            costo = costos[licencia.clase - 65][0];
         }
         else if(edad > 46 && edad <= 60){
-            costo = costos[auxiliar.getClase() - 65][1];
+            costo = costos[licencia.clase - 65][1];
         }
         else if(edad > 60 && edad <= 70){
-            costo = costos[auxiliar.getClase() - 65][2];
+            costo = costos[licencia.clase - 65][2];
         }
         else {
-            costo = costos[auxiliar.getClase() - 65][3];
+            costo = costos[licencia.clase - 65][3]; 
         }
-        
-
+        return costo;
     }
 
-    public LocalDate CalcularVigenciaLicencia(LicenciaDTO licencia){
-
-    }
-
-    private boolean primeraVez(Licencia licencia){
-        if()
+    public boolean primeraVez(LicenciaDTO licencia){
+        return true;
     }
 
 }
