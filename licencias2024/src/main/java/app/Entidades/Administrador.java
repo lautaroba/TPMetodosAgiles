@@ -8,19 +8,25 @@ import jakarta.persistence.*;
 public class Administrador {
     
     @Id
-    @Column(name = "dni", unique = true, nullable = false)
+    @Column(name = "dni", nullable = false)
     private int dni;
-    @Column(name = "nombre", unique = true, nullable = false)
+
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    @Column(name = "apellido", unique = true, nullable = false)
+
+    @Column(name = "apellido", nullable = false)
     private String apellido;
-    @Column(name = "fechaDeNacimiento", unique = true, nullable = false)
+
+    @Column(name = "fechaDeNacimiento", nullable = false)
     private LocalDate fechaDeNacimiento;
-    @Column(name = "direccion", unique = true, nullable = false)
+
+    @Column(name = "direccion", nullable = false)
     private String direccion;
-    @Column(name = "email", unique = true, nullable = false)
+
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "contraseña", unique = true, nullable = false)
+
+    @Column(name = "contraseña", nullable = false)
     private String contraseña;
 
     public Administrador(int dni, String nombre, String apellido, LocalDate fechaDeNacimiento, String direccion,

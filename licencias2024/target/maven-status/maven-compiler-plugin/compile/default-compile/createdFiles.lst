@@ -1,0 +1,12 @@
+app\DAOs\TitularDAO.class
+app\App.class
+app\DTOs\TitularDTO.class
+app\Entidades\Administrador.class
+app\DAOs\AdministradorDAO.class
+app\DTOs\LicenciaDTO.class
+app\Gestor.class
+app\DTOs\AdministradorDTO.class
+app\Entidades\Licencia.class
+app\DAOs\LicenciaDAO.class
+app\Entidades\Titular.class
+app\Controladores\LoginController.class

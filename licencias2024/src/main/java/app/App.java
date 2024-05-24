@@ -15,12 +15,9 @@ public class App extends Application
 
     public void start(Stage primaryStage) throws Exception {
 
-        try {
             entityManagerFactory = Persistence.createEntityManagerFactory("licencias2024PU");
             entityManager = entityManagerFactory.createEntityManager();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+
         
         Parent root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LoginFXML.fxml"));
         primaryStage.setTitle("Ventana de inicio");
