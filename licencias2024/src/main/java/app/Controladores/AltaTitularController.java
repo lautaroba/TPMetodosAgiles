@@ -6,15 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AltaTitularController {
+
+public class AltaTitularController  {
 
     @FXML
     private Button logoutButton;
@@ -23,76 +25,71 @@ public class AltaTitularController {
     private Button aceptarButton;
 
     @FXML
-    private Button cancelarButton;
-
+    private Button volverButton;
+    
     @FXML
-    private TextField nombreTextfield;
-
+    private TextField dniTextfield;
+    
     @FXML
     private TextField apellidoTextfield;
-
+    
     @FXML
     private TextField direccionTextfield;
-
+    
     @FXML
     private DatePicker fechaNacDatePicker;
-
+    
     @FXML
-    private SplitMenuButton claseSplitMenu;
-
+    private MenuButton claseMenu;
+    
     @FXML
-    private SplitMenuButton grupoSplitMenu;
-
+    private MenuButton grupoMenu;
+    
     @FXML
-    private SplitMenuButton RHSplitMenu;
-
+    private MenuButton RHMenu;
+    
+    @FXML
+    private MenuButton tipoMenu;
+    
     @FXML
     private RadioButton siRadioButton;
-
+    
     @FXML
     private RadioButton noRadioButton;
+    
+    @FXML
+    private TextField nombreTextfield;
     
     private Stage stage;
 	private Scene scene;
 	private Parent root;
 
-
-
     @FXML
     private void logout(ActionEvent event) {
- 
-    //     try{
-    //         menuPrincipal(event);
-    //     } catch(IOException exception){
-    //         System.out.println("entro al catch");
-    //     }
+
     }
 
     @FXML
-    private void cancelar(ActionEvent event) {
+    public void volver(ActionEvent event) throws IOException {
 
-        Stage stage = (Stage) cancelarButton.getScene().getWindow();
-        stage.close();
-    }
+		root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/MenuPrincipal.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setTitle("Capit@l humano - Menu Principal");
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
 
     @FXML
     private void aceptar(ActionEvent event) {
 
-        // try{
-            
-        // } catch(IOException exception){
-        //     exception.printStackTrace();
-        // }
     }
 
-    // public void menuPrincipal(ActionEvent event) throws IOException {
-
-	// 	root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/MenuPrincipal.fxml"));
-	// 	stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	// 	stage.setTitle("Capit@l humano - Menu Principal");
-	// 	scene = new Scene(root);
-	// 	stage.setScene(scene);
-	// 	stage.show();
-	// }
+    @FXML
+    private void handleMenuSelection(ActionEvent event) {
+        MenuItem selectedItem = (MenuItem) event.getSource();
+        MenuButton parentButton = (MenuButton) selectedItem.getParentPopup().getOwnerNode();
+        parentButton.setText(selectedItem.getText());
+    }
     
 }

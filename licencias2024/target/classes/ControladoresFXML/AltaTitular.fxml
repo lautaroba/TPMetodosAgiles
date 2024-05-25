@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.AltaTitularController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.AltaTitularController">
    <children>
       <!-- Panel de Usuario -->
       <Pane layoutX="40.0" layoutY="34.0" prefHeight="60.0" prefWidth="316.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
@@ -42,97 +46,155 @@
       </Pane>
       
       <!-- Panel de InformaciĆ³n Personal -->
-      <Pane layoutX="40.0" layoutY="120.0" prefHeight="400.0" prefWidth="316.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="300.0" layoutY="114.0" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
-            <TextField fx:id="nombreTextfield" layoutX="45.0" layoutY="60.0" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" />
-            <Label layoutX="45.0" layoutY="20.0" prefHeight="40.0" prefWidth="203.0" text="Nombre">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="apellidoTextfield" layoutX="45.0" layoutY="170.0" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" />
-            <Label layoutX="45.0" layoutY="130.0" prefHeight="40.0" prefWidth="203.0" text="Apellido">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="direccionTextfield" layoutX="45.0" layoutY="353.0" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" />
-            <Label layoutX="45.0" layoutY="313.0" prefHeight="40.0" prefWidth="203.0" text="Dirección">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <DatePicker fx:id="fechaNacDatePicker" layoutX="45.0" layoutY="268.0" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" />
-            <Label layoutX="45.0" layoutY="228.0" prefHeight="40.0" prefWidth="203.0" text="Fecha de Nacimiento">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      
-      <!-- Panel de SelecciĆ³n -->
-      <Pane layoutX="418.0" layoutY="120.0" prefHeight="400.0" prefWidth="304.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
-         <children>
-            <Label layoutX="32.0" layoutY="20.0" prefHeight="40.0" prefWidth="203.0" text="Clase de Licencia">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <SplitMenuButton fx:id="claseSplitMenu" layoutX="32.0" layoutY="60.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" text="Seleccione">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </SplitMenuButton>
-            <Label layoutX="32.0" layoutY="130.0" prefHeight="40.0" prefWidth="203.0" text="Grupo Sanguíneo">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <SplitMenuButton fx:id="grupoSplitMenu" layoutX="32.0" layoutY="170.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" text="Seleccione">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </SplitMenuButton>
-            <Label layoutX="32.0" layoutY="228.0" prefHeight="40.0" prefWidth="101.0" text="Factor RH">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <SplitMenuButton fx:id="RHSplitMenu" layoutX="32.0" layoutY="268.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" text="RH">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </SplitMenuButton>
-            <Label layoutX="32.0" layoutY="313.0" prefHeight="40.0" prefWidth="226.0" text="¿Es donante de Órganos?">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <RadioButton fx:id="siRadioButton" layoutX="69.0" layoutY="353.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="64.0" text="SI" />
-            <RadioButton fx:id="noRadioButton" layoutX="171.0" layoutY="353.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="64.0" text="NO" />
+            <GridPane layoutX="22.0" layoutY="30.0" prefHeight="650.0" prefWidth="550.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="224.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0" minWidth="10.0" prefWidth="326.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="nombreTextfield" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Nombre" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="apellidoTextfield" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Apellido" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="direccionTextfield" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Dirección" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="fechaNacDatePicker" prefHeight="36.0" prefWidth="434.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Fecha de Nacimiento" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Nro. Documento" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dniTextfield" prefHeight="36.0" prefWidth="226.0" style="-fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Tipo">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Clase de Licencia" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Grupo Sanguíneo" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="101.0" text="Factor RH" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="226.0" text="¿Es donante de Órganos?" GridPane.rowIndex="9">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="TOP_CENTER" prefHeight="60.0" prefWidth="360.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                     <children>
+                        <RadioButton fx:id="noRadioButton" mnemonicParsing="false" prefHeight="102.0" prefWidth="163.0" text="NO" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="siRadioButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="65.0" prefWidth="171.0" text="SI" GridPane.rowIndex="8">
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </RadioButton>
+                     </children>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                  </GridPane>
+                  <MenuButton fx:id="tipoMenu" mnemonicParsing="false" prefHeight="36.0" prefWidth="334.0" GridPane.columnIndex="1">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="DNI" onAction="#handleMenuSelection"/>
+                      <MenuItem mnemonicParsing="false" text="LE" onAction="#handleMenuSelection"/>
+                      <MenuItem mnemonicParsing="false" text="LC" onAction="#handleMenuSelection"/>
+                    </items>
+                  </MenuButton>
+                  <MenuButton fx:id="claseMenu" mnemonicParsing="false" prefHeight="36.0" prefWidth="334.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="CLASE A" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="CLASE B" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="CLASE C" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="CLASE D" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="CLASE E" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="CLASE F" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="CLASE G" onAction="#handleMenuSelection"/>
+
+                     </items>
+                  </MenuButton>
+                  <MenuButton fx:id="grupoMenu" mnemonicParsing="false" prefHeight="36.0" prefWidth="334.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="GRUPO A" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="GRUPO B" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="GRUPO AB" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="GRUPO O" onAction="#handleMenuSelection"/>
+                     </items>
+                  </MenuButton>
+                  <MenuButton fx:id="RHMenu" mnemonicParsing="false" prefHeight="36.0" prefWidth="334.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Positivo" onAction="#handleMenuSelection"/>
+                        <MenuItem mnemonicParsing="false" text="Negativo" onAction="#handleMenuSelection"/>
+                     </items>
+                  </MenuButton>
+               </children>
+            </GridPane>
          </children>
       </Pane>
       
       <!-- Botones de AcciĆ³n -->
-      <Button fx:id="cancelarButton" layoutX="408.0" layoutY="531.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Cancelar">
+      <Button fx:id="volverButton" layoutX="814.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Volver">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="aceptarButton" defaultButton="true" layoutX="600.0" layoutY="531.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Aceptar">
+      <Button fx:id="aceptarButton" defaultButton="true" layoutX="1006.0" layoutY="836.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Aceptar">
          <font>
             <Font size="16.0" />
          </font>
