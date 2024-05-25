@@ -1,12 +1,14 @@
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DAOs/TitularDAO.java
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DAOs/AdministradorDAO.java
-/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/App.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/AltaTitularController.java
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/LoginController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Entidades/Licencia.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DTOs/AdministradorDTO.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/App.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/MenuController.java
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Gestor.java
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DTOs/LicenciaDTO.java
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DTOs/TitularDTO.java
-/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Entidades/Licencia.java
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Entidades/Titular.java
-/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DTOs/AdministradorDTO.java
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Entidades/Administrador.java
 /home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DAOs/LicenciaDAO.java

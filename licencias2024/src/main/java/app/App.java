@@ -20,7 +20,7 @@ public class App extends Application
             entityManager = entityManagerFactory.createEntityManager();
 
         
-        AnchorPane root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login2FXML.fxml"));
+        AnchorPane root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LoginFXML.fxml"));
         primaryStage.setTitle("Ventana de inicio");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

@@ -3,6 +3,8 @@ app/DAOs/TitularDAO.class
 app/DTOs/AdministradorDTO.class
 app/Entidades/Titular.class
 app/DTOs/LicenciaDTO.class
+app/Controladores/AltaTitularController.class
+app/Controladores/MenuController.class
 app/Controladores/LoginController.class
 app/Entidades/Administrador.class
 app/Entidades/Licencia.class

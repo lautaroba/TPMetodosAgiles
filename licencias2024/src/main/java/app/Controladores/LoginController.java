@@ -1,12 +1,23 @@
 package app.Controladores;
+import java.util.ResourceBundle;
+
+import app.DTOs.AdministradorDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginController {
+import java.io.IOException;
+import java.net.URL;
+
+public class LoginController implements Initializable{
 
     @FXML
     private TextField dniTextfield;
@@ -22,24 +33,52 @@ public class LoginController {
 
     @FXML
     private Button cancelarButton;
+
+    AdministradorDTO adm;
     
+    private Stage stage;
+	private Scene scene;
+	private Parent root;
+
+    
+    @Override
+	public void initialize(URL location, ResourceBundle resources) {
+    	adm = new AdministradorDTO();
+	}
+
     @FXML
     private void aceptar(ActionEvent event) {
-        // Lógica de autenticación aquí
+
         String username = dniTextfield.getText();
         String password = pwTextfield.getText();
-        System.out.println("Username: " + username + ", Password: " + password);
-        // Añade tu lógica de autenticación aquí
+ 
+        try{
+            menuPrincipal(event);
+        } catch(IOException exception){
+            exception.printStackTrace();
+        }
     }
 
     @FXML
     private void cancelar(ActionEvent event) {
-        // Cierra la ventana actual
+
         Stage stage = (Stage) dniTextfield.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void nuevo(ActionEvent event){}
+    private void nuevo(ActionEvent event){
+
+    }
+
+    public void menuPrincipal(ActionEvent event) throws IOException {
+
+		root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/MenuPrincipal.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setTitle("Capit@l humano - Menu Principal");
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
     
 }

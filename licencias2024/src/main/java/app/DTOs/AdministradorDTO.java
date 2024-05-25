@@ -22,4 +22,6 @@ public class AdministradorDTO {
         this.email = email;
         this.contraseña = contraseña;
     }
+
+    public AdministradorDTO() {}
 }
