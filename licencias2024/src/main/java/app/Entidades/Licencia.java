@@ -28,18 +28,6 @@ public class Licencia {
     @Column(name = "fechaDeExpiracion", nullable = false)
     private LocalDate fechaDeExpiracion;
 
-    @Column(name = "clase", nullable = false)
-    private Character clase;
-
-    @Column(name = "grupoSanguineo", nullable = false)
-    private Character grupoSanguineo;
-
-    @Column(name = "factorRH", nullable = false)
-    private Character factorRH;
-
-    @Column(name = "donante", nullable = false)
-    private boolean donante;
-
     public Licencia(int id, Titular titular, Administrador administrativo, String limitacion, LocalDate fechaDeEmision,
             LocalDate fechaDeExpiracion) {
         this.id = id;
@@ -85,38 +73,6 @@ public class Licencia {
     }
     public void setFechaDeExpiracion(LocalDate fechaDeExpiracion) {
         this.fechaDeExpiracion = fechaDeExpiracion;
-    }
-
-    public Character getClase() {
-        return clase;
-    }
-
-    public void setClase(Character clase) {
-        this.clase = clase;
-    }
-
-    public Character getGrupoSanguineo() {
-        return grupoSanguineo;
-    }
-
-    public void setGrupoSanguineo(Character grupoSanguineo) {
-        this.grupoSanguineo = grupoSanguineo;
-    }
-
-    public Character getFactorRH() {
-        return factorRH;
-    }
-
-    public void setFactorRH(Character factorRH) {
-        this.factorRH = factorRH;
-    }
-
-    public boolean isDonante() {
-        return donante;
-    }
-
-    public void setDonante(boolean donante) {
-        this.donante = donante;
     }
 
 

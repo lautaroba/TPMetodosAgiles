@@ -2,6 +2,8 @@ package app.DTOs;
 
 import java.time.LocalDate;
 
+import app.Entidades.Administrador;
+
 public class AdministradorDTO {
     
     public int dni;
@@ -23,5 +25,16 @@ public class AdministradorDTO {
         this.contraseña = contraseña;
     }
 
-    public AdministradorDTO() {}
+    public AdministradorDTO(Administrador administrador) {
+        this.dni = administrador.getDni();
+        this.nombre = administrador.getNombre();
+        this.apellido = administrador.getApellido();
+        this.fechaDeNacimiento = administrador.getFechaDeNacimiento();
+        this.direccion = administrador.getDireccion();
+        this.email = administrador.getEmail();
+        this.contraseña = administrador.getContraseña();
+    }
+
+    public AdministradorDTO(){}
+    
 }

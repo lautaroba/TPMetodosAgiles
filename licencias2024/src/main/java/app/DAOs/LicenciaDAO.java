@@ -2,6 +2,7 @@ package app.DAOs;
 
 import app.App;
 import app.DTOs.LicenciaDTO;
+import app.DTOs.TitularDTO;
 import app.Entidades.Licencia;
 
 public class LicenciaDAO {
@@ -47,5 +48,9 @@ public class LicenciaDAO {
             App.entityManager.merge(l);
             App.entityManager.getTransaction().commit();
         }
+    }
+
+    public Licencia getPrimeraVez(TitularDTO titular) {
+        return App.entityManager.find(Licencia.class, titular);
     }
 }
