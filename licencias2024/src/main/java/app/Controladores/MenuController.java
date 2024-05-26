@@ -9,6 +9,8 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class MenuController {
 
@@ -48,79 +50,44 @@ public class MenuController {
     private Stage stage;
 	private Scene scene;
 	private Parent root;
-
+    
     @FXML
     private void emitirLicencia(ActionEvent event) {
  
-        try{
-            menuPrincipal(event);
-        } catch(IOException exception){
-            System.out.println("entro al catch");
-        }
     }
 
 
     @FXML
     private void logout(ActionEvent event) {
  
-    //     try{
-    //         menuPrincipal(event);
-    //     } catch(IOException exception){
-    //         System.out.println("entro al catch");
-    //     }
     }
 
     @FXML
     private void emitirCopia(ActionEvent event) {
- 
-        try{
-            menuPrincipal(event);
-        } catch(IOException exception){
-            System.out.println("entro al catch");
-        }
+
     }
 
 
     @FXML
     private void renovarLicencia(ActionEvent event) {
- 
-        try{
-            menuPrincipal(event);
-        } catch(IOException exception){
-            System.out.println("entro al catch");
-        }
+
     }
 
     @FXML
     private void imprimirLicencia(ActionEvent event) {
- 
-        try{
-            menuPrincipal(event);
-        } catch(IOException exception){
-            System.out.println("entro al catch");
-        }
+
     }
 
 
     @FXML
     private void listadoExpiradas(ActionEvent event) {
- 
-        try{
-            menuPrincipal(event);
-        } catch(IOException exception){
-            System.out.println("entro al catch");
-        }
+
     }
 
 
     @FXML
     private void listadoVigentes(ActionEvent event) {
- 
-        try{
-            menuPrincipal(event);
-        } catch(IOException exception){
-            System.out.println("entro al catch");
-        }
+
     }
 
     @FXML
@@ -129,7 +96,7 @@ public class MenuController {
         try{
             root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/AltaTitular.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Capit@l humano - Menu Principal");
+            stage.setTitle("Menu Principal - Sistema de licencias");
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -140,22 +107,12 @@ public class MenuController {
 
     @FXML
     private void modificarDatos(ActionEvent event) {
- 
-        try{
-            menuPrincipal(event);
-        } catch(IOException exception){
-            System.out.println("entro al catch");
-        }
+
     }
 
     @FXML
     private void eliminar(ActionEvent event) {
- 
-        try{
-            menuPrincipal(event);
-        } catch(IOException exception){
-            System.out.println("entro al catch");
-        }
+
     }
     
 
@@ -166,14 +123,5 @@ public class MenuController {
         stage.close();
     }
 
-    public void menuPrincipal(ActionEvent event) throws IOException {
-
-		root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/MenuPrincipal.fxml"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Capit@l humano - Menu Principal");
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
     
 }

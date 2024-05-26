@@ -90,18 +90,7 @@ public class Gestor {
         // la idea es que la clase de la licencia se en mayuscula: A B C E G
         int edad = Period.between(licencia.titular.fechaDeNacimiento, LocalDate.now()).getYears();
         int costo;
-        int categoria = 0;
-
-        if(licencia.titular.clase == Clase.A)
-            categoria = 0;
-        else if(licencia.titular.clase == Clase.B)
-            categoria = 1;
-        else if(licencia.titular.clase == Clase.C)
-            categoria = 1;
-        else if(licencia.titular.clase == Clase.E)
-            categoria = 2;
-        else if(licencia.titular.clase == Clase.G)
-            categoria = 3;
+        int categoria = licencia.titular.clase.getNro();
 
         if(edad < 21){
             if(primeraVez(licencia.titular))
