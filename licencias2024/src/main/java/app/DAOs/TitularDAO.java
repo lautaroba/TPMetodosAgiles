@@ -1,51 +1,36 @@
 package app.DAOs;
 
 import app.App;
-import app.DTOs.TitularDTO;
 import app.Entidades.Titular;
 
 public class TitularDAO {
     
-    Titular titular;
-    
-    public Titular getTitular(TitularDTO t){  
-        return App.entityManager.find(Titular.class, t);
+    public Titular getTitular(Integer dni){ 
+        try {
+            return App.entityManager.find(Titular.class, dni);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
-    public void CrearTitular(TitularDTO admin){
-
-        if(getTitular(admin) == null){
+    public void CrearTitular(Titular titular) {
+        try {
             App.entityManager.getTransaction().begin();
-            App.entityManager.merge(admin);
-            App.entityManager.getTransaction().commit();
-        }
-        else
-            System.out.println("ya existe un titular");
-        
-    }
-
-    public void ModificarTitular(TitularDTO admin){
-
-        if(getTitular(admin) == null){
-            System.out.println("no existe un titular");
-        }
-        else{
-            App.entityManager.getTransaction().begin();
-            App.entityManager.merge(admin);
+            App.entityManager.persist(titular);
+        } catch (Exception e) {
+            throw e;
+        } finally{
             App.entityManager.getTransaction().commit();
         }
     }
 
-    public void EliminarTitular(TitularDTO admin){
-
-        // deberia marcarlo como eliminado, no eliminarlo como tal
-
-        if(getTitular(admin) == null){
-            System.out.println("no se puede");
-        }
-        else{
+    public void ModificarTitular(Titular titular){
+        try {
             App.entityManager.getTransaction().begin();
-            App.entityManager.merge(admin);
+            App.entityManager.merge(titular);
+        } catch (Exception e) {
+            throw e;
+        } finally{
             App.entityManager.getTransaction().commit();
         }
     }

@@ -1,6 +1,8 @@
 package app.Entidades;
 
 import java.time.LocalDate;
+
+import app.DTOs.TitularDTO;
 import app.Enunumenadores.Clase;
 import app.Enunumenadores.FactorRH;
 import app.Enunumenadores.GrupoSanguineo;
@@ -40,9 +42,10 @@ public class Titular {
     @Column(name = "donante", nullable = false)
     private boolean donante;
 
-    public Titular(int nroDNI, TipoDocumento tipoDocumento, String nombre, String apellido, LocalDate fechaDeNacimiento,
-            String direccion, Clase clase, GrupoSanguineo grupoSanguineo, FactorRH factorRH,
-            boolean donante) {
+    public Titular() {
+    }
+
+    public Titular(int nroDNI, TipoDocumento tipoDocumento, String nombre, String apellido, LocalDate fechaDeNacimiento,String direccion, Clase clase, GrupoSanguineo grupoSanguineo, FactorRH factorRH, boolean donante) {
         this.nroDNI = nroDNI;
         this.tipoDocumento = tipoDocumento;
         this.nombre = nombre;
@@ -55,6 +58,18 @@ public class Titular {
         this.donante = donante;
     }
 
+    public Titular(TitularDTO titular) {
+        this.nroDNI = titular.nroDNI;
+        this.tipoDocumento = titular.tipoDocumento;
+        this.nombre = titular.nombre;
+        this.apellido = titular.apellido;
+        this.fechaDeNacimiento = titular.fechaDeNacimiento;
+        this.direccion = titular.direccion;
+        this.clase = titular.clase;
+        this.grupoSanguineo = titular.grupoSanguineo;
+        this.factorRH = titular.factorRH;
+        this.donante = titular.donante;
+    }
     public int getDni() {
         return nroDNI;
     }

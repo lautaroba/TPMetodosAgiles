@@ -1,6 +1,8 @@
 package app.Entidades;
 
 import java.time.LocalDate;
+
+import app.DTOs.AdministradorDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,7 +10,7 @@ import jakarta.persistence.*;
 public class Administrador {
     
     @Id
-    @Column(name = "dni", nullable = false)
+    @Column(name = "dni_administrador", nullable = false)
     private int dni;
 
     @Column(name = "nombre", nullable = false)
@@ -29,6 +31,10 @@ public class Administrador {
     @Column(name = "contraseña", nullable = false)
     private String contraseña;
 
+    public Administrador() {
+        
+    }
+
     public Administrador(int dni, String nombre, String apellido, LocalDate fechaDeNacimiento, String direccion,
             String email, String contraseña) {
         this.dni = dni;
@@ -38,6 +44,16 @@ public class Administrador {
         this.direccion = direccion;
         this.email = email;
         this.contraseña = contraseña;
+    }
+
+    public Administrador(AdministradorDTO administrador) {
+        this.dni = administrador.dni;
+        this.nombre = administrador.nombre;
+        this.apellido = administrador.apellido;
+        this.fechaDeNacimiento = administrador.fechaDeNacimiento;
+        this.direccion = administrador.direccion;
+        this.email = administrador.email;
+        this.contraseña = administrador.contraseña;
     }
 
     public int getDni() {

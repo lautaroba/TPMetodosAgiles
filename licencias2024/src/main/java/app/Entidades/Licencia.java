@@ -2,6 +2,7 @@ package app.Entidades;
 
 import java.time.LocalDate;
 
+import app.DTOs.LicenciaDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,11 +13,11 @@ public class Licencia {
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "dniTitular")
+    @JoinColumn(name = "dni_titular")
     private Titular titular;
 
     @OneToOne
-    @JoinColumn(name = "dniAdministrador")
+    @JoinColumn(name = "dni_administrador")
     private Administrador administrativo;
 
     @Column(name = "limitacion")
@@ -28,14 +29,25 @@ public class Licencia {
     @Column(name = "fechaDeExpiracion", nullable = false)
     private LocalDate fechaDeExpiracion;
 
-    public Licencia(int id, Titular titular, Administrador administrativo, String limitacion, LocalDate fechaDeEmision,
-            LocalDate fechaDeExpiracion) {
-        this.id = id;
+    public Licencia() {
+
+    }
+
+    public Licencia(Titular titular, Administrador administrativo, String limitacion, LocalDate fechaDeEmision,
+    LocalDate fechaDeExpiracion) {
         this.titular = titular;
         this.administrativo = administrativo;
         this.limitacion = limitacion;
         this.fechaDeEmision = fechaDeEmision;
         this.fechaDeExpiracion = fechaDeExpiracion;
+    }
+
+    public Licencia(LicenciaDTO licencia) {
+        this.titular = new Titular(licencia.titular);
+        this.administrativo = new Administrador(licencia.administrativo);
+        this.limitacion = licencia.limitacion;
+        this.fechaDeEmision = licencia.fechaDeEmision;
+        this.fechaDeExpiracion = licencia.fechaDeExpiracion;
     }
 
     public int getId() {

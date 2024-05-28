@@ -7,10 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MenuController {
 
@@ -58,8 +55,17 @@ public class MenuController {
 
 
     @FXML
-    private void logout(ActionEvent event) {
- 
+    private void logout(ActionEvent event) throws IOException {
+        
+        // ADEMAS DELOGEAR LA SESION
+
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setTitle("Ventana de inicio");
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+        
     }
 
     @FXML
@@ -114,11 +120,9 @@ public class MenuController {
     private void eliminar(ActionEvent event) {
 
     }
-    
 
     @FXML
     private void cancelar(ActionEvent event) {
-
         Stage stage = (Stage) cancelarButton.getScene().getWindow();
         stage.close();
     }
