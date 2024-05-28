@@ -49,8 +49,13 @@ public class MenuController {
 	private Parent root;
     
     @FXML
-    private void emitirLicencia(ActionEvent event) {
- 
+    private void emitirLicencia(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/EmitirLicencia.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setTitle("Ventana de inicio");
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
     }
 
 
