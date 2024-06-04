@@ -100,7 +100,7 @@ public class CrearAdmController implements Initializable{
         try{
             App.gestor.CrearAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText()), nombreTextfield.getText(),
             apellidoTextfield.getText(), fechaNacDatePicker.getValue(), direccionTextfield.getText(),
-            emailTextfield.getText(), pwField.getText()));
+            emailTextfield.getText(), pwField.getText(), tipoComboBox.getValue(), sexoComboBox.getValue()));
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Sistema de licencias");

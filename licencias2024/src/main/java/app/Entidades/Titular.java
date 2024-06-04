@@ -13,10 +13,10 @@ import jakarta.persistence.*;
 public class Titular {
     @Id
     @Column(name = "nroDNI")
-    public int nroDNI;
+    private int nroDNI;
 
     @Column(name = "tipoDocumento", nullable = false)
-    public TipoDocumento tipoDocumento;
+    private TipoDocumento tipoDocumento;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;

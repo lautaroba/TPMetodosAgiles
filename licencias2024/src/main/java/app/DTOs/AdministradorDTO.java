@@ -3,6 +3,8 @@ package app.DTOs;
 import java.time.LocalDate;
 
 import app.Entidades.Administrador;
+import app.Enunumenadores.Sexo;
+import app.Enunumenadores.TipoDocumento;
 
 public class AdministradorDTO {
     
@@ -13,9 +15,11 @@ public class AdministradorDTO {
     public String direccion;
     public String email;
     public String contraseña;
+    public TipoDocumento tipoDocumento;
+    public Sexo sexo;
 
     public AdministradorDTO(int dni, String nombre, String apellido, LocalDate fechaDeNacimiento, String direccion,
-            String email, String contraseña) {
+            String email, String contraseña, TipoDocumento tipoDocumento, Sexo sexo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -23,6 +27,8 @@ public class AdministradorDTO {
         this.direccion = direccion;
         this.email = email;
         this.contraseña = contraseña;
+        this.tipoDocumento = tipoDocumento;
+        this.sexo = sexo;
     }
 
     public AdministradorDTO(Administrador administrador) {
@@ -33,6 +39,8 @@ public class AdministradorDTO {
         this.direccion = administrador.getDireccion();
         this.email = administrador.getEmail();
         this.contraseña = administrador.getContraseña();
+        this.tipoDocumento = administrador.getTipoDocumento();
+        this.sexo = administrador.getSexo();
     }
 
     public AdministradorDTO(){}

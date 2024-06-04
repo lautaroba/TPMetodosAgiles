@@ -66,7 +66,7 @@ public class LoginController implements Initializable{
         }
         else{
             try{
-                AdministradorDTO administrador = App.gestor.BuscarAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText()), null, null, null, null, null, pwTextfield.getText()));
+                AdministradorDTO administrador = App.gestor.BuscarAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText()), null, null, null, null, null, pwTextfield.getText(), null, null));
                 if(administrador.contraseña.equals(pwTextfield.getText()))
                     menuPrincipal(event);
                 else {

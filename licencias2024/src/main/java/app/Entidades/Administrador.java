@@ -3,6 +3,8 @@ package app.Entidades;
 import java.time.LocalDate;
 
 import app.DTOs.AdministradorDTO;
+import app.Enunumenadores.Sexo;
+import app.Enunumenadores.TipoDocumento;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +14,9 @@ public class Administrador {
     @Id
     @Column(name = "dni_administrador", nullable = false)
     private int dni;
+    
+    @Column(name = "tipoDocumento", nullable = false)
+    private TipoDocumento tipoDocumento;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
@@ -30,13 +35,16 @@ public class Administrador {
 
     @Column(name = "contraseña", nullable = false)
     private String contraseña;
+    
+    @Column(name = "sexo", nullable = false)
+    private Sexo sexo;
 
     public Administrador() {
         
     }
 
     public Administrador(int dni, String nombre, String apellido, LocalDate fechaDeNacimiento, String direccion,
-            String email, String contraseña) {
+            String email, String contraseña, TipoDocumento tipoDocumento, Sexo sexo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -44,6 +52,8 @@ public class Administrador {
         this.direccion = direccion;
         this.email = email;
         this.contraseña = contraseña;
+        this.sexo = sexo;
+        this.tipoDocumento = tipoDocumento;
     }
 
     public Administrador(AdministradorDTO administrador) {
@@ -97,6 +107,18 @@ public class Administrador {
     }
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
+    }
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+    public Sexo getSexo() {
+        return sexo;
+    }
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
     }
 
     

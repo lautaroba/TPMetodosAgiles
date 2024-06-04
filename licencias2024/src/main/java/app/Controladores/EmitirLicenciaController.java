@@ -37,6 +37,8 @@ public class EmitirLicenciaController implements Initializable {
     @FXML
     private Button buscarButton;
     @FXML
+    private Button imprimirButton;
+    @FXML
     private TextField nombreTextfield;
     @FXML
     private TextField apellidoTextfield;
@@ -108,6 +110,11 @@ public class EmitirLicenciaController implements Initializable {
 
     @FXML
     private void aceptar(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void imprimir(ActionEvent event) {
 
     }
 }
