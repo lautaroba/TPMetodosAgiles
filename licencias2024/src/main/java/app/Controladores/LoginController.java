@@ -41,6 +41,7 @@ public class LoginController implements Initializable{
     private Stage stage;
 	private Scene scene;
 	private Parent root;
+    private AdministradorDTO administrador;
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -66,7 +67,7 @@ public class LoginController implements Initializable{
         }
         else{
             try{
-                AdministradorDTO administrador = App.gestor.BuscarAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText()), null, null, null, null, null, pwTextfield.getText(), null, null));
+                administrador = App.gestor.BuscarAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText()), null, null, null, null, null, pwTextfield.getText(), null, null));
                 if(administrador.contraseña.equals(pwTextfield.getText()))
                     menuPrincipal(event);
                 else {

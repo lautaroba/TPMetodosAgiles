@@ -18,21 +18,29 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.EmitirLicenciaController">
    <children>
-      <Pane layoutX="60.0" layoutY="24.0" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
+      <Pane layoutX="50.0" layoutY="24.0" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
          <children>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="500.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="10.0">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/administrador.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </ImageView>
-                  <Label fx:id="nombreUsuarioLabel" prefHeight="29.0" prefWidth="332.0" text="Usuario: John Doe">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" text="Administrador:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nombreUsuarioLabel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="190.0" text="John Doe">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: e0e0e0;" text="Log out" textFill="#ff7e7e">
+                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: e0e0e0;" text="Log out" textFill="#ff7e7e">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -41,7 +49,7 @@
             </HBox>
          </children>
       </Pane>
-      <Pane layoutX="586.0" layoutY="100.0" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="570.0" layoutY="100.0" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
             <GridPane prefHeight="700.0" prefWidth="600.0">
                <columnConstraints>
@@ -198,17 +206,17 @@
             </GridPane>
          </children>
       </Pane>
-      <Button fx:id="volverButton" layoutX="814.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Volver">
+      <Button fx:id="volverButton" layoutX="798.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Volver">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="aceptarButton" defaultButton="true" layoutX="1006.0" layoutY="836.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Aceptar">
+      <Button fx:id="aceptarButton" defaultButton="true" layoutX="990.0" layoutY="836.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Aceptar">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
       </Button>
-      <Pane layoutX="60.0" layoutY="100.0" prefHeight="270.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="50.0" layoutY="100.0" prefHeight="270.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
             <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="270.0" prefWidth="500.0">
                <columnConstraints>
@@ -242,18 +250,18 @@
             </GridPane>
          </children>
       </Pane>
-      <Pane layoutX="60.0" layoutY="397.0" maxHeight="-Infinity" prefHeight="250.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="50.0" layoutY="400.0" maxHeight="-Infinity" prefHeight="230.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
-            <VBox prefHeight="250.0" prefWidth="500.0">
+            <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                <children>
-                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="500.0">
+                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="160.0" prefWidth="500.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="-Infinity" minHeight="65.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="65.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" prefHeight="42.0" text="Vigencia de la licencia">
@@ -292,17 +300,14 @@
                            </cursor>
                         </TextField>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                     </padding>
                   </GridPane>
-                  <Button fx:id="imprimirButton" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#imprimir" prefHeight="50.0" prefWidth="330.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Imprimir">
+                  <Button fx:id="calcularButton" alignment="CENTER" defaultButton="true" maxWidth="-Infinity" mnemonicParsing="false" onAction="#calcular" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Calcular">
                      <font>
                         <Font name="Microsoft PhagsPa" size="18.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
                   </Button>
                </children>
             </VBox>

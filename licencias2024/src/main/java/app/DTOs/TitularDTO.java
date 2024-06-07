@@ -35,6 +35,7 @@ public class TitularDTO {
         this.donante = donante;
     }
     public TitularDTO(Titular titular) {
+        this.tipoDocumento = titular.getTipoDocumento();
         this.nroDNI = titular.getDni();
         this.nombre = titular.getNombre();
         this.apellido = titular.getApellido();
@@ -44,5 +45,8 @@ public class TitularDTO {
         this.grupoSanguineo = titular.getGrupoSanguineo();
         this.factorRH = titular.getFactorRH();
         this.donante = titular.isDonante();
+    }
+    public TitularDTO(int dni) {
+        this.nroDNI = dni;
     }
 }

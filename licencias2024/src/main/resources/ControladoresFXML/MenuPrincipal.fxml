@@ -15,30 +15,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.MenuController">
    <children>
-      <!-- Panel de Usuario -->
-      <Pane layoutX="50.0" layoutY="14.0" prefHeight="60.0" prefWidth="360.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
-         <children>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="336.0" spacing="10.0">
-               <children>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/administrador.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="nombreUsuarioLabel" text="Usuario: John Doe">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="20.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="83.0" style="-fx-background-color: e0e0e0;" text="Log out" textFill="#ff7e7e">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </Pane>
       <Pane layoutX="50.0" layoutY="100.0" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
          <children>
             <!-- Grid de opciones -->
@@ -176,5 +152,36 @@
             <Font name="Microsoft PhagsPa" size="20.0" />
          </font>
       </Button>
+      <Pane layoutX="50.0" layoutY="24.0" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/administrador.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" text="Administrador:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nombreUsuarioLabel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="190.0" text="John Doe">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: e0e0e0;" text="Log out" textFill="#ff7e7e">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

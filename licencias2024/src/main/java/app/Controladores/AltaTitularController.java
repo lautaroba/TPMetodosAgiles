@@ -12,6 +12,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
@@ -72,6 +73,9 @@ public class AltaTitularController implements Initializable{
     @FXML
     private TextField nombreTextfield;
     
+    @FXML
+    private Label nombreUsuarioLabel;
+    
     private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -80,6 +84,7 @@ public class AltaTitularController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        nombreUsuarioLabel.setText(App.gestor.administradorLogeado.nombre);
         tipoComboBox.getItems().setAll(TipoDocumento.values());
         claseComboBox.getItems().setAll(Clase.values());
         grupoComboBox.getItems().setAll(GrupoSanguineo.values());

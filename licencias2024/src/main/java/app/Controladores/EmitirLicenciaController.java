@@ -8,18 +8,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import app.App;
 import app.DTOs.TitularDTO;
 import app.Enunumenadores.Clase;
 import app.Enunumenadores.FactorRH;
@@ -31,13 +33,13 @@ public class EmitirLicenciaController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private Button aceptartButton;
-    @FXML
     private Button volverButton;
     @FXML
     private Button buscarButton;
     @FXML
-    private Button imprimirButton;
+    private Button aceptarButton;
+    @FXML
+    private Button calcularButton;
     @FXML
     private TextField nombreTextfield;
     @FXML
@@ -64,6 +66,8 @@ public class EmitirLicenciaController implements Initializable {
     private TextField vigenciaTextfield;
     @FXML
     private TextField costoTextfield;
+    @FXML
+    private Label nombreUsuarioLabel;
 
     private Stage stage;
     private Scene scene;
@@ -72,6 +76,8 @@ public class EmitirLicenciaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        nombreUsuarioLabel.setText(App.gestor.administradorLogeado.nombre);
         buscarTextfield.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -86,6 +92,34 @@ public class EmitirLicenciaController implements Initializable {
 
     @FXML
     private void buscar() {
+
+        try {
+            titular = App.gestor.BuscarTitular(new TitularDTO(Integer.parseInt(buscarTextfield.getText())));
+
+            tipoTextfield.setText(titular.tipoDocumento.toString());
+            dniTextfield.setText(String.valueOf(titular.nroDNI));
+            nombreTextfield.setText(titular.nombre);
+            apellidoTextfield.setText(titular.apellido);
+            fecNacTextfield.setText(titular.fechaDeNacimiento.toString());
+            direccionTextfield.setText(titular.direccion);
+            claseTextfield.setText(titular.clase.toString());
+            grupoTextfield.setText(titular.grupoSanguineo.toString());
+            RHTextfield.setText(titular.factorRH.toString());
+
+            if(titular.donante == true)
+                donanteTextfield.setText("SI");
+            else
+                donanteTextfield.setText("NO");
+
+        } catch (Exception e) {
+            //e.printStackTrace();
+            limpiarCampos();
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText("No se ha podido encontrar el titular, reingrese el numero de documento");
+            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+        }
+
     }
 
     @FXML
@@ -114,7 +148,27 @@ public class EmitirLicenciaController implements Initializable {
     }
 
     @FXML
-    private void imprimir(ActionEvent event) {
+    private void calcular(ActionEvent event) {
 
+        int plazo = App.gestor.CalcularVigenciaLicencia(titular);
+        LocalDate fechaInicio = LocalDate.now();
+        LocalDate fechaFinal = LocalDate.of(fechaInicio.plusYears(plazo).getYear(), titular.fechaDeNacimiento.getMonth(), titular.fechaDeNacimiento.getDayOfMonth());
+        
+        vigenciaTextfield.setText(fechaFinal.toString());
+        costoTextfield.setText(String.valueOf(App.gestor.CalcularCostoLicencia(titular)));
+
+    }
+
+    private void limpiarCampos(){
+        tipoTextfield.setText("");
+        dniTextfield.setText("");
+        nombreTextfield.setText("");
+        apellidoTextfield.setText("");
+        fecNacTextfield.setText("");
+        direccionTextfield.setText("");
+        claseTextfield.setText("");
+        grupoTextfield.setText("");
+        RHTextfield.setText("");
+        donanteTextfield.setText("");
     }
 }

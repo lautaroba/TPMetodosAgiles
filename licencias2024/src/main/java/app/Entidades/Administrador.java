@@ -64,6 +64,8 @@ public class Administrador {
         this.direccion = administrador.direccion;
         this.email = administrador.email;
         this.contraseña = administrador.contraseña;
+        this.sexo = administrador.sexo;
+        this.tipoDocumento = administrador.tipoDocumento;
     }
 
     public int getDni() {
@@ -120,7 +122,5 @@ public class Administrador {
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
-
-    
 
 }

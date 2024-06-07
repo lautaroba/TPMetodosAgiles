@@ -1,12 +1,13 @@
 package app.DAOs;
 
 import app.App;
+import app.DTOs.LicenciaDTO;
+import app.DTOs.TitularDTO;
 import app.Entidades.Licencia;
-import app.Entidades.Titular;
 
 public class LicenciaDAO {
     
-    public Licencia getLicencia(Licencia licencia){
+    public Licencia getLicencia(LicenciaDTO licencia){
         try {
             return App.entityManager.find(Licencia.class, licencia);
         } catch (Exception e) {
@@ -14,7 +15,7 @@ public class LicenciaDAO {
         }
     }
 
-    public void CrearLicencia(Licencia licencia){
+    public void CrearLicencia(LicenciaDTO licencia){
         try {
             App.entityManager.getTransaction().begin();
             App.entityManager.persist(licencia);
@@ -25,20 +26,9 @@ public class LicenciaDAO {
         }
     }
 
-    public void ModificarLicencia(Licencia licencia){
+    public Licencia getPrimeraVez(TitularDTO titular) {
         try {
-            App.entityManager.getTransaction().begin();
-            App.entityManager.merge(licencia);
-        } catch (Exception e) {
-            throw e;
-        }finally{
-            App.entityManager.getTransaction().commit();
-        }
-    }
-
-    public Licencia getPrimeraVez(Titular titular) {
-        try {
-            return App.entityManager.find(Licencia.class, titular);
+            return App.entityManager.find(Licencia.class, titular.nroDNI);
         } catch (Exception e) {
             throw e;
         }
