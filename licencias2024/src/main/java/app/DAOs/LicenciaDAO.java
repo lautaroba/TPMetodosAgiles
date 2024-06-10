@@ -15,7 +15,7 @@ public class LicenciaDAO {
         }
     }
 
-    public void CrearLicencia(LicenciaDTO licencia){
+    public void CrearLicencia(Licencia licencia){
         try {
             App.entityManager.getTransaction().begin();
             App.entityManager.persist(licencia);

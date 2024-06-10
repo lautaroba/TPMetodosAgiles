@@ -1,4 +1,5 @@
 package app.Controladores;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 
 import app.App;
 
-public class MenuController implements Initializable{
+public class MenuController implements Initializable {
 
     @FXML
     private Button emitirLicenciaButton;
@@ -51,49 +52,46 @@ public class MenuController implements Initializable{
 
     @FXML
     private Button eliminarUnTitularButton;
-    
+
     @FXML
     private Label nombreUsuarioLabel;
-    
-    private Stage stage;
-	private Scene scene;
-	private Parent root;
-    
-    @Override
-	public void initialize(URL location, ResourceBundle resources) {
-        nombreUsuarioLabel.setText(App.gestor.administradorLogeado.nombre);
-	}
 
-    @FXML
-    private void emitirLicencia(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/EmitirLicencia.fxml"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Ventana de inicio");
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        nombreUsuarioLabel.setText(App.gestor.administradorLogeado.nombre);
     }
 
+    @FXML
+    private void emitirLicencia(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/EmitirLicencia.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Ventana de inicio");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        
+
         // ADEMAS DELOGEAR LA SESION
 
         root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Ventana de inicio");
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-        
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Ventana de inicio");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     private void emitirCopia(ActionEvent event) {
 
     }
-
 
     @FXML
     private void renovarLicencia(ActionEvent event) {
@@ -105,12 +103,10 @@ public class MenuController implements Initializable{
 
     }
 
-
     @FXML
     private void listadoExpiradas(ActionEvent event) {
 
     }
-
 
     @FXML
     private void listadoVigentes(ActionEvent event) {
@@ -119,15 +115,15 @@ public class MenuController implements Initializable{
 
     @FXML
     private void darDeAlta(ActionEvent event) {
- 
-        try{
+
+        try {
             root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/AltaTitular.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Menu Principal - Sistema de licencias");
+            stage.setTitle("Dar de Alta Titular - Sistema de licencias");
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch(IOException exception){
+        } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
@@ -148,5 +144,4 @@ public class MenuController implements Initializable{
         stage.close();
     }
 
-    
 }

@@ -12,7 +12,7 @@ import jakarta.persistence.*;
 @Entity
 public class Titular {
     @Id
-    @Column(name = "nroDNI")
+    @Column(name = "dni_titular")
     private int nroDNI;
 
     @Column(name = "tipoDocumento", nullable = false)
@@ -42,10 +42,13 @@ public class Titular {
     @Column(name = "donante", nullable = false)
     private boolean donante;
 
+    @Column(name = "limitacion")
+    private String limitacion;
+
     public Titular() {
     }
 
-    public Titular(int nroDNI, TipoDocumento tipoDocumento, String nombre, String apellido, LocalDate fechaDeNacimiento,String direccion, Clase clase, GrupoSanguineo grupoSanguineo, FactorRH factorRH, boolean donante) {
+    public Titular(int nroDNI, TipoDocumento tipoDocumento, String nombre, String apellido, LocalDate fechaDeNacimiento,String direccion, Clase clase, GrupoSanguineo grupoSanguineo, FactorRH factorRH, boolean donante, String limitacion) {
         this.nroDNI = nroDNI;
         this.tipoDocumento = tipoDocumento;
         this.nombre = nombre;
@@ -56,6 +59,7 @@ public class Titular {
         this.grupoSanguineo = grupoSanguineo;
         this.factorRH = factorRH;
         this.donante = donante;
+        this.limitacion = limitacion;
     }
 
     public Titular(TitularDTO titular) {
@@ -69,6 +73,7 @@ public class Titular {
         this.grupoSanguineo = titular.grupoSanguineo;
         this.factorRH = titular.factorRH;
         this.donante = titular.donante;
+        this.limitacion = titular.limitacion;
     }
     public int getDni() {
         return nroDNI;
@@ -148,6 +153,14 @@ public class Titular {
 
     public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
+    }
+
+    public String getLimitacion() {
+        return limitacion;
+    }
+
+    public void setLimitacion(String limitacion) {
+        this.limitacion = limitacion;
     }
 
 }

@@ -33,13 +33,15 @@ public class App extends Application
         // Prueba //
         try {
             gestor.CrearAdministrador(new AdministradorDTO(1, "chinardo", "anashe", LocalDate.now(), "unaCasaLoca", "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 1, "fernando", "normal", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 2, "fernando", "pebete", LocalDate.parse("2006-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 3, "fernando", "viejo", LocalDate.parse("1975-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 4, "fernando", "abuelo", LocalDate.parse("1960-11-11"), "otraCasaLoca", Clase.A, GrupoSanguineo.O, FactorRH.Positivo, true));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 5, "fernando", "milico", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.D, GrupoSanguineo.O, FactorRH.Positivo, false));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 6, "fernando", "discapacitado", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.F, GrupoSanguineo.O, FactorRH.Positivo, false));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 7, "fernando", "en el cajon", LocalDate.parse("1950-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true));
+            gestor.CrearAdministrador(new AdministradorDTO(2, "matias", "abuuuuuuuuuuuud", LocalDate.now(), "unaCasaLocaDeParana", "unemail@email.com", "b", TipoDocumento.DNI, Sexo.Masculino));
+            
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 1, "fernando", "normal", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 2, "fernando", "pebete", LocalDate.parse("2006-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 3, "fernando", "viejo", LocalDate.parse("1975-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 4, "fernando", "abuelo", LocalDate.parse("1960-11-11"), "otraCasaLoca", Clase.A, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 5, "fernando", "milico", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.D, GrupoSanguineo.O, FactorRH.Positivo, false, "observacioneeeeeeeeeeeeees"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 6, "fernando", "discapacitado", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.F, GrupoSanguineo.O, FactorRH.Positivo, false, "observacioneeeeeeeeeeeeees"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 7, "fernando", "en el cajon", LocalDate.parse("1950-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
 
         } catch (Exception e) {
             System.out.println("ya esta creado cabeza");

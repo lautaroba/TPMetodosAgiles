@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -49,15 +50,14 @@
             </HBox>
          </children>
       </Pane>
-      <Pane layoutX="570.0" layoutY="100.0" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="50.0" layoutY="258.0" prefHeight="550.0" prefWidth="550.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
-            <GridPane prefHeight="700.0" prefWidth="600.0">
+            <GridPane prefHeight="550.0" prefWidth="550.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="224.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0" minWidth="10.0" prefWidth="326.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="218.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0" minWidth="10.0" prefWidth="302.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -131,59 +131,7 @@
                         <Font name="Microsoft PhagsPa" size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="40.0" prefWidth="203.0" text="Clase de licencia" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="40.0" prefWidth="203.0" text="Grupo sanguíneo" GridPane.rowIndex="7">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="40.0" prefWidth="101.0" text="Factor RH" GridPane.rowIndex="8">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="40.0" prefWidth="226.0" text="¿Es donante de órganos?" GridPane.rowIndex="9">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="18.0" />
-                     </font>
-                  </Label>
                   <TextField fx:id="tipoTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </TextField>
-                  <TextField fx:id="claseTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </TextField>
-                  <TextField fx:id="grupoTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </TextField>
-                  <TextField fx:id="RHTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                     <font>
-                        <Font name="Microsoft PhagsPa" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </TextField>
-                  <TextField fx:id="donanteTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <font>
                         <Font name="Microsoft PhagsPa" size="18.0" />
                      </font>
@@ -199,6 +147,45 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </TextField>
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Grupo sanguíneo" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Microsoft PhagsPa" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="grupoTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Microsoft PhagsPa" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="factorTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Microsoft PhagsPa" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextField>
+                  <Label prefHeight="40.0" prefWidth="203.0" text="Factor RH" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Microsoft PhagsPa" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="donanteTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Microsoft PhagsPa" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextField>
+                  <Label prefHeight="40.0" prefWidth="214.0" text="¿Es donante de órganos?" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Microsoft PhagsPa" size="18.0" />
+                     </font>
+                  </Label>
                </children>
                <padding>
                   <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
@@ -216,9 +203,9 @@
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
       </Button>
-      <Pane layoutX="50.0" layoutY="100.0" prefHeight="270.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="50.0" layoutY="100.0" prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
-            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="270.0" prefWidth="500.0">
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="550.0" vgap="20.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -228,9 +215,9 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Buscar titular">
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" text="Buscar titular">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="25.0" />
                      </font>
                   </Label>
                   <TextField fx:id="buscarTextfield" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="226.0" promptText="Ingrese DNI del Titular" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.rowIndex="1">
@@ -250,26 +237,40 @@
             </GridPane>
          </children>
       </Pane>
-      <Pane layoutX="50.0" layoutY="400.0" maxHeight="-Infinity" prefHeight="230.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="620.0" layoutY="258.0" prefHeight="550.0" prefWidth="550.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
-            <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+            <VBox prefHeight="550.0" prefWidth="550.0">
                <children>
-                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="160.0" prefWidth="500.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <GridPane prefHeight="185.0" prefWidth="550.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="224.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0" minWidth="10.0" prefWidth="326.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <Label alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" prefHeight="42.0" text="Vigencia de la licencia">
+                        <Label prefHeight="40.0" prefWidth="203.0" text="Clase de licencia">
+                           <font>
+                              <Font name="Microsoft PhagsPa" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="claseTextfield" editable="false" prefHeight="36.0" prefWidth="226.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Microsoft PhagsPa" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </TextField>
+                        <Label alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" prefHeight="42.0" text="Vigencia de la licencia" GridPane.rowIndex="1">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" prefHeight="42.0" text="Costo de la licencia" GridPane.rowIndex="1">
+                        <Label alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" prefHeight="42.0" text="Costo de la licencia" GridPane.rowIndex="2">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -277,7 +278,7 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="vigenciaTextfield" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="39.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1">
+                        <TextField fx:id="vigenciaTextfield" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="39.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="Microsoft PhagsPa" size="18.0" />
                            </font>
@@ -291,7 +292,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </TextField>
-                        <TextField fx:id="costoTextfield" editable="false" maxWidth="1.7976931348623157E308" prefHeight="39.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="costoTextfield" editable="false" maxWidth="1.7976931348623157E308" prefHeight="39.0" style="-fx-background-color: 111111; -fx-border-color: e0e0e0; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="Microsoft PhagsPa" size="18.0" />
                            </font>
@@ -300,16 +301,24 @@
                            </cursor>
                         </TextField>
                      </children>
-                     <padding>
-                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
-                     </padding>
                   </GridPane>
-                  <Button fx:id="calcularButton" alignment="CENTER" defaultButton="true" maxWidth="-Infinity" mnemonicParsing="false" onAction="#calcular" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Calcular">
+                  <Label prefHeight="60.0" prefWidth="195.0" text="Observaciones">
                      <font>
                         <Font name="Microsoft PhagsPa" size="18.0" />
                      </font>
-                  </Button>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea fx:id="observacionesTextarea" maxWidth="-Infinity" prefHeight="300.0" prefWidth="530.0" wrapText="true">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextArea>
                </children>
+               <padding>
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+               </padding>
             </VBox>
          </children>
       </Pane>

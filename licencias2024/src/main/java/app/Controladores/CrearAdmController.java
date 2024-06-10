@@ -121,6 +121,5 @@ public class CrearAdmController implements Initializable{
             alert.setContentText("No se ha podido crear el administrador, revise los campos nuevamente");
             alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
         }
-
     }
 }

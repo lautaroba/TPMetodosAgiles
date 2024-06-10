@@ -8,20 +8,19 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "Licencia")
 public class Licencia {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_licencia")
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "dni_titular")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dni_titular", referencedColumnName = "dni_titular")
     private Titular titular;
 
-    @OneToOne
-    @JoinColumn(name = "dni_administrador")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dni_administrador", referencedColumnName = "dni_administrador")
     private Administrador administrativo;
-
-    @Column(name = "limitacion")
-    private String limitacion;
 
     @Column(name = "fechaDeEmision", nullable = false)
     private LocalDate fechaDeEmision;
@@ -29,33 +28,30 @@ public class Licencia {
     @Column(name = "fechaDeExpiracion", nullable = false)
     private LocalDate fechaDeExpiracion;
 
+    @Column(name = "activa")
+    private boolean activa;
+
     public Licencia() {
 
     }
 
-    public Licencia(Titular titular, Administrador administrativo, String limitacion, LocalDate fechaDeEmision,
-    LocalDate fechaDeExpiracion) {
+    public Licencia(Titular titular, Administrador administrativo, LocalDate fechaDeEmision,
+    LocalDate fechaDeExpiracion, boolean activa) {
         this.titular = titular;
         this.administrativo = administrativo;
-        this.limitacion = limitacion;
         this.fechaDeEmision = fechaDeEmision;
         this.fechaDeExpiracion = fechaDeExpiracion;
+        this.activa = activa;
     }
 
     public Licencia(LicenciaDTO licencia) {
         this.titular = new Titular(licencia.titular);
         this.administrativo = new Administrador(licencia.administrativo);
-        this.limitacion = licencia.limitacion;
         this.fechaDeEmision = licencia.fechaDeEmision;
         this.fechaDeExpiracion = licencia.fechaDeExpiracion;
+        this.activa = licencia.activa;
     }
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
     public Titular getTitular() {
         return titular;
     }
@@ -67,12 +63,6 @@ public class Licencia {
     }
     public void setAdministrativo(Administrador administrativo) {
         this.administrativo = administrativo;
-    }
-    public String getLimitacion() {
-        return limitacion;
-    }
-    public void setLimitacion(String limitacion) {
-        this.limitacion = limitacion;
     }
     public LocalDate getFechaDeEmision() {
         return fechaDeEmision;
@@ -86,7 +76,11 @@ public class Licencia {
     public void setFechaDeExpiracion(LocalDate fechaDeExpiracion) {
         this.fechaDeExpiracion = fechaDeExpiracion;
     }
-
-
+    public boolean isActiva() {
+        return activa;
+    }
+    public void setActiva(boolean activa) {
+        this.activa = activa;
+    }
     
 }

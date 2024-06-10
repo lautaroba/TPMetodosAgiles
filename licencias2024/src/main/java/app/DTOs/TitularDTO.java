@@ -20,9 +20,10 @@ public class TitularDTO {
     public GrupoSanguineo grupoSanguineo;
     public FactorRH factorRH;
     public boolean donante;
+    public String limitacion;
 
     public TitularDTO(TipoDocumento tipoDocumento, int nroDni, String nombre, String apellido, LocalDate fechaDeNacimiento, String direccion, Clase clase, GrupoSanguineo grupoSanguineo,
-    FactorRH factorRH, boolean donante) {
+    FactorRH factorRH, boolean donante, String limitacion) {
         this.tipoDocumento = tipoDocumento;
         this.nroDNI = nroDni;
         this.nombre = nombre;
@@ -33,6 +34,7 @@ public class TitularDTO {
         this.grupoSanguineo = grupoSanguineo;
         this.factorRH = factorRH;
         this.donante = donante;
+        this.limitacion = limitacion;
     }
     public TitularDTO(Titular titular) {
         this.tipoDocumento = titular.getTipoDocumento();
@@ -45,6 +47,7 @@ public class TitularDTO {
         this.grupoSanguineo = titular.getGrupoSanguineo();
         this.factorRH = titular.getFactorRH();
         this.donante = titular.isDonante();
+        this.limitacion = titular.getLimitacion();
     }
     public TitularDTO(int dni) {
         this.nroDNI = dni;

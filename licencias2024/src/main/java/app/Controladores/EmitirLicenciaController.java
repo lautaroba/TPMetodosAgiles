@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -19,9 +20,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
 import app.App;
+import app.DTOs.LicenciaDTO;
 import app.DTOs.TitularDTO;
 import app.Enunumenadores.Clase;
 import app.Enunumenadores.FactorRH;
@@ -55,7 +58,7 @@ public class EmitirLicenciaController implements Initializable {
     @FXML
     private TextField grupoTextfield;
     @FXML
-    private TextField RHTextfield;
+    private TextField factorTextfield;
     @FXML
     private TextField donanteTextfield;
     @FXML
@@ -68,11 +71,15 @@ public class EmitirLicenciaController implements Initializable {
     private TextField costoTextfield;
     @FXML
     private Label nombreUsuarioLabel;
+    @FXML
+    private TextArea observacionesTextarea;
 
     private Stage stage;
     private Scene scene;
     private Parent root;
     private TitularDTO titular;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFinal;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -104,22 +111,28 @@ public class EmitirLicenciaController implements Initializable {
             direccionTextfield.setText(titular.direccion);
             claseTextfield.setText(titular.clase.toString());
             grupoTextfield.setText(titular.grupoSanguineo.toString());
-            RHTextfield.setText(titular.factorRH.toString());
+            factorTextfield.setText(titular.factorRH.toString());
+            observacionesTextarea.setText(titular.limitacion);
 
             if(titular.donante == true)
                 donanteTextfield.setText("SI");
             else
                 donanteTextfield.setText("NO");
 
+            int plazo = App.gestor.CalcularVigenciaLicencia(titular);
+            fechaInicio = LocalDate.now();
+            fechaFinal = LocalDate.of(fechaInicio.plusYears(plazo).getYear(), titular.fechaDeNacimiento.getMonth(), titular.fechaDeNacimiento.getDayOfMonth());
+            vigenciaTextfield.setText(fechaFinal.toString());
+            costoTextfield.setText(String.valueOf(App.gestor.CalcularCostoLicencia(titular)));
+
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             limpiarCampos();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido encontrar el titular, reingrese el numero de documento");
             alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
         }
-
     }
 
     @FXML
@@ -144,19 +157,31 @@ public class EmitirLicenciaController implements Initializable {
 
     @FXML
     private void aceptar(ActionEvent event) {
+        try {
 
-    }
+            // Busco si existe alguna licencia para el titular en cuestion con fecha de expiracion mayor a la actual
 
-    @FXML
-    private void calcular(ActionEvent event) {
+            LicenciaDTO licencia = new LicenciaDTO(titular, App.gestor.administradorLogeado, fechaInicio, fechaFinal, true);
+            App.gestor.CrearLicencia(licencia);
 
-        int plazo = App.gestor.CalcularVigenciaLicencia(titular);
-        LocalDate fechaInicio = LocalDate.now();
-        LocalDate fechaFinal = LocalDate.of(fechaInicio.plusYears(plazo).getYear(), titular.fechaDeNacimiento.getMonth(), titular.fechaDeNacimiento.getDayOfMonth());
-        
-        vigenciaTextfield.setText(fechaFinal.toString());
-        costoTextfield.setText(String.valueOf(App.gestor.CalcularCostoLicencia(titular)));
-
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText("Licencia generada con exito.");
+            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+        }catch(NoSuchElementException e){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText("No se ha podido generar la licencia, ya existe una licencia activa.");
+            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+        } 
+        catch (Exception e) {
+            //limpiarCampos();
+            e.printStackTrace();
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText("No se ha podido generar la licencia, revise los datos nuevamente.");
+            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+        }
     }
 
     private void limpiarCampos(){
@@ -168,7 +193,10 @@ public class EmitirLicenciaController implements Initializable {
         direccionTextfield.setText("");
         claseTextfield.setText("");
         grupoTextfield.setText("");
-        RHTextfield.setText("");
+        factorTextfield.setText("");
         donanteTextfield.setText("");
+        observacionesTextarea.setText("");
+        vigenciaTextfield.setText("");
+        costoTextfield.setText("");
     }
 }
