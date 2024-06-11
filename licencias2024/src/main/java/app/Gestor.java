@@ -16,8 +16,11 @@ public class Gestor {
     private AdministradorDAO gestorAdministrador;
     private TitularDAO gestorTitular;
     private LicenciaDAO gestorLicencia;
-    private static int[][] costos = { { 40, 30, 25, 20 }, { 40, 30, 25, 20 }, { 47, 35, 30, 23 }, { 59, 44, 39, 29 },
-            { 40, 30, 25, 20 } };
+    private static int[][] costos = {{ 40, 30, 25, 20 }, 
+                                     { 40, 30, 25, 20 }, 
+                                     { 47, 35, 30, 23 }, 
+                                     { 59, 44, 39, 29 },
+                                     { 40, 30, 25, 20 }};
     public int costo;
     public int vigencia;
 
@@ -69,10 +72,6 @@ public class Gestor {
             throw e;
         }
 
-    }
-
-    public LicenciaDTO BuscarLicencia(LicenciaDTO licencia) {
-        return new LicenciaDTO(gestorLicencia.getLicencia(licencia));
     }
 
     public void CrearLicencia(LicenciaDTO licencia) {
@@ -140,5 +139,17 @@ public class Gestor {
             return true;
         else
             return false;
+    }
+
+    public boolean BuscarLicenciaFecha(TitularDTO titular) {
+        
+        try{
+            if(gestorLicencia.getLicenciaByTitularYFecha(titular.nroDNI, LocalDate.now()).isEmpty())
+                return true;
+            else 
+                return false;
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

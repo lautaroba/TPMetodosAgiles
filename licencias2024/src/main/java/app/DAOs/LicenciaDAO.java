@@ -1,5 +1,8 @@
 package app.DAOs;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import app.App;
 import app.DTOs.LicenciaDTO;
 import app.DTOs.TitularDTO;
@@ -7,9 +10,23 @@ import app.Entidades.Licencia;
 
 public class LicenciaDAO {
     
-    public Licencia getLicencia(LicenciaDTO licencia){
+    public List<Licencia> getLicenciaByTitular(int nroDNI){
         try {
-            return App.entityManager.find(Licencia.class, licencia);
+            return App.entityManager.createQuery("FROM Licencia L WHERE L.dni_titular = :dni", Licencia.class)
+                                    .setParameter("dni", nroDNI)
+                                    .getResultList();
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public List<Licencia> getLicenciaByTitularYFecha(int dni, LocalDate fecha){
+        try {
+            return App.entityManager.createQuery("SELECT L FROM Licencia L WHERE L.titular.nroDNI = :dni AND L.fechaDeExpiracion > :fecha", Licencia.class)
+                                    .setParameter("dni", dni)
+                                    .setParameter("fecha", fecha)
+                                    .getResultList();
         } catch (Exception e) {
             throw e;
         }

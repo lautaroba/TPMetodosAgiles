@@ -32,19 +32,19 @@ public class App extends Application
 
         // Prueba //
         try {
-            gestor.CrearAdministrador(new AdministradorDTO(1, "chinardo", "anashe", LocalDate.now(), "unaCasaLoca", "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino));
-            gestor.CrearAdministrador(new AdministradorDTO(2, "matias", "abuuuuuuuuuuuud", LocalDate.now(), "unaCasaLocaDeParana", "unemail@email.com", "b", TipoDocumento.DNI, Sexo.Masculino));
+            gestor.CrearAdministrador(new AdministradorDTO(1, "admin1", "admin1", LocalDate.now(), "direccion1", "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino));
+            gestor.CrearAdministrador(new AdministradorDTO(2, "admin2", "admin2", LocalDate.now(), "direccion2", "unemail@email.com", "b", TipoDocumento.DNI, Sexo.Masculino));
             
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 1, "fernando", "normal", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 2, "fernando", "pebete", LocalDate.parse("2006-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 3, "fernando", "viejo", LocalDate.parse("1975-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 4, "fernando", "abuelo", LocalDate.parse("1960-11-11"), "otraCasaLoca", Clase.A, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 5, "fernando", "milico", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.D, GrupoSanguineo.O, FactorRH.Positivo, false, "observacioneeeeeeeeeeeeees"));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 6, "fernando", "discapacitado", LocalDate.parse("2000-11-11"), "otraCasaLoca", Clase.F, GrupoSanguineo.O, FactorRH.Positivo, false, "observacioneeeeeeeeeeeeees"));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 7, "fernando", "en el cajon", LocalDate.parse("1950-11-11"), "otraCasaLoca", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "observacioneeeeeeeeeeeeees"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 1, "prueba", "24 años", LocalDate.parse("2000-11-11"), "direccion1", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 2, "prueba", "18 años", LocalDate.parse("2006-11-11"), "direccion2", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones2, limitaciones3"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 3, "prueba", "50 años", LocalDate.parse("1975-11-11"), "direccion3", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones, limitaciones2, limitaciones3"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 4, "prueba", "60 años", LocalDate.parse("1960-11-11"), "direccion4", Clase.A, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones, limitaciones2, limitaciones3"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 5, "prueba", "clase D", LocalDate.parse("2000-11-11"), "direccion5", Clase.D, GrupoSanguineo.O, FactorRH.Positivo, false,""));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 6, "prueba", "clase F", LocalDate.parse("2000-11-11"), "direccion6", Clase.F, GrupoSanguineo.O, FactorRH.Positivo, false,"limitaciones, limitaciones2, limitaciones3, limitaciones4"));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 7, "prueba", "74 años", LocalDate.parse("1950-11-11"), "direccion7", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones, limitaciones2, limitaciones3"));
 
         } catch (Exception e) {
-            System.out.println("ya esta creado cabeza");
+            System.out.println("creado");
         }
 
         AnchorPane root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));

@@ -26,10 +26,6 @@ import java.util.ResourceBundle;
 import app.App;
 import app.DTOs.LicenciaDTO;
 import app.DTOs.TitularDTO;
-import app.Enunumenadores.Clase;
-import app.Enunumenadores.FactorRH;
-import app.Enunumenadores.GrupoSanguineo;
-import app.Enunumenadores.TipoDocumento;
 
 public class EmitirLicenciaController implements Initializable {
 
@@ -123,10 +119,10 @@ public class EmitirLicenciaController implements Initializable {
             fechaInicio = LocalDate.now();
             fechaFinal = LocalDate.of(fechaInicio.plusYears(plazo).getYear(), titular.fechaDeNacimiento.getMonth(), titular.fechaDeNacimiento.getDayOfMonth());
             vigenciaTextfield.setText(fechaFinal.toString());
-            costoTextfield.setText(String.valueOf(App.gestor.CalcularCostoLicencia(titular)));
+            costoTextfield.setText(String.valueOf(App.gestor.CalcularCostoLicencia(titular)));    
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             limpiarCampos();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
@@ -137,9 +133,9 @@ public class EmitirLicenciaController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LoginFXML.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Log in - Sistema de licencias");
+        stage.setTitle("Ventana de inicio");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -158,16 +154,22 @@ public class EmitirLicenciaController implements Initializable {
     @FXML
     private void aceptar(ActionEvent event) {
         try {
-
             // Busco si existe alguna licencia para el titular en cuestion con fecha de expiracion mayor a la actual
+            if(App.gestor.BuscarLicenciaFecha(titular)){
+                LicenciaDTO licencia = new LicenciaDTO(titular, App.gestor.administradorLogeado, fechaInicio, fechaFinal, true);
+                App.gestor.CrearLicencia(licencia);
 
-            LicenciaDTO licencia = new LicenciaDTO(titular, App.gestor.administradorLogeado, fechaInicio, fechaFinal, true);
-            App.gestor.CrearLicencia(licencia);
-
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Sistema de licencias");
-            alert.setContentText("Licencia generada con exito.");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Sistema de licencias");
+                alert.setContentText("Licencia generada con exito.");
+                alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            }
+            else{
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Sistema de licencias");
+                alert.setContentText("No se ha podido generar la licencia, ya existe una licencia activa.");
+                alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            }
         }catch(NoSuchElementException e){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");

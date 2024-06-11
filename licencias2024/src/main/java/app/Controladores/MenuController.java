@@ -1,7 +1,5 @@
 package app.Controladores;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,9 +75,6 @@ public class MenuController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-
-        // ADEMAS DELOGEAR LA SESION
-
         root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Ventana de inicio");
@@ -139,9 +134,13 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void cancelar(ActionEvent event) {
-        Stage stage = (Stage) cancelarButton.getScene().getWindow();
-        stage.close();
+    private void cancelar(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Ventana de inicio");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

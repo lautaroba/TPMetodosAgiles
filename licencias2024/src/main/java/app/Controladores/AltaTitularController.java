@@ -112,7 +112,7 @@ public class AltaTitularController implements Initializable {
     private Label donanteErrorLabel;
 
     @FXML
-    private TextArea observacionesTextArea;
+    private TextArea observacionesTextarea;
 
     private Stage stage;
     private Scene scene;
@@ -265,7 +265,7 @@ public class AltaTitularController implements Initializable {
                     nombreTextfield.getText(), apellidoTextfield.getText(), fechaNacDatePicker.getValue(),
                     direccionTextfield.getText(),
                     claseComboBox.getValue(), grupoComboBox.getValue(), factorComboBox.getValue(),
-                    siRadioButton.isSelected(), observacionesTextArea.getText());
+                    siRadioButton.isSelected(), observacionesTextarea.getText());
 
             App.gestor.CrearTitular(titular);
 

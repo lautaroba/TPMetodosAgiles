@@ -14,11 +14,11 @@ public class Licencia {
     @Column(name = "id_licencia")
     private int id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dni_titular", referencedColumnName = "dni_titular")
     private Titular titular;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dni_administrador", referencedColumnName = "dni_administrador")
     private Administrador administrativo;
 
@@ -32,7 +32,7 @@ public class Licencia {
     private boolean activa;
 
     public Licencia() {
-
+        
     }
 
     public Licencia(Titular titular, Administrador administrativo, LocalDate fechaDeEmision,
