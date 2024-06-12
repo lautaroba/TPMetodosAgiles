@@ -3,8 +3,8 @@ package app.DTOs;
 import java.time.LocalDate;
 
 import app.Entidades.Administrador;
-import app.Enunumenadores.Sexo;
-import app.Enunumenadores.TipoDocumento;
+import app.Enumeradores.Sexo;
+import app.Enumeradores.TipoDocumento;
 
 public class AdministradorDTO {
     

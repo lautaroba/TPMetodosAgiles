@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import app.App;
-import app.DTOs.LicenciaDTO;
 import app.DTOs.TitularDTO;
 import app.Entidades.Licencia;
 

@@ -3,8 +3,8 @@ package app.Entidades;
 import java.time.LocalDate;
 
 import app.DTOs.AdministradorDTO;
-import app.Enunumenadores.Sexo;
-import app.Enunumenadores.TipoDocumento;
+import app.Enumeradores.Sexo;
+import app.Enumeradores.TipoDocumento;
 import jakarta.persistence.*;
 
 @Entity

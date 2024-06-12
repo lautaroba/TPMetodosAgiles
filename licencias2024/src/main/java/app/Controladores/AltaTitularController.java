@@ -28,10 +28,10 @@ import java.util.ResourceBundle;
 
 import app.App;
 import app.DTOs.TitularDTO;
-import app.Enunumenadores.Clase;
-import app.Enunumenadores.FactorRH;
-import app.Enunumenadores.GrupoSanguineo;
-import app.Enunumenadores.TipoDocumento;
+import app.Enumeradores.Clase;
+import app.Enumeradores.FactorRH;
+import app.Enumeradores.GrupoSanguineo;
+import app.Enumeradores.TipoDocumento;
 import jakarta.persistence.EntityExistsException;
 
 public class AltaTitularController implements Initializable {

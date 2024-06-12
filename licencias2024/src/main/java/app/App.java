@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 import app.DTOs.AdministradorDTO;
 import app.DTOs.TitularDTO;
-import app.Enunumenadores.Clase;
-import app.Enunumenadores.FactorRH;
-import app.Enunumenadores.GrupoSanguineo;
-import app.Enunumenadores.Sexo;
-import app.Enunumenadores.TipoDocumento;
+import app.Enumeradores.Clase;
+import app.Enumeradores.FactorRH;
+import app.Enumeradores.GrupoSanguineo;
+import app.Enumeradores.Sexo;
+import app.Enumeradores.TipoDocumento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -39,7 +39,7 @@ public class App extends Application
             gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 2, "prueba", "18 años", LocalDate.parse("2006-11-11"), "direccion2", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones2, limitaciones3"));
             gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 3, "prueba", "50 años", LocalDate.parse("1975-11-11"), "direccion3", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones, limitaciones2, limitaciones3"));
             gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 4, "prueba", "60 años", LocalDate.parse("1960-11-11"), "direccion4", Clase.A, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones, limitaciones2, limitaciones3"));
-            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 5, "prueba", "clase D", LocalDate.parse("2000-11-11"), "direccion5", Clase.D, GrupoSanguineo.O, FactorRH.Positivo, false,""));
+            gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 5, "prueba", "clase D", LocalDate.parse("2000-11-11"), "direccion5", Clase.D1, GrupoSanguineo.O, FactorRH.Positivo, false,""));
             gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 6, "prueba", "clase F", LocalDate.parse("2000-11-11"), "direccion6", Clase.F, GrupoSanguineo.O, FactorRH.Positivo, false,"limitaciones, limitaciones2, limitaciones3, limitaciones4"));
             gestor.CrearTitular(new TitularDTO(TipoDocumento.DNI, 7, "prueba", "74 años", LocalDate.parse("1950-11-11"), "direccion7", Clase.B, GrupoSanguineo.O, FactorRH.Positivo, true, "limitaciones, limitaciones2, limitaciones3"));
 

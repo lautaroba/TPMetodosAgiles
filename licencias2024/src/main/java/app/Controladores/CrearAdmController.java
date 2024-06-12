@@ -23,8 +23,8 @@ import java.util.ResourceBundle;
 
 import app.App;
 import app.DTOs.AdministradorDTO;
-import app.Enunumenadores.Sexo;
-import app.Enunumenadores.TipoDocumento;
+import app.Enumeradores.Sexo;
+import app.Enumeradores.TipoDocumento;
 import jakarta.persistence.EntityExistsException;
 
 public class CrearAdmController implements Initializable{

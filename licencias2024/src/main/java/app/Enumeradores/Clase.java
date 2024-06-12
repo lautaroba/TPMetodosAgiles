@@ -1,4 +1,4 @@
-package app.Enunumenadores;
+package app.Enumeradores;
 
 public enum Clase {
     A("Ciclomotores, motocicletas y triciclos motorizados.", 0),

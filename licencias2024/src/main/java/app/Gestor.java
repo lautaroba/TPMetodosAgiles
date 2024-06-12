@@ -8,7 +8,7 @@ import app.DTOs.*;
 import app.Entidades.Administrador;
 import app.Entidades.Licencia;
 import app.Entidades.Titular;
-import app.Enunumenadores.Clase;
+import app.Enumeradores.Clase;
 
 public class Gestor {
 
@@ -93,7 +93,7 @@ public class Gestor {
         int costo = 8;
         int categoria = titular.clase.getNro();
 
-        if (titular.clase == Clase.D){
+        if (titular.clase == Clase.D1 || titular.clase == Clase.D2){
             return costo;
         }else if (titular.clase == Clase.F){
             return costo;
