@@ -31,6 +31,26 @@ public class LicenciaDAO {
         }
     }
 
+    public List<Licencia> getLicenciasExpiradas(){
+        try {
+            return App.entityManager.createQuery("SELECT L FROM Licencia L WHERE L.fechaDeExpiracion < :fecha", Licencia.class)
+                                    .setParameter("fecha", LocalDate.now())
+                                    .getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public List<Licencia> getLicenciasVigentes(){
+        try {
+            return App.entityManager.createQuery("SELECT L FROM Licencia L WHERE L.fechaDeExpiracion > :fecha", Licencia.class)
+                                    .setParameter("fecha", LocalDate.now())
+                                    .getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
     public void CrearLicencia(Licencia licencia){
         try {
             App.entityManager.getTransaction().begin();

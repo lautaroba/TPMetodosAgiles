@@ -1,12 +1,10 @@
 app\Enumeradores\Sexo.class
 app\DTOs\LicenciaDTO.class
-app\Enunumenadores\Sexo.class
 app\DAOs\TitularDAO.class
 app\Enumeradores\Clase.class
 app\Controladores\MenuController.class
 app\Controladores\AltaTitularController.class
 app\Controladores\CrearAdmController$1.class
-app\Enunumenadores\FactorRH.class
 app\Enumeradores\GrupoSanguineo.class
 app\Controladores\LoginController.class
 app\App.class
@@ -20,11 +18,8 @@ app\Controladores\CrearAdmController.class
 app\Controladores\LoginController$1.class
 app\Entidades\Titular.class
 app\Entidades\Administrador.class
-app\Enunumenadores\Clase.class
 app\Controladores\AltaTitularController$1.class
 app\Entidades\Licencia.class
 app\Controladores\EmitirLicenciaController$1.class
-app\Enunumenadores\TipoDocumento.class
 app\DAOs\LicenciaDAO.class
 app\Enumeradores\TipoDocumento.class
-app\Enunumenadores\GrupoSanguineo.class

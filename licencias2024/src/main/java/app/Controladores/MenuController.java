@@ -94,11 +94,6 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void imprimirLicencia(ActionEvent event) {
-
-    }
-
-    @FXML
     private void listadoExpiradas(ActionEvent event) {
 
     }
@@ -110,7 +105,6 @@ public class MenuController implements Initializable {
 
     @FXML
     private void darDeAlta(ActionEvent event) {
-
         try {
             root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/AltaTitular.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

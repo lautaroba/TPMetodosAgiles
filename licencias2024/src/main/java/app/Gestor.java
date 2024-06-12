@@ -2,6 +2,8 @@ package app;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 import app.DAOs.*;
 import app.DTOs.*;
@@ -148,6 +150,30 @@ public class Gestor {
                 return true;
             else 
                 return false;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public List<LicenciaDTO> ListadoLicenciasExpiradas(){
+        try {
+            List<LicenciaDTO> lista = new ArrayList<LicenciaDTO>();
+            for(Licencia l : gestorLicencia.getLicenciasExpiradas()){
+                lista.add(new LicenciaDTO(l));
+            }
+            return lista;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public List<LicenciaDTO> ListadoLicenciasVigentes(){
+        try {
+            List<LicenciaDTO> lista = new ArrayList<LicenciaDTO>();
+            for(Licencia l : gestorLicencia.getLicenciasVigentes()){
+                lista.add(new LicenciaDTO(l));
+            }
+            return lista;
         } catch (Exception e) {
             throw e;
         }

@@ -23,4 +23,15 @@ public class AdministradorDAO {
             App.entityManager.getTransaction().commit();
         }
     }
+
+    public void ModificarAdministrador(Administrador admin) {
+        try {
+            App.entityManager.getTransaction().begin();
+            App.entityManager.merge(admin);
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            App.entityManager.getTransaction().commit();
+        }
+    }
 }

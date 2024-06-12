@@ -69,18 +69,6 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="imprimirLicenciaButton" onAction="#imprimirLicencia" prefHeight="238.0" prefWidth="440.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Imprimir Licencia" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/imprimir.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Microsoft PhagsPa Bold" size="20.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="listadoExpiradasButton" onAction="#listadoExpiradas" prefHeight="251.0" prefWidth="441.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Licencias Expiradas" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
@@ -93,7 +81,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ListadoVigentesButton" onAction="#listadoVigentes" prefHeight="266.0" prefWidth="416.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Licencias Vigentes" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Button fx:id="ListadoVigentesButton" onAction="#listadoVigentes" prefHeight="266.0" prefWidth="416.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Licencias Vigentes" wrapText="true" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
