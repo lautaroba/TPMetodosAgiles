@@ -67,7 +67,7 @@ public class MenuController implements Initializable {
     private void emitirLicencia(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/EmitirLicencia.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Ventana de inicio");
+        stage.setTitle("Emitir licencia - Sistema de licencias");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -84,23 +84,43 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void emitirCopia(ActionEvent event) {
-
+    private void emitirCopia(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/EmitirCopiaLicencia.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Emitir copia licencia - Sistema de licencias");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void renovarLicencia(ActionEvent event) {
-
+    private void renovarLicencia(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/RenovarLicencia.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Renovar licencia - Sistema de licencias");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void listadoExpiradas(ActionEvent event) {
-
+    private void listadoExpiradas(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LicenciasExpiradas.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Listados licencias expiradas - Sistema de licencias");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void listadoVigentes(ActionEvent event) {
-
+    private void listadoVigentes(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LicenciasVigentes.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Listados licencias vigentes - Sistema de licencias");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -108,7 +128,7 @@ public class MenuController implements Initializable {
         try {
             root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/AltaTitular.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Dar de Alta Titular - Sistema de licencias");
+            stage.setTitle("Dar de alta titular - Sistema de licencias");
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -119,7 +139,16 @@ public class MenuController implements Initializable {
 
     @FXML
     private void modificarDatos(ActionEvent event) {
-
+        try {
+            root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/ModificarTitular.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Modificar un titular - Sistema de licencias");
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @FXML
@@ -131,7 +160,7 @@ public class MenuController implements Initializable {
     private void cancelar(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Ventana de inicio");
+        stage.setTitle("Inicio - Sistema de licencias");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

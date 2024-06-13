@@ -76,6 +76,14 @@ public class Gestor {
 
     }
 
+    public void ModificarAdministrador(AdministradorDTO administrador) {
+        try {
+            gestorAdministrador.ModificarAdministrador(new Administrador(administrador));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
     public void CrearLicencia(LicenciaDTO licencia) {
 
         try {

@@ -61,12 +61,25 @@ public class LoginController implements Initializable{
     private void aceptar(ActionEvent event) throws IOException {
 
         // Verifico si es super usuario para cargar administradores
-        if(dniTextfield.getText().equals("") && pwTextfield.getText().equals("root")){
-            SuperUsuario(event);
+        if(dniTextfield.getText().equals("") && pwTextfield.getText().equals("crear")){
+            root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/CrearAdm.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Cargar usuario administrador");
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else if(dniTextfield.getText().equals("") && pwTextfield.getText().equals("modificar")){
+            root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/ModificarAdm.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Modificar usuario administrador");
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
         else{
             try{
-                administrador = App.gestor.BuscarAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText()), null, null, null, null, null, pwTextfield.getText(), null, null));
+                administrador = App.gestor.BuscarAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText())));
                 if(administrador.contraseña.equals(pwTextfield.getText()))
                     menuPrincipal(event);
                 else {
@@ -101,15 +114,6 @@ public class LoginController implements Initializable{
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-	}
-
-    public void SuperUsuario(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/CrearAdm.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Cargar usuario administrador");
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
 	}
     
 }

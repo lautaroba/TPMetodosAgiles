@@ -43,6 +43,10 @@ public class AdministradorDTO {
         this.sexo = administrador.getSexo();
     }
 
+    public AdministradorDTO(int dni){
+        this.dni = dni;
+    }
+
     public AdministradorDTO(){}
     
 }
