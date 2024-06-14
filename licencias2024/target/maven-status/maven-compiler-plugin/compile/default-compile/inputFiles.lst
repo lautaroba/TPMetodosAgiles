@@ -1,24 +1,26 @@
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Enumeradores\GrupoSanguineo.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Entidades\Titular.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\DTOs\LicenciaDTO.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\App.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Enumeradores\Sexo.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Controladores\ModificarTitularController.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Enumeradores\TipoDocumento.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\DTOs\TitularDTO.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Controladores\CrearAdmController.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Controladores\AltaTitularController.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Controladores\ModificarAdmController.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Entidades\Administrador.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Enumeradores\Clase.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\DAOs\TitularDAO.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\DAOs\AdministradorDAO.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Entidades\Licencia.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Controladores\LoginController.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Controladores\EmitirLicenciaController.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Enumeradores\FactorRH.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\DAOs\LicenciaDAO.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\DTOs\AdministradorDTO.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Controladores\LicenciasExpiradasController.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Controladores\MenuController.java
-C:\Users\lauty\OneDrive\Desktop\Tp Metodos Agiles\licencias2024\src\main\java\app\Gestor.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DAOs/TitularDAO.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DAOs/AdministradorDAO.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/LoginController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Entidades/Licencia.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DTOs/AdministradorDTO.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/EmitirLicenciaController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/LicenciasExpiradasController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/CrearAdmController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/App.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/MenuController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Gestor.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Enumeradores/Sexo.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DTOs/TitularDTO.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Entidades/Administrador.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Enumeradores/TipoDocumento.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/AltaTitularController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/ModificarAdmController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Enumeradores/GrupoSanguineo.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/CopiaLicenciaController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/RenovarLicenciaController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DTOs/LicenciaDTO.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Enumeradores/Clase.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Entidades/Titular.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Controladores/ModificarTitularController.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/Enumeradores/FactorRH.java
+/home/fernando/Desktop/Facultad/MetodosAgiles/TPMetodosAgiles/licencias2024/src/main/java/app/DAOs/LicenciaDAO.java

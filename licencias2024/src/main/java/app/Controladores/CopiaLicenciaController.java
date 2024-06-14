@@ -37,7 +37,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
-public class EmitirLicenciaController implements Initializable {
+public class CopiaLicenciaController implements Initializable {
 
     @FXML
     private Button logoutButton;
@@ -46,7 +46,7 @@ public class EmitirLicenciaController implements Initializable {
     @FXML
     private Button buscarButton;
     @FXML
-    private Button aceptarButton;
+    private Button emitirCopiaButton;
     @FXML
     private TextField nombreTextfield;
     @FXML
@@ -164,7 +164,7 @@ public class EmitirLicenciaController implements Initializable {
     }
 
     @FXML
-    private void aceptar(ActionEvent event) {
+    private void emitirCopia(ActionEvent event) {
         try {
             // Busco si existe alguna licencia para el titular en cuestion con fecha de
             // expiracion mayor a la actual

@@ -18,11 +18,11 @@ public class Gestor {
     private AdministradorDAO gestorAdministrador;
     private TitularDAO gestorTitular;
     private LicenciaDAO gestorLicencia;
-    private static int[][] costos = {{ 40, 30, 25, 20 }, 
-                                     { 40, 30, 25, 20 }, 
-                                     { 47, 35, 30, 23 }, 
-                                     { 59, 44, 39, 29 },
-                                     { 40, 30, 25, 20 }};
+    private static int[][] costos = { { 40, 30, 25, 20 },
+            { 40, 30, 25, 20 },
+            { 47, 35, 30, 23 },
+            { 59, 44, 39, 29 },
+            { 40, 30, 25, 20 } };
     public int costo;
     public int vigencia;
 
@@ -89,9 +89,9 @@ public class Gestor {
         try {
 
             gestorLicencia.CrearLicencia(new Licencia(gestorTitular.getTitular(licencia.titular.nroDNI),
-                                                        gestorAdministrador.getAdministrador(administradorLogeado.dni),
-                                                        licencia.fechaDeEmision, licencia.fechaDeExpiracion, licencia.activa));
-                                                        
+                    gestorAdministrador.getAdministrador(administradorLogeado.dni),
+                    licencia.fechaDeEmision, licencia.fechaDeExpiracion, licencia.activa));
+
         } catch (Exception e) {
             throw e;
         }
@@ -103,11 +103,11 @@ public class Gestor {
         int costo = 8;
         int categoria = titular.clase.getNro();
 
-        if (titular.clase == Clase.D1 || titular.clase == Clase.D2){
+        if (titular.clase == Clase.D1 || titular.clase == Clase.D2) {
             return costo;
-        }else if (titular.clase == Clase.F){
+        } else if (titular.clase == Clase.F) {
             return costo;
-        }else if (edad < 21) {
+        } else if (edad < 21) {
             if (primeraVez(titular))
                 return costo += costos[categoria][3];
             else
@@ -152,21 +152,21 @@ public class Gestor {
     }
 
     public boolean BuscarLicenciaFecha(TitularDTO titular) {
-        
-        try{
-            if(gestorLicencia.getLicenciaByTitularYFecha(titular.nroDNI, LocalDate.now()).isEmpty())
+
+        try {
+            if (gestorLicencia.getLicenciaByTitularYFecha(titular.nroDNI, LocalDate.now()).isEmpty())
                 return true;
-            else 
+            else
                 return false;
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public List<LicenciaDTO> ListadoLicenciasExpiradas(){
+    public List<LicenciaDTO> ListadoLicenciasExpiradas() {
         try {
             List<LicenciaDTO> lista = new ArrayList<LicenciaDTO>();
-            for(Licencia l : gestorLicencia.getLicenciasExpiradas()){
+            for (Licencia l : gestorLicencia.getLicenciasExpiradas()) {
                 lista.add(new LicenciaDTO(l));
             }
             return lista;
@@ -174,11 +174,11 @@ public class Gestor {
             throw e;
         }
     }
-    
-    public List<LicenciaDTO> ListadoLicenciasVigentes(){
+
+    public List<LicenciaDTO> ListadoLicenciasVigentes() {
         try {
             List<LicenciaDTO> lista = new ArrayList<LicenciaDTO>();
-            for(Licencia l : gestorLicencia.getLicenciasVigentes()){
+            for (Licencia l : gestorLicencia.getLicenciasVigentes()) {
                 lista.add(new LicenciaDTO(l));
             }
             return lista;

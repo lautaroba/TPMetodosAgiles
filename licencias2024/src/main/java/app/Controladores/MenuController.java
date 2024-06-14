@@ -84,8 +84,8 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void emitirCopia(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/EmitirCopiaLicencia.fxml"));
+    private void emitirCopia(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/EmitirCopia.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Emitir copia licencia - Sistema de licencias");
         scene = new Scene(root);
@@ -94,7 +94,7 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void renovarLicencia(ActionEvent event) throws IOException{
+    private void renovarLicencia(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/RenovarLicencia.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Renovar licencia - Sistema de licencias");
@@ -104,7 +104,7 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void listadoExpiradas(ActionEvent event) throws IOException{
+    private void listadoExpiradas(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LicenciasExpiradas.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Listados licencias expiradas - Sistema de licencias");
@@ -114,7 +114,7 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void listadoVigentes(ActionEvent event) throws IOException{
+    private void listadoVigentes(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/LicenciasVigentes.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Listados licencias vigentes - Sistema de licencias");

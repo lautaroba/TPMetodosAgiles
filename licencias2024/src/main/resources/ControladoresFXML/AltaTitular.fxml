@@ -54,9 +54,32 @@
       </Pane>
       
       <!-- Panel de InformaciĆ³n Personal -->
+<<<<<<< HEAD
       <Pane layoutX="60.0" layoutY="100.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
             <VBox minHeight="-Infinity" prefHeight="700.0" prefWidth="1000.0">
+=======
+      <Pane layoutX="60.0" layoutY="110.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+         <children>
+            <GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1000.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="224.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0" minWidth="10.0" prefWidth="326.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0" minWidth="10.0" prefWidth="326.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+>>>>>>> 9675139 (altatitularterminado)
                <children>
                   <GridPane alignment="BASELINE_LEFT" prefHeight="550.0" prefWidth="1000.0">
                     <columnConstraints>
@@ -272,6 +295,7 @@
                         </Label>
                      </children>
                   </GridPane>
+<<<<<<< HEAD
                   <Label prefHeight="40.0" prefWidth="226.0" text="Observaciones">
                      <font>
                         <Font name="Microsoft PhagsPa" size="18.0" />
@@ -281,6 +305,95 @@
                      </VBox.margin>
                   </Label>
                   <TextArea fx:id="observacionesTextarea" maxWidth="615.0" prefHeight="126.0" wrapText="true" />
+=======
+                  <ComboBox fx:id="tipoComboBox" maxWidth="-Infinity" prefHeight="36.0" prefWidth="371.0" style="-fx-background-color: e0e0e0;" GridPane.columnIndex="1" />
+
+                  <ComboBox fx:id="claseComboBox" layoutX="234.0" layoutY="25.0" prefHeight="36.0" prefWidth="404.0" style="-fx-background-color: e0e0e0;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                  <ComboBox fx:id="grupoComboBox" layoutX="234.0" layoutY="415.0" prefHeight="36.0" prefWidth="398.0" style="-fx-background-color: e0e0e0;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+                  <ComboBox fx:id="factorComboBox" layoutX="234.0" layoutY="480.0" prefHeight="36.0" prefWidth="415.0" style="-fx-background-color: e0e0e0;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label fx:id="tipoErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="nroDocErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="nombreErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="apellidoErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fecNacErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="direcErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="claseErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="grupoErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="RHErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="donanteErrorLabel" prefHeight="42.0" prefWidth="326.0" text="* Este campo es obligatorio" textFill="#e80404" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+>>>>>>> 9675139 (altatitularterminado)
                </children>
                <padding>
                   <Insets bottom="15.0" left="15.0" right="10.0" top="10.0" />
