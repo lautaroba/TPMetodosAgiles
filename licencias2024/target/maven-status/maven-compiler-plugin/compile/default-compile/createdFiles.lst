@@ -1,7 +1,9 @@
 app\Enumeradores\Sexo.class
 app\DTOs\LicenciaDTO.class
+app\Controladores\RenovarLicenciaController$1.class
 app\DAOs\TitularDAO.class
 app\Enumeradores\Clase.class
+app\Controladores\CopiaLicenciaController.class
 app\Controladores\MenuController.class
 app\Controladores\AltaTitularController.class
 app\Controladores\CrearAdmController$1.class
@@ -27,4 +29,6 @@ app\Controladores\EmitirLicenciaController$1.class
 app\Controladores\LicenciasExpiradasController.class
 app\Controladores\ModificarAdmController$1.class
 app\DAOs\LicenciaDAO.class
+app\Controladores\CopiaLicenciaController$1.class
+app\Controladores\RenovarLicenciaController.class
 app\Enumeradores\TipoDocumento.class
