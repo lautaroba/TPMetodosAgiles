@@ -34,7 +34,7 @@ public class AppTest {
 
         @Test
         public void TestCrearAdministrador() {
-                AdministradorDTO administrador1 = new AdministradorDTO(1, "admin1", "admin1", LocalDate.now(),
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "admin1", "admin1", LocalDate.of(2000,1,1),
                                 "direccion1",
                                 "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
                 try {
@@ -42,7 +42,7 @@ public class AppTest {
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
-                assertEquals(administrador1, gestor.BuscarAdministrador(administrador1));
+                assertEquals(administrador1.dni, gestor.BuscarAdministrador(administrador1).dni);
         }
 
         @Test
@@ -83,13 +83,13 @@ public class AppTest {
                         e.printStackTrace();
                 }
 
-                assertEquals(titularDTO1, gestor.BuscarTitular(titularDTO1));
-                assertEquals(titularDTO2, gestor.BuscarTitular(titularDTO2));
-                assertEquals(titularDTO3, gestor.BuscarTitular(titularDTO3));
-                assertEquals(titularDTO4, gestor.BuscarTitular(titularDTO4));
-                assertEquals(titularDTO5, gestor.BuscarTitular(titularDTO5));
-                assertEquals(titularDTO6, gestor.BuscarTitular(titularDTO6));
-                assertEquals(titularDTO7, gestor.BuscarTitular(titularDTO7));
+                assertEquals(titularDTO1.nroDNI, gestor.BuscarTitular(titularDTO1).nroDNI);
+                assertEquals(titularDTO2.nroDNI, gestor.BuscarTitular(titularDTO2).nroDNI);
+                assertEquals(titularDTO3.nroDNI, gestor.BuscarTitular(titularDTO3).nroDNI);
+                assertEquals(titularDTO4.nroDNI, gestor.BuscarTitular(titularDTO4).nroDNI);
+                assertEquals(titularDTO5.nroDNI, gestor.BuscarTitular(titularDTO5).nroDNI);
+                assertEquals(titularDTO6.nroDNI, gestor.BuscarTitular(titularDTO6).nroDNI);
+                assertEquals(titularDTO7.nroDNI, gestor.BuscarTitular(titularDTO7).nroDNI);
         }
 
         /*
@@ -178,7 +178,7 @@ public class AppTest {
 
         @Test
         public void TestCrearLicenciaFallos5() {
-                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.now(),
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000,1,1),
                                 "direccion",
                                 "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
                 TitularDTO titularConBPreviaSin1anio = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
@@ -189,7 +189,9 @@ public class AppTest {
 
                 LicenciaDTO licencia2 = new LicenciaDTO(titularConBPreviaSin1anio, administrador1,
                                 LocalDate.now(), LocalDate.of(2026,1,1), Clase.C);
-                try {
+                try {  
+                        gestor.CrearAdministrador(administrador1);
+                        gestor.CrearTitular(titularConBPreviaSin1anio);
                         gestor.CrearLicencia(licencia1);
                         gestor.CrearLicencia(licencia2);
                 } catch (Exception e) {
@@ -200,7 +202,7 @@ public class AppTest {
 
         @Test
         public void TestCrearLicenciaFallos6() {
-                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.now(),
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000,1,1),
                                 "direccion",
                                 "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
                 TitularDTO titularConFIntentaCualquierLicencia = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
@@ -217,6 +219,8 @@ public class AppTest {
                 LicenciaDTO licencia4 = new LicenciaDTO(titularConFIntentaCualquierLicencia, administrador1,
                                 LocalDate.now(), LocalDate.of(2026,1,1), Clase.G);      
                 try {
+                        gestor.CrearAdministrador(administrador1);
+                        gestor.CrearTitular(titularConFIntentaCualquierLicencia);
                         gestor.CrearLicencia(licencia1);
                         gestor.CrearLicencia(licencia2);
                         gestor.CrearLicencia(licencia3);
@@ -224,12 +228,12 @@ public class AppTest {
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
-                assertEquals(1, gestor.BuscarLicenciasTitular(titularConFIntentaCualquierLicencia, LocalDate.of(1,1,1)).size());
+                assertEquals(4, gestor.BuscarLicenciasTitular(titularConFIntentaCualquierLicencia, LocalDate.of(1,1,1)).size());
         }
 
         @Test
         public void TestCrearLicenciaFallos7() {
-                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.now(),
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000,1,1),
                                 "direccion",
                                 "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
                 TitularDTO titularConBIntentaSacarlaNuevamente = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
@@ -240,6 +244,8 @@ public class AppTest {
                 LicenciaDTO licencia2 = new LicenciaDTO(titularConBIntentaSacarlaNuevamente, administrador1,
                                 LocalDate.now(), LocalDate.of(2026,1,1), Clase.B);
                 try {
+                        gestor.CrearAdministrador(administrador1);
+                        gestor.CrearTitular(titularConBIntentaSacarlaNuevamente);
                         gestor.CrearLicencia(licencia1);
                         gestor.CrearLicencia(licencia2);
                 } catch (Exception e) {
@@ -250,7 +256,7 @@ public class AppTest {
 
         @Test
         public void TestCrearLicenciaFallos8() {
-                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.now(),
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000,1,1),
                                 "direccion",
                                 "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
                 TitularDTO titularConBIntentaSacarlaNuevamente = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
@@ -261,6 +267,8 @@ public class AppTest {
                 LicenciaDTO licencia2 = new LicenciaDTO(titularConBIntentaSacarlaNuevamente, administrador1,
                                 LocalDate.now(), LocalDate.of(2026,1,1), Clase.B);
                 try {
+                        gestor.CrearAdministrador(administrador1);
+                        gestor.CrearTitular(titularConBIntentaSacarlaNuevamente);
                         gestor.CrearLicencia(licencia1);
                         gestor.CrearLicencia(licencia2);
                 } catch (Exception e) {

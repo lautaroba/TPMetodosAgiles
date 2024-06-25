@@ -18,10 +18,10 @@ public class Gestor {
 
     private static final int COSTO_TRAMITE_ADMINISTRATIVO = 8;
     private static final int[][] COSTOS_POR_CLASE_Y_EDAD = { { 40, 30, 25, 20 },
-                                                             { 40, 30, 25, 20 },
-                                                             { 47, 35, 30, 23 },
-                                                             { 59, 44, 39, 29 },
-                                                             { 40, 30, 25, 20 } };
+            { 40, 30, 25, 20 },
+            { 47, 35, 30, 23 },
+            { 59, 44, 39, 29 },
+            { 40, 30, 25, 20 } };
 
     private EntityManagerFactory entityManagerFactory;
     public AdministradorDAO gestorAdministrador;
@@ -76,7 +76,6 @@ public class Gestor {
             throw new MenorDeEdadException();
         else
             gestorAdministrador.CrearAdministrador(new Administrador(administrador));
-
     }
 
     public void ModificarAdministrador(AdministradorDTO administrador) {
@@ -88,31 +87,12 @@ public class Gestor {
     }
 
     public void CrearLicencia(LicenciaDTO licencia) throws Exception {
-
         try {
-            verificarLicenciaActiva(licencia, LocalDate.now());
-            verificarLicenciaMayorActiva(licencia, LocalDate.now());
-            if (licencia.clase == Clase.C || licencia.clase == Clase.D1 || licencia.clase == Clase.D2
-                    || licencia.clase == Clase.E)
+            verificarLicenciaEmitida(licencia);
+            if (esProfesional(licencia)) {
                 verificarLicenciaProfesional(licencia);
-            else if (licencia.clase == Clase.F)
-                verificarLicenciaDiscapacitado(licencia);
-            
-            gestorLicencia.CrearLicencia(new Licencia(gestorTitular.getTitular(licencia.titular.nroDNI),
-                    gestorAdministrador.getAdministrador(licencia.administrativo.dni),
-                    licencia.fechaDeEmision, licencia.fechaDeExpiracion, licencia.clase));
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public void RenovarLicencia(LicenciaDTO licencia) throws Exception {
-        // se puede renovar hasta cn 3 meses antes que caduque la nueva
-        try {
-            verificarLicenciaActiva(licencia, LocalDate.now().plusMonths(3));
-            if (licencia.clase == Clase.F)
-                verificarLicenciaDiscapacitado(licencia);
-            verificarLicenciaMayorActiva(licencia, LocalDate.now().plusMonths(3));
+                desactivarLicenciasMenores(licencia);
+            }
             gestorLicencia.CrearLicencia(new Licencia(gestorTitular.getTitular(licencia.titular.nroDNI),
                     gestorAdministrador.getAdministrador(licencia.administrativo.dni),
                     licencia.fechaDeEmision, licencia.fechaDeExpiracion, licencia.clase));
@@ -130,13 +110,87 @@ public class Gestor {
             throw e;
         }
     }
-    
-    public void verificarLicenciaActiva(LicenciaDTO licencia, LocalDate fecha) throws Exception {
+
+    private boolean esProfesional(LicenciaDTO licencia) {
+        if (licencia.clase == Clase.C || licencia.clase == Clase.D1 || licencia.clase == Clase.D2
+                || licencia.clase == Clase.E)
+            return true;
+        else
+            return false;
+    }
+
+    public void RenovarLicencia(LicenciaDTO licencia) throws Exception {
+        // se puede renovar hasta cn 3 meses antes que caduque la nueva
+        try {
+            verificarLicenciaEmitida(licencia, LocalDate.now().plusMonths(3));
+            desactivarLicenciasMenores(licencia);
+
+            gestorLicencia.CrearLicencia(new Licencia(gestorTitular.getTitular(licencia.titular.nroDNI),
+                    gestorAdministrador.getAdministrador(licencia.administrativo.dni),
+                    licencia.fechaDeEmision, licencia.fechaDeExpiracion, licencia.clase));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void verificarLicenciaEmitida(LicenciaDTO licencia, LocalDate fechaLimite) throws Exception {
+        for (Licencia l : gestorLicencia.getLicenciaByTitular(licencia.titular.nroDNI)) {
+            if (l.getFechaDeExpiracion().isAfter(fechaLimite)) {
+                if (l.getClase() == licencia.clase) {
+                    throw new YaPoseeLicenciaException();
+                } else if (licencia.clase == Clase.B) {
+                    if (l.getClase() == Clase.C)
+                        throw new YaPoseeLicenciaException();
+                    else if (l.getClase() == Clase.D1)
+                        throw new YaPoseeLicenciaException();
+                    else if (l.getClase() == Clase.D2)
+                        throw new YaPoseeLicenciaException();
+                    else if (l.getClase() == Clase.E)
+                        throw new YaPoseeLicenciaException();
+                } else if (licencia.clase == Clase.C) {
+                    if (l.getClase() == Clase.D2)
+                        throw new YaPoseeLicenciaException();
+                    else if (l.getClase() == Clase.E)
+                        throw new YaPoseeLicenciaException();
+                }
+            }
+        }
+    }
+
+    public void verificarLicenciaEmitida(LicenciaDTO licencia) throws Exception {
         for (Licencia l : gestorLicencia.getLicenciaByTitular(licencia.titular.nroDNI)) {
             if (l.getClase() == licencia.clase) {
-                if (l.getFechaDeExpiracion().isAfter(fecha))
+                throw new YaPoseeLicenciaException();
+            } else if (licencia.clase == Clase.B) {
+                if (l.getClase() == Clase.C)
+                    throw new YaPoseeLicenciaException();
+                else if (l.getClase() == Clase.D1)
+                    throw new YaPoseeLicenciaException();
+                else if (l.getClase() == Clase.D2)
+                    throw new YaPoseeLicenciaException();
+                else if (l.getClase() == Clase.E)
+                    throw new YaPoseeLicenciaException();
+            } else if (licencia.clase == Clase.C) {
+                if (l.getClase() == Clase.D2)
+                    throw new YaPoseeLicenciaException();
+                else if (l.getClase() == Clase.E)
                     throw new YaPoseeLicenciaException();
             }
+        }
+    }
+
+    public void desactivarLicenciasMenores(LicenciaDTO licencia) {
+        if (licencia.clase == Clase.C)
+            desactivarLicencia(licencia.titular, Clase.B);
+        else if (licencia.clase == Clase.D1)
+            desactivarLicencia(licencia.titular, Clase.B);
+        else if (licencia.clase == Clase.D2) {
+            desactivarLicencia(licencia.titular, Clase.B);
+            desactivarLicencia(licencia.titular, Clase.C);
+            desactivarLicencia(licencia.titular, Clase.D1);
+        } else if (licencia.clase == Clase.E) {
+            desactivarLicencia(licencia.titular, Clase.B);
+            desactivarLicencia(licencia.titular, Clase.C);
         }
     }
 
@@ -145,38 +199,11 @@ public class Gestor {
         int edad = Period.between(licencia.titular.fechaDeNacimiento, LocalDate.now()).getYears();
         if (edad < 21 || edad > 65)
             throw new MenorDeEdadProfesionalException();
-        // Verifico que haya tenido una B anterior
         if (!licenciaBprevia(licencia))
             throw new NoObtuvoLicenciaBPreviaException();
-        // En este punto, significa q puede obtener una licencia profesional, debemos
-        // desactivar si es que existe, anterior de menor "rango"
-        if (licencia.clase == Clase.C)
-            desactivarLicencia(licencia.titular, Clase.B);
-        else if (licencia.clase == Clase.D1)
-            desactivarLicencia(licencia.titular, Clase.B);
-        else if (licencia.clase == Clase.D2){
-            desactivarLicencia(licencia.titular, Clase.B);
-            desactivarLicencia(licencia.titular, Clase.C);
-            desactivarLicencia(licencia.titular, Clase.D1);
-        }
-        else if (licencia.clase == Clase.E) {
-            desactivarLicencia(licencia.titular, Clase.B);
-            desactivarLicencia(licencia.titular, Clase.C);
-        }
-    }
-
-    public void verificarLicenciaDiscapacitado(LicenciaDTO licencia) throws Exception {
-        desactivarLicencia(licencia.titular, Clase.A);
-        desactivarLicencia(licencia.titular, Clase.B);
-        desactivarLicencia(licencia.titular, Clase.C);
-        desactivarLicencia(licencia.titular, Clase.D1);
-        desactivarLicencia(licencia.titular, Clase.D2);
-        desactivarLicencia(licencia.titular, Clase.E);
-        desactivarLicencia(licencia.titular, Clase.G);
     }
 
     public boolean licenciaBprevia(LicenciaDTO licencia) {
-
         for (Licencia l : gestorLicencia.getLicenciaByTitular(licencia.titular.nroDNI)) {
             if (l.getClase() == Clase.B) {
                 if (Period.between(l.getFechaDeEmision(), LocalDate.now()).getYears() >= 1)
@@ -186,28 +213,27 @@ public class Gestor {
         return false;
     }
 
-    public void verificarLicenciaMayorActiva(LicenciaDTO licencia, LocalDate fecha)throws Exception{
-        if(licencia.clase == Clase.B){
-            checkLicenciaMayor(licencia, Clase.C, fecha);
-            checkLicenciaMayor(licencia, Clase.D1, fecha);
-            checkLicenciaMayor(licencia, Clase.D2, fecha);
-            checkLicenciaMayor(licencia, Clase.E, fecha);
-        }
-        else if(licencia.clase == Clase.C){
-            checkLicenciaMayor(licencia, Clase.D2, fecha);
-            checkLicenciaMayor(licencia, Clase.E, fecha);
-        }
-        else if(licencia.clase == Clase.D1){
-            checkLicenciaMayor(licencia, Clase.D2, fecha);
-        }
-    }
+    // public void verificarLicenciaMayorActiva(LicenciaDTO licencia, LocalDate
+    // fecha) throws Exception {
+    // if (licencia.clase == Clase.B) {
+    // checkLicenciaMayor(licencia, Clase.C, fecha);
+    // checkLicenciaMayor(licencia, Clase.D1, fecha);
+    // checkLicenciaMayor(licencia, Clase.D2, fecha);
+    // checkLicenciaMayor(licencia, Clase.E, fecha);
+    // } else if (licencia.clase == Clase.C) {
+    // checkLicenciaMayor(licencia, Clase.D2, fecha);
+    // checkLicenciaMayor(licencia, Clase.E, fecha);
+    // } else if (licencia.clase == Clase.D1) {
+    // checkLicenciaMayor(licencia, Clase.D2, fecha);
+    // }
+    // }
 
-    public void checkLicenciaMayor(LicenciaDTO licencia, Clase clase, LocalDate fecha) throws Exception{
+    public void checkLicenciaMayor(LicenciaDTO licencia, Clase clase, LocalDate fecha) throws Exception {
         for (Licencia l : gestorLicencia.getLicenciaByTitularYFecha(licencia.titular.nroDNI, fecha)) {
             if (l.getClase() == clase) {
-                throw new LicenciaMayorActivaException(); 
+                throw new LicenciaMayorActivaException();
             }
-        }   
+        }
     }
 
     public void desactivarLicencia(TitularDTO titular, Clase clase) {

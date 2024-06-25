@@ -123,7 +123,7 @@ public class RenovarLicenciaController implements Initializable {
     private void buscar() {
         try {
             List<LicenciaDTO> licenciasTitular = App.gestor
-                    .BuscarLicenciasTitular(new TitularDTO(Integer.parseInt(buscarTextfield.getText())), LocalDate.of(0, 0, 0));
+                    .BuscarLicenciasTitular(new TitularDTO(Integer.parseInt(buscarTextfield.getText())), LocalDate.of(1, 1, 1));
             ObservableList<LicenciaDTO> datosLicenciasTitular = FXCollections.observableList(licenciasTitular);
             nroDocColumn.setCellValueFactory(
                     new Callback<CellDataFeatures<LicenciaDTO, Integer>, ObservableValue<Integer>>() {

@@ -27,17 +27,17 @@ public class App extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
-        // AdministradorDTO administrador1 = new AdministradorDTO(1, "admin1", "admin1", LocalDate.of(2000, 1, 1), "direccion1",
-        //         "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
-        // AdministradorDTO administrador2 = new AdministradorDTO(2, "admin2", "admin2", LocalDate.of(2000, 1, 1), "direccion2",
-        //         "unemail@email.com", "b", TipoDocumento.DNI, Sexo.Masculino);
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "admin1", "admin1", LocalDate.of(2000, 1, 1), "direccion1",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        AdministradorDTO administrador2 = new AdministradorDTO(2, "admin2", "admin2", LocalDate.of(2000, 1, 1), "direccion2",
+                "unemail@email.com", "b", TipoDocumento.DNI, Sexo.Masculino);
 
-        // try {
-        //     gestor.CrearAdministrador(administrador1);
-        //     gestor.CrearAdministrador(administrador2);
-        // } catch (Exception e) {
-        //     //e.printStackTrace();
-        // }
+        try {
+            gestor.CrearAdministrador(administrador1);
+            gestor.CrearAdministrador(administrador2);
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
 
         // TitularDTO titularDTO1 = new TitularDTO(TipoDocumento.DNI, 1, "Matias", "24 años",
         //         LocalDate.parse("2000-11-11"), "direccion1", GrupoSanguineo.A, FactorRH.Negativo, true, "limitaciones");
