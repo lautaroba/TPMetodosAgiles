@@ -1,4 +1,5 @@
 package app.Controladores;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -27,20 +28,20 @@ import app.Enumeradores.Sexo;
 import app.Enumeradores.TipoDocumento;
 import jakarta.persistence.EntityExistsException;
 
-public class CrearAdmController implements Initializable{
+public class CrearAdmController implements Initializable {
 
     @FXML
     private Button aceptarButton;
 
     @FXML
     private Button volverButton;
-    
+
     @FXML
     private TextField dniTextfield;
-    
+
     @FXML
     private TextField apellidoTextfield;
-    
+
     @FXML
     private TextField direccionTextfield;
 
@@ -52,19 +53,19 @@ public class CrearAdmController implements Initializable{
 
     @FXML
     private DatePicker fechaNacDatePicker;
-    
+
     @FXML
     private ComboBox<Sexo> sexoComboBox = new ComboBox<>();
 
     @FXML
     private ComboBox<TipoDocumento> tipoComboBox = new ComboBox<>();
-    
+
     @FXML
     private TextField nombreTextfield;
-    
+
     private Stage stage;
-	private Scene scene;
-	private Parent root;
+    private Scene scene;
+    private Parent root;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,10 +73,11 @@ public class CrearAdmController implements Initializable{
         tipoComboBox.getItems().setAll(TipoDocumento.values());
 
         dniTextfield.textProperty().addListener(new ChangeListener<String>() {
-        @Override
+            @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.matches("\\d*")) {
-                    // Si el nuevo valor contiene caracteres no numéricos, reemplace el texto con el antiguo valor
+                    // Si el nuevo valor contiene caracteres no numéricos, reemplace el texto con el
+                    // antiguo valor
                     dniTextfield.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
@@ -84,38 +86,39 @@ public class CrearAdmController implements Initializable{
 
     @FXML
     public void volver(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Inicio - Sistema de licencias");
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
+        root = FXMLLoader.load(getClass().getResource("/ControladoresFXML/Login.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Inicio - Sistema de licencias");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     private void aceptar(ActionEvent event) {
-        
-        // Corroborar q no hayan campos vacios  y que todos sean validos !! eso lo haces vos fernando y la concha de tu madre
 
-        try{
-            App.gestor.CrearAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText()), nombreTextfield.getText(),
-            apellidoTextfield.getText(), fechaNacDatePicker.getValue(), direccionTextfield.getText(),
-            emailTextfield.getText(), pwField.getText(), tipoComboBox.getValue(), sexoComboBox.getValue()));
+        // Corroborar q no hayan campos vacios y que todos sean validos !! eso lo haces
+        // vos fernando y la concha de tu madre
+
+        try {
+            App.gestor.CrearAdministrador(new AdministradorDTO(Integer.parseInt(dniTextfield.getText()),
+                    nombreTextfield.getText(),
+                    apellidoTextfield.getText(), fechaNacDatePicker.getValue(), direccionTextfield.getText(),
+                    emailTextfield.getText(), pwField.getText(), tipoComboBox.getValue(), sexoComboBox.getValue()));
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("Operacion se ha realizado con exito, el administrador ha sido creado correctamente");
-          
+
             alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
-        }
-        catch(EntityExistsException e){
+        } catch (EntityExistsException e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
-            alert.setContentText("Ya existe un administrador con el nro de identificacion ingresado, por favor intente nuevamente.");
+            alert.setContentText(
+                    "Ya existe un administrador con el nro de identificacion ingresado, por favor intente nuevamente.");
             alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
-        }
-        catch(Exception e){
-            //e.printStackTrace();
+        } catch (Exception e) {
+            // e.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido crear el administrador, revise los campos nuevamente");

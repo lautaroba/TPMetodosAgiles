@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import app.App;
 import app.DTOs.TitularDTO;
-import app.Enumeradores.Clase;
 import app.Enumeradores.FactorRH;
 import app.Enumeradores.GrupoSanguineo;
 import app.Enumeradores.TipoDocumento;
@@ -31,7 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
-public class ModificarTitularController implements Initializable{
+public class ModificarTitularController implements Initializable {
 
     @FXML
     private Label RHErrorLabel;
@@ -43,10 +42,6 @@ public class ModificarTitularController implements Initializable{
     private Label apellidoErrorLabel;
     @FXML
     private TextField apellidoTextfield;
-    @FXML
-    private ComboBox<Clase> claseComboBox;
-    @FXML
-    private Label claseErrorLabel;
     @FXML
     private Label direcErrorLabel;
     @FXML
@@ -95,7 +90,6 @@ public class ModificarTitularController implements Initializable{
 
         nombreUsuarioLabel.setText(App.gestor.administradorLogeado.nombre);
         tipoComboBox.getItems().setAll(TipoDocumento.values());
-        claseComboBox.getItems().setAll(Clase.values());
         grupoComboBox.getItems().setAll(GrupoSanguineo.values());
         factorComboBox.getItems().setAll(FactorRH.values());
 
@@ -108,7 +102,6 @@ public class ModificarTitularController implements Initializable{
         apellidoErrorLabel.setVisible(false);
         fecNacErrorLabel.setVisible(false);
         direcErrorLabel.setVisible(false);
-        claseErrorLabel.setVisible(false);
         grupoErrorLabel.setVisible(false);
         RHErrorLabel.setVisible(false);
         donanteErrorLabel.setVisible(false);
@@ -129,7 +122,7 @@ public class ModificarTitularController implements Initializable{
     @FXML
     private void buscar(ActionEvent event) {
 
-         try {
+        try {
             TitularDTO titular = App.gestor.BuscarTitular(new TitularDTO(Integer.parseInt(dniTextfield.getText())));
 
             tipoComboBox.setValue(titular.tipoDocumento);
@@ -138,20 +131,19 @@ public class ModificarTitularController implements Initializable{
             apellidoTextfield.setText(titular.apellido);
             fechaNacDatePicker.setValue(titular.fechaDeNacimiento);
             direccionTextfield.setText(titular.direccion);
-            claseComboBox.setValue(titular.clase);
             grupoComboBox.setValue(titular.grupoSanguineo);
             factorComboBox.setValue(titular.factorRH);
             observacionesTextarea.setText(titular.limitacion);
             siRadioButton.setSelected(titular.donante);
             noRadioButton.setSelected(titular.donante);
 
-         } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido encontrar el titular, reingrese el numero de documento");
             alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
-         }
+        }
     }
 
     @FXML

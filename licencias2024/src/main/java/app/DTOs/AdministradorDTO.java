@@ -7,7 +7,7 @@ import app.Enumeradores.Sexo;
 import app.Enumeradores.TipoDocumento;
 
 public class AdministradorDTO {
-    
+
     public int dni;
     public String nombre;
     public String apellido;
@@ -43,10 +43,12 @@ public class AdministradorDTO {
         this.sexo = administrador.getSexo();
     }
 
-    public AdministradorDTO(int dni){
+    public AdministradorDTO(int dni) {
         this.dni = dni;
     }
 
-    public AdministradorDTO(){}
-    
+    public AdministradorDTO() {
+        
+    }
+
 }

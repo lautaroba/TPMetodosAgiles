@@ -2,8 +2,16 @@ package app.Entidades;
 
 import java.time.LocalDate;
 
-import app.DTOs.LicenciaDTO;
-import jakarta.persistence.*;
+import app.Enumeradores.Clase;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Licencia")
@@ -14,11 +22,11 @@ public class Licencia {
     @Column(name = "id_licencia")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "dni_titular", referencedColumnName = "dni_titular")
     private Titular titular;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "dni_administrador", referencedColumnName = "dni_administrador")
     private Administrador administrativo;
 
@@ -28,28 +36,20 @@ public class Licencia {
     @Column(name = "fechaDeExpiracion", nullable = false)
     private LocalDate fechaDeExpiracion;
 
-    @Column(name = "activa")
-    private boolean activa;
+    @Column(name = "clase", nullable = false)
+    private Clase clase;
 
     public Licencia() {
         
     }
 
     public Licencia(Titular titular, Administrador administrativo, LocalDate fechaDeEmision,
-    LocalDate fechaDeExpiracion, boolean activa) {
+    LocalDate fechaDeExpiracion, Clase clase) {
         this.titular = titular;
         this.administrativo = administrativo;
         this.fechaDeEmision = fechaDeEmision;
         this.fechaDeExpiracion = fechaDeExpiracion;
-        this.activa = activa;
-    }
-
-    public Licencia(LicenciaDTO licencia) {
-        this.titular = new Titular(licencia.titular);
-        this.administrativo = new Administrador(licencia.administrativo);
-        this.fechaDeEmision = licencia.fechaDeEmision;
-        this.fechaDeExpiracion = licencia.fechaDeExpiracion;
-        this.activa = licencia.activa;
+        this.clase = clase;
     }
 
     public Titular getTitular() {
@@ -76,11 +76,11 @@ public class Licencia {
     public void setFechaDeExpiracion(LocalDate fechaDeExpiracion) {
         this.fechaDeExpiracion = fechaDeExpiracion;
     }
-    public boolean isActiva() {
-        return activa;
+    public Clase getClase() {
+        return clase;
     }
-    public void setActiva(boolean activa) {
-        this.activa = activa;
+    public void setClase(Clase clase) {
+        this.clase = clase;
     }
     
 }

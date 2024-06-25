@@ -1,34 +1,11 @@
 package app.Controladores;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.Node;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
-
-import app.App;
-import app.DTOs.LicenciaDTO;
-import app.DTOs.TitularDTO;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -36,6 +13,30 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+
+import app.App;
+import app.DTOs.LicenciaDTO;
+import app.DTOs.TitularDTO;
+import app.Enumeradores.Clase;
+import app.Excepciones.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 
 public class EmitirLicenciaController implements Initializable {
 
@@ -58,8 +59,6 @@ public class EmitirLicenciaController implements Initializable {
     @FXML
     private TextField tipoTextfield;
     @FXML
-    private TextField claseTextfield;
-    @FXML
     private TextField grupoTextfield;
     @FXML
     private TextField factorTextfield;
@@ -77,6 +76,8 @@ public class EmitirLicenciaController implements Initializable {
     private Label nombreUsuarioLabel;
     @FXML
     private TextArea observacionesTextarea;
+    @FXML
+    private ComboBox<Clase> claseComboBox = new ComboBox<>();
 
     private Stage stage;
     private Scene scene;
@@ -89,7 +90,7 @@ public class EmitirLicenciaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        claseComboBox.getItems().setAll(Clase.values());
         nombreUsuarioLabel.setText(App.gestor.administradorLogeado.nombre);
         buscarTextfield.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -115,23 +116,10 @@ public class EmitirLicenciaController implements Initializable {
             apellidoTextfield.setText(titular.apellido);
             fecNacTextfield.setText(titular.fechaDeNacimiento.toString());
             direccionTextfield.setText(titular.direccion);
-            claseTextfield.setText(titular.clase.toString());
             grupoTextfield.setText(titular.grupoSanguineo.toString());
             factorTextfield.setText(titular.factorRH.toString());
             observacionesTextarea.setText(titular.limitacion);
-
-            if (titular.donante == true)
-                donanteTextfield.setText("SI");
-            else
-                donanteTextfield.setText("NO");
-
-            int plazo = App.gestor.CalcularVigenciaLicencia(titular);
-            fechaInicio = LocalDate.now();
-            fechaFinal = LocalDate.of(fechaInicio.plusYears(plazo).getYear(), titular.fechaDeNacimiento.getMonth(),
-                    titular.fechaDeNacimiento.getDayOfMonth());
-            vigenciaTextfield.setText(fechaFinal.toString());
-            costoTotal = App.gestor.CalcularCostoLicencia(titular);
-            costoTextfield.setText(String.valueOf(costoTotal));
+            donanteTextfield.setText(titular.donante ? "SI" : "NO");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +127,7 @@ public class EmitirLicenciaController implements Initializable {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido encontrar el titular, reingrese el numero de documento");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            alert.showAndWait(); 
         }
     }
 
@@ -164,38 +152,60 @@ public class EmitirLicenciaController implements Initializable {
     }
 
     @FXML
-    private void aceptar(ActionEvent event) {
+    private void calcular(ActionEvent event) {
         try {
-            // Busco si existe alguna licencia para el titular en cuestion con fecha de
-            // expiracion mayor a la actual
-            if (App.gestor.BuscarLicenciaFecha(titular)) {
-                licencia = new LicenciaDTO(titular, App.gestor.administradorLogeado, fechaInicio, fechaFinal, true);
-                App.gestor.CrearLicencia(licencia);
-
-                ImprimirLicencia();
-
-                Alert alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Sistema de licencias");
-                alert.setContentText("Licencia generada con exito.");
-                alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
-            } else {
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Sistema de licencias");
-                alert.setContentText("No se ha podido generar la licencia, ya existe una licencia activa.");
-                alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
-            }
-        } catch (NoSuchElementException e) {
+            int plazo = App.gestor.CalcularVigenciaLicencia(titular, claseComboBox.getValue());
+            fechaInicio = LocalDate.now();
+            fechaFinal = LocalDate.of(fechaInicio.plusYears(plazo).getYear(), titular.fechaDeNacimiento.getMonth(),
+                    titular.fechaDeNacimiento.getDayOfMonth());
+            vigenciaTextfield.setText(fechaFinal.toString());
+            costoTotal = App.gestor.CalcularCostoLicencia(titular, claseComboBox.getValue());
+            costoTextfield.setText(String.valueOf(costoTotal));
+        } catch (Exception e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
-            alert.setContentText("No se ha podido generar la licencia, ya existe una licencia activa.");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            alert.setContentText("Seleccione una clase valida.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void aceptar(ActionEvent event) {
+        try {
+            licencia = new LicenciaDTO(titular, App.gestor.administradorLogeado, fechaInicio, fechaFinal,
+                    claseComboBox.getValue());
+            App.gestor.CrearLicencia(licencia);
+
+            ImprimirLicencia();
+
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText("Licencia generada con exito.");
+            alert.showAndWait(); 
+        } catch (MenorDeEdadProfesionalException e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText(
+                    "No se ha podido generar la licencia, no posee la edad suficiente para licencia profesional.");
+            alert.showAndWait(); 
+        } catch (NoObtuvoLicenciaBPreviaException e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText("No se ha podido generar la licencia, debe tener al menos 1 año de licencia B.");
+            alert.showAndWait(); 
+        } catch (YaPoseeLicenciaException e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText(
+                    "No se ha podido generar la licencia, ya existe una licencia con la clase solicitada activa.");
+            alert.showAndWait(); 
         } catch (Exception e) {
             // limpiarCampos();
-            e.printStackTrace();
+            //e.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido generar la licencia, revise los datos nuevamente.");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            alert.showAndWait(); 
         }
     }
 
@@ -289,7 +299,7 @@ public class EmitirLicenciaController implements Initializable {
         addText(contentStreamLicencia, "Vencimiento: " + licencia.fechaDeExpiracion.toString(), 200, 575, 12);
 
         // Añadir clases
-        addText(contentStreamLicencia, "Clases: " + licencia.titular.clase.toString(), 400, 665, 12);
+        addText(contentStreamLicencia, "Clases: " + licencia.clase.toString(), 400, 665, 12);
 
         // Añadir imagen de perfil
         InputStream imageStream = EmitirLicenciaController.class.getResourceAsStream("/images/foto.png");
@@ -325,7 +335,7 @@ public class EmitirLicenciaController implements Initializable {
         addText(contentStreamLicencia, "Observaciones: " + licencia.titular.limitacion, 75, 200, 6);
 
         // Descripción de clase
-        addText(contentStreamLicencia, "Descripcion de clase: " + licencia.titular.clase.getNombreClase(), 75, 180, 6);
+        addText(contentStreamLicencia, "Descripcion de clase: " + licencia.clase.getNombreClase(), 75, 180, 6);
     }
 
     private void drawComprobante(PDPageContentStream contentStreamComprobante) throws IOException {
@@ -386,12 +396,12 @@ public class EmitirLicenciaController implements Initializable {
         apellidoTextfield.setText("");
         fecNacTextfield.setText("");
         direccionTextfield.setText("");
-        claseTextfield.setText("");
         grupoTextfield.setText("");
         factorTextfield.setText("");
         donanteTextfield.setText("");
         observacionesTextarea.setText("");
         vigenciaTextfield.setText("");
         costoTextfield.setText("");
+        claseComboBox.setValue(null);
     }
 }

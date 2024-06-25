@@ -14,27 +14,28 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.LicenciasExpiradasController">
    <children>
-      <Pane fx:id="volver" layoutX="60.0" layoutY="119.0" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="60.0" layoutY="119.0" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
-            <TableView fx:id="tablaLicExp" layoutX="50.0" layoutY="50.0" prefHeight="600.0" prefWidth="1000.0" tableMenuButtonVisible="true">
+            <TableView fx:id="tablaLicExp" layoutX="13.0" layoutY="13.0" prefHeight="675.0" prefWidth="1075.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn prefWidth="150.0" text="Nro Documento" />
-                  <TableColumn prefWidth="100.0" text="Tipo" />
-                  <TableColumn prefWidth="150.0" text="Nombre" />
-                  <TableColumn prefWidth="150.0" text="Apellido" />
-                  <TableColumn prefWidth="150.0" text="Fecha Emision" />
-                  <TableColumn prefWidth="150.0" text="Fecha Expiracion" />
-                  <TableColumn prefWidth="150.0" text="Tiempo de viegencia" />
+                <TableColumn fx:id="nroDoc" prefWidth="135.0" text="Nro Documento" />
+                  <TableColumn fx:id="tipo" prefWidth="135.0" text="Tipo" />
+                  <TableColumn fx:id="nombre" prefWidth="135.0" text="Nombre" />
+                  <TableColumn fx:id="apellido" prefWidth="135.0" text="Apellido" />
+                  <TableColumn fx:id="fechaEmision" prefWidth="135.0" text="Fecha Emision" />
+                  <TableColumn fx:id="fechaExpiracion" prefWidth="135.0" text="Fecha Expiracion" />
+                  <TableColumn fx:id="tiempoVigencia" prefWidth="135.0" text="Tiempo de vigencia" />
+                  <TableColumn fx:id="clase" prefWidth="135.0" text="Clase" />
               </columns>
             </TableView>
          </children>
       </Pane>
-      <Button fx:id="volverButton1" layoutX="788.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Volver">
+      <Button fx:id="volverButton" layoutX="788.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Volver">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="aceptarButton" defaultButton="true" layoutX="980.0" layoutY="836.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Aceptar">
+      <Button fx:id="aceptarButton" defaultButton="true" layoutX="980.0" layoutY="836.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Aceptar">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>

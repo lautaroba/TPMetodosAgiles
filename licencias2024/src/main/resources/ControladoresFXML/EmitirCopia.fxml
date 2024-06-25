@@ -4,6 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -50,7 +52,7 @@
             </HBox>
          </children>
       </Pane>
-      <Pane layoutX="50.0" layoutY="100.0" prefHeight="150.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="50.0" layoutY="100.0" prefHeight="155.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
             <VBox alignment="CENTER" prefHeight="150.0" prefWidth="500.0" spacing="5.0">
                <children>
@@ -229,9 +231,9 @@
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
       </Button>
-      <Pane layoutX="570.0" layoutY="268.0" prefHeight="550.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="570.0" layoutY="368.0" prefHeight="450.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
-            <VBox prefHeight="550.0" prefWidth="500.0">
+            <VBox prefHeight="450.0" prefWidth="500.0">
                <children>
                   <GridPane prefHeight="185.0" prefWidth="550.0">
                      <columnConstraints>
@@ -302,7 +304,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="observacionesTextarea" editable="false" maxWidth="-Infinity" prefHeight="300.0" prefWidth="530.0" wrapText="true">
+                  <TextArea fx:id="observacionesTextarea" editable="false" maxWidth="-Infinity" prefHeight="225.0" prefWidth="470.0" wrapText="true">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -312,6 +314,18 @@
                   <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                </padding>
             </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="570.0" layoutY="100.0" prefHeight="253.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+         <children>
+            <TableView fx:id="tablaLic" layoutX="15.0" layoutY="12.0" onMouseClicked="#seleccionar" prefHeight="230.0" prefWidth="470.0" tableMenuButtonVisible="true">
+               <columns>
+                  <TableColumn fx:id="nroDocColumn" editable="false" prefWidth="120.0" text="Nro Documento" />
+                  <TableColumn fx:id="nombreColumn" editable="false" prefWidth="120.0" text="Nombre" />
+                  <TableColumn fx:id="apellidoColumn" editable="false" prefWidth="120.0" text="Apellido" />
+                  <TableColumn fx:id="claseColumn" editable="false" maxWidth="700.0" minWidth="0.0" prefWidth="110.0" text="Clase" />
+               </columns>
+            </TableView>
          </children>
       </Pane>
    </children>

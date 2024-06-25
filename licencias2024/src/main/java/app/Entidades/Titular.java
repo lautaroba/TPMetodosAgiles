@@ -3,7 +3,6 @@ package app.Entidades;
 import java.time.LocalDate;
 
 import app.DTOs.TitularDTO;
-import app.Enumeradores.Clase;
 import app.Enumeradores.FactorRH;
 import app.Enumeradores.GrupoSanguineo;
 import app.Enumeradores.TipoDocumento;
@@ -29,9 +28,6 @@ public class Titular {
 
     @Column(name = "direccion", nullable = false)
     private String direccion;
-    
-    @Column(name = "clase", nullable = false)
-    private Clase clase;
 
     @Column(name = "grupoSanguineo", nullable = false)
     private GrupoSanguineo grupoSanguineo;
@@ -48,14 +44,14 @@ public class Titular {
     public Titular() {
     }
 
-    public Titular(int nroDNI, TipoDocumento tipoDocumento, String nombre, String apellido, LocalDate fechaDeNacimiento,String direccion, Clase clase, GrupoSanguineo grupoSanguineo, FactorRH factorRH, boolean donante, String limitacion) {
+    public Titular(int nroDNI, TipoDocumento tipoDocumento, String nombre, String apellido, LocalDate fechaDeNacimiento,
+            String direccion, GrupoSanguineo grupoSanguineo, FactorRH factorRH, boolean donante, String limitacion) {
         this.nroDNI = nroDNI;
         this.tipoDocumento = tipoDocumento;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.direccion = direccion;
-        this.clase = clase;
         this.grupoSanguineo = grupoSanguineo;
         this.factorRH = factorRH;
         this.donante = donante;
@@ -69,12 +65,12 @@ public class Titular {
         this.apellido = titular.apellido;
         this.fechaDeNacimiento = titular.fechaDeNacimiento;
         this.direccion = titular.direccion;
-        this.clase = titular.clase;
         this.grupoSanguineo = titular.grupoSanguineo;
         this.factorRH = titular.factorRH;
         this.donante = titular.donante;
         this.limitacion = titular.limitacion;
     }
+
     public int getDni() {
         return nroDNI;
     }
@@ -113,14 +109,6 @@ public class Titular {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public Clase getClase() {
-        return clase;
-    }
-
-    public void setClase(Clase clase) {
-        this.clase = clase;
     }
 
     public GrupoSanguineo getGrupoSanguineo() {

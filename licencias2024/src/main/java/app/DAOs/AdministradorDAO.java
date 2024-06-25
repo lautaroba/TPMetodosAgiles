@@ -1,37 +1,57 @@
 package app.DAOs;
 
-import app.App;
 import app.Entidades.Administrador;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 
 public class AdministradorDAO {
-    
-    public Administrador getAdministrador(Integer nro){
+
+    private EntityManagerFactory entityManagerFactory;
+
+    public AdministradorDAO(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
+
+    public Administrador getAdministrador(Integer nro) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return App.entityManager.find(Administrador.class, nro);
+            return entityManager.find(Administrador.class, nro);
         } catch (Exception e) {
             throw e;
+        } finally {
+            entityManager.close();
         }
     }
 
     public void CrearAdministrador(Administrador admin) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            App.entityManager.getTransaction().begin();
-            App.entityManager.persist(admin);
+            entityManager.getTransaction().begin();
+            entityManager.persist(admin);
+            entityManager.getTransaction().commit();
         } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
             throw e;
-        } finally{
-            App.entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
         }
     }
 
     public void ModificarAdministrador(Administrador admin) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            App.entityManager.getTransaction().begin();
-            App.entityManager.merge(admin);
+            entityManager.getTransaction().begin();
+            entityManager.merge(admin);
+            entityManager.getTransaction().commit();
         } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
             throw e;
-        } finally{
-            App.entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
         }
     }
 }

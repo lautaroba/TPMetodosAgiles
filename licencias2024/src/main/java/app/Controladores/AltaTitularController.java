@@ -22,13 +22,10 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ResourceBundle;
 
 import app.App;
 import app.DTOs.TitularDTO;
-import app.Enumeradores.Clase;
 import app.Enumeradores.FactorRH;
 import app.Enumeradores.GrupoSanguineo;
 import app.Enumeradores.TipoDocumento;
@@ -38,76 +35,49 @@ public class AltaTitularController implements Initializable {
 
     @FXML
     private Button logoutButton;
-
     @FXML
     private Button aceptarButton;
-
     @FXML
     private Button volverButton;
-
     @FXML
     private TextField dniTextfield;
-
     @FXML
     private TextField apellidoTextfield;
-
     @FXML
     private TextField direccionTextfield;
-
     @FXML
     private DatePicker fechaNacDatePicker;
-
     @FXML
     private ComboBox<TipoDocumento> tipoComboBox = new ComboBox<>();
-
-    @FXML
-    private ComboBox<Clase> claseComboBox = new ComboBox<>();
-
     @FXML
     private ComboBox<GrupoSanguineo> grupoComboBox = new ComboBox<>();
-
     @FXML
     private ComboBox<FactorRH> factorComboBox = new ComboBox<>();
-
     @FXML
     private RadioButton siRadioButton;
-
     @FXML
     private RadioButton noRadioButton;
-
     @FXML
     private TextField nombreTextfield;
 
     @FXML
     private Label nombreUsuarioLabel;
-
     @FXML
     private Label tipoErrorLabel;
-
     @FXML
     private Label nroDocErrorLabel;
-
     @FXML
     private Label nombreErrorLabel;
-
     @FXML
     private Label apellidoErrorLabel;
-
     @FXML
     private Label fecNacErrorLabel;
-
     @FXML
     private Label direcErrorLabel;
-
-    @FXML
-    private Label claseErrorLabel;
-
     @FXML
     private Label grupoErrorLabel;
-
     @FXML
     private Label RHErrorLabel;
-
     @FXML
     private Label donanteErrorLabel;
 
@@ -124,7 +94,6 @@ public class AltaTitularController implements Initializable {
 
         nombreUsuarioLabel.setText(App.gestor.administradorLogeado.nombre);
         tipoComboBox.getItems().setAll(TipoDocumento.values());
-        claseComboBox.getItems().setAll(Clase.values());
         grupoComboBox.getItems().setAll(GrupoSanguineo.values());
         factorComboBox.getItems().setAll(FactorRH.values());
 
@@ -138,7 +107,6 @@ public class AltaTitularController implements Initializable {
         apellidoErrorLabel.setVisible(false);
         fecNacErrorLabel.setVisible(false);
         direcErrorLabel.setVisible(false);
-        claseErrorLabel.setVisible(false);
         grupoErrorLabel.setVisible(false);
         RHErrorLabel.setVisible(false);
         donanteErrorLabel.setVisible(false);
@@ -153,7 +121,6 @@ public class AltaTitularController implements Initializable {
                 }
             }
         });
-
     }
 
     @FXML
@@ -214,12 +181,6 @@ public class AltaTitularController implements Initializable {
         } else {
             direcErrorLabel.setVisible(false);
         }
-        if (claseComboBox.getSelectionModel().isEmpty()) {
-            claseErrorLabel.setVisible(true);
-            bandera = true;
-        } else {
-            claseErrorLabel.setVisible(false);
-        }
         if (grupoComboBox.getSelectionModel().isEmpty()) {
             grupoErrorLabel.setVisible(true);
             bandera = true;
@@ -251,24 +212,14 @@ public class AltaTitularController implements Initializable {
         if (!comprobarCampos())
             return;
 
-        if (Period.between(fechaNacDatePicker.getValue(), LocalDate.now()).getYears() < 18) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Sistema de licencias");
-            alert.setContentText("El titular debe ser mayor de 18 años");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
-            return;
-        }
-
         try {
-
             titular = new TitularDTO(tipoComboBox.getValue(), Integer.parseInt(dniTextfield.getText()),
                     nombreTextfield.getText(), apellidoTextfield.getText(), fechaNacDatePicker.getValue(),
                     direccionTextfield.getText(),
-                    claseComboBox.getValue(), grupoComboBox.getValue(), factorComboBox.getValue(),
+                    grupoComboBox.getValue(), factorComboBox.getValue(),
                     siRadioButton.isSelected(), observacionesTextarea.getText());
 
             App.gestor.CrearTitular(titular);
-
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("Operacion se ha realizado con exito, el titular ha sido creado correctamente");

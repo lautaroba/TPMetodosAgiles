@@ -1,37 +1,57 @@
 package app.DAOs;
 
-import app.App;
 import app.Entidades.Titular;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 
 public class TitularDAO {
-    
-    public Titular getTitular(Integer dni){ 
+
+    private EntityManagerFactory entityManagerFactory;
+
+    public TitularDAO(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
+
+    public Titular getTitular(Integer dni) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return App.entityManager.find(Titular.class, dni);
+            return entityManager.find(Titular.class, dni);
         } catch (Exception e) {
             throw e;
+        } finally {
+            entityManager.close();
         }
     }
 
     public void CrearTitular(Titular titular) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            App.entityManager.getTransaction().begin();
-            App.entityManager.persist(titular);
+            entityManager.getTransaction().begin();
+            entityManager.persist(titular);
+            entityManager.getTransaction().commit();
         } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
             throw e;
-        } finally{
-            App.entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
         }
     }
 
-    public void ModificarTitular(Titular titular){
+    public void ModificarTitular(Titular titular) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            App.entityManager.getTransaction().begin();
-            App.entityManager.merge(titular);
+            entityManager.getTransaction().begin();
+            entityManager.merge(titular);
+            entityManager.getTransaction().commit();
         } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
             throw e;
-        } finally{
-            App.entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
         }
     }
 }
