@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" styleClass="pane-degradado" stylesheets="@../css/Menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.MenuController">
    <children>
       <Pane layoutX="50.0" layoutY="100.0" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
          <children>
@@ -33,7 +33,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
-                  <Button fx:id="emitirLicenciaButton" onAction="#emitirLicencia" prefHeight="254.0" prefWidth="403.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Emitir Licencia" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <Button fx:id="emitirLicenciaButton" onAction="#emitirLicencia" prefHeight="254.0" prefWidth="403.0" styleClass="button-menu" text="Emitir Licencia" wrapText="true" GridPane.rowIndex="2">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -45,7 +45,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="emitirCopiaButton" onAction="#emitirCopia" prefHeight="246.0" prefWidth="438.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Emitir Copia" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                  <Button fx:id="emitirCopiaButton" onAction="#emitirCopia" prefHeight="246.0" prefWidth="438.0" styleClass="button-menu" text="Emitir Copia" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -57,7 +57,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="renovarLicenciaButton" onAction="#renovarLicencia" prefHeight="234.0" prefWidth="385.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Renovar Licencia" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                  <Button fx:id="renovarLicenciaButton" onAction="#renovarLicencia" prefHeight="234.0" prefWidth="385.0" styleClass="button-menu" text="Renovar Licencia" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -69,7 +69,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="listadoExpiradasButton" onAction="#listadoExpiradas" prefHeight="251.0" prefWidth="441.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Licencias Expiradas" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="listadoExpiradasButton" onAction="#listadoExpiradas" prefHeight="251.0" prefWidth="441.0" styleClass="button-menu" text="Licencias Expiradas" wrapText="true" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -81,7 +81,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ListadoVigentesButton" onAction="#listadoVigentes" prefHeight="266.0" prefWidth="416.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Licencias Vigentes" wrapText="true" GridPane.rowIndex="1">
+                  <Button fx:id="ListadoVigentesButton" onAction="#listadoVigentes" prefHeight="266.0" prefWidth="416.0" styleClass="button-menu" text="Licencias Vigentes" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -93,7 +93,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="darDeAltaButton" onAction="#darDeAlta" prefHeight="242.0" prefWidth="452.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Dar de Alta" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                  <Button fx:id="darDeAltaButton" onAction="#darDeAlta" prefHeight="242.0" prefWidth="452.0" styleClass="button-menu" text="Dar de Alta" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -105,23 +105,11 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="modificarDatosButton" onAction="#modificarDatos" prefHeight="224.0" prefWidth="390.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Modificar Datos" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button fx:id="modificarDatosButton" onAction="#modificarDatos" prefHeight="224.0" prefWidth="390.0" styleClass="button-menu" text="Modificar Datos" wrapText="true" GridPane.columnIndex="1">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
                               <Image url="@../Images/modificartitular.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Microsoft PhagsPa Bold" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="eliminarUnTitular" onAction="#eliminar" prefHeight="223.0" prefWidth="369.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Eliminar Titular" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <graphic>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/eliminartitular.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -135,7 +123,7 @@
       </Pane>
 
       <!-- Botón de Cancelar -->
-      <Button fx:id="cancelarButton" layoutX="1006.0" layoutY="836.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Cancelar">
+      <Button fx:id="cancelarButton" layoutX="1006.0" layoutY="836.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 10;" styleClass="button-menu" text="Cancelar">
          <font>
             <Font name="Microsoft PhagsPa" size="20.0" />
          </font>
@@ -162,7 +150,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: e0e0e0;" text="Log out" textFill="#ff7e7e">
+                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" styleClass="button-logout" text="Log out" textFill="#ff7e7e">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

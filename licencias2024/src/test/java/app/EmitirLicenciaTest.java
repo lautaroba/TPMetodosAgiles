@@ -29,7 +29,7 @@ public class EmitirLicenciaTest {
 
     @AfterEach
     public void close() {
-        gestor.dropDB();
+        //gestor.dropDB();
     }
 
     @Test
@@ -191,5 +191,77 @@ public class EmitirLicenciaTest {
             e.printStackTrace();
         }
         assertEquals(8, gestor.BuscarLicenciasTitular(titularConTodasLasLicencias, LocalDate.of(1, 1, 1)).size());
+    }
+
+    @Test
+    public void TestMejorarUnaLicencia() {
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                "direccion",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        TitularDTO titularConTodasLasLicencias = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        LicenciaDTO licencia1 = new LicenciaDTO(titularConTodasLasLicencias, administrador1,
+                LocalDate.of(2023, 1, 1), LocalDate.of(2028, 1, 1), Clase.B);
+        LicenciaDTO licencia2 = new LicenciaDTO(titularConTodasLasLicencias, administrador1,
+                LocalDate.of(2025, 1, 1), LocalDate.of(2030, 1, 1), Clase.C);
+        try {
+            gestor.CrearAdministrador(administrador1);
+            gestor.CrearTitular(titularConTodasLasLicencias);
+            gestor.CrearLicencia(licencia1);
+            gestor.CrearLicencia(licencia2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(1, gestor.BuscarLicenciasTitular(titularConTodasLasLicencias, LocalDate.now().plusDays(1)).size());
+    }
+
+    @Test
+    public void TestMejorarUnaLicencia2() {
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                "direccion",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        TitularDTO titularConTodasLasLicencias = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        LicenciaDTO licencia1 = new LicenciaDTO(titularConTodasLasLicencias, administrador1,
+                LocalDate.of(2023, 1, 1), LocalDate.of(2028, 1, 1), Clase.B);
+        LicenciaDTO licencia2 = new LicenciaDTO(titularConTodasLasLicencias, administrador1,
+                LocalDate.of(2025, 1, 1), LocalDate.of(2030, 1, 1), Clase.D1);
+        try {
+            gestor.CrearAdministrador(administrador1);
+            gestor.CrearTitular(titularConTodasLasLicencias);
+            gestor.CrearLicencia(licencia1);
+            gestor.CrearLicencia(licencia2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(1, gestor.BuscarLicenciasTitular(titularConTodasLasLicencias, LocalDate.now().plusDays(1)).size());
+    }
+
+    @Test
+    public void TestMejorarUnaLicencia3() {
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                "direccion",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        TitularDTO titularConTodasLasLicencias = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        LicenciaDTO licencia1 = new LicenciaDTO(titularConTodasLasLicencias, administrador1,
+                LocalDate.of(2023, 1, 1), LocalDate.of(2028, 1, 1), Clase.B);
+        LicenciaDTO licencia2 = new LicenciaDTO(titularConTodasLasLicencias, administrador1,
+                LocalDate.of(2025, 1, 1), LocalDate.of(2030, 1, 1), Clase.C);
+        LicenciaDTO licencia3 = new LicenciaDTO(titularConTodasLasLicencias, administrador1,
+                LocalDate.of(2025, 1, 1), LocalDate.of(2030, 1, 1), Clase.E);
+        try {
+            gestor.CrearAdministrador(administrador1);
+            gestor.CrearTitular(titularConTodasLasLicencias);
+            gestor.CrearLicencia(licencia1);
+            gestor.CrearLicencia(licencia2);
+            gestor.CrearLicencia(licencia3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(1, gestor.BuscarLicenciasTitular(titularConTodasLasLicencias, LocalDate.now().plusDays(1)).size());
     }
 }

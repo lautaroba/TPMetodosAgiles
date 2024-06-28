@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.RenovarLicenciaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" styleClass="pane-degradado" stylesheets="@../css/RenovarLicencia.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.RenovarLicenciaController">
    <children>
       <Pane layoutX="50.0" layoutY="24.0" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
          <children>
@@ -33,7 +33,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="137.0" text="Administrador:">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" text="Administrador:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -43,7 +43,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: e0e0e0;" text="Log out" textFill="#ff7e7e">
+                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" styleClass="button-logout" text="Log out" textFill="#ff7e7e">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -66,7 +66,7 @@
                         <Font name="Microsoft PhagsPa" size="18.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="buscarButton" defaultButton="true" mnemonicParsing="false" onAction="#buscar" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Buscar">
+                  <Button fx:id="buscarButton" defaultButton="true" mnemonicParsing="false" onAction="#buscar" prefHeight="50.0" prefWidth="220.0" styleClass="button-aceptar" text="Buscar">
                      <font>
                         <Font name="Microsoft PhagsPa" size="18.0" />
                      </font>
@@ -221,12 +221,12 @@
             </GridPane>
          </children>
       </Pane>
-      <Button fx:id="volverButton" layoutX="798.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Volver">
+      <Button fx:id="volverButton" layoutX="798.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" styleClass="button-cancelar" text="Volver">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="renovarButton" defaultButton="true" layoutX="990.0" layoutY="836.0" mnemonicParsing="false" onAction="#renovar" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Renovar">
+      <Button fx:id="renovarButton" defaultButton="true" layoutX="990.0" layoutY="836.0" mnemonicParsing="false" onAction="#renovar" prefHeight="50.0" prefWidth="180.0" styleClass="button-aceptar" text="Renovar">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>

@@ -32,13 +32,13 @@ import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
 import app.App;
 import app.DTOs.LicenciaDTO;
 import app.DTOs.TitularDTO;
 import app.Enumeradores.Clase;
+import app.Excepciones.YaPoseeLicenciaException;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -152,11 +152,11 @@ public class RenovarLicenciaController implements Initializable {
             tablaLic.setItems(datosLicenciasTitular);
         } catch (Exception e) {
             //e.printStackTrace();
-            limpiarCampos();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido encontrar el titular, reingrese el numero de documento");
             alert.showAndWait(); 
+            limpiarCampos();
         }
     }
 
@@ -168,11 +168,11 @@ public class RenovarLicenciaController implements Initializable {
                 setDatos();
             }
         } catch (Exception e) {
-            limpiarCampos();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido generar la licencia, revise los datos nuevamente.");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            alert.showAndWait();
+            limpiarCampos();
         }
     }
 
@@ -206,18 +206,20 @@ public class RenovarLicenciaController implements Initializable {
             alert.setTitle("Sistema de licencias");
             alert.setContentText("Licencia generada con exito.");
             alert.showAndWait();
-        } catch (NoSuchElementException e) {
+        } catch (YaPoseeLicenciaException e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
-            alert.setContentText("No se ha podido generar la licencia, ya existe una licencia activa.");
+            alert.setContentText(
+                    "No se ha podido generar la licencia, ya existe una licencia con la clase solicitada o superior activa.");
             alert.showAndWait();
-        } catch (Exception e) {
             limpiarCampos();
+        } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
-            alert.setContentText("No se ha podido generar la licencia, revise los datos nuevamente.");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            alert.setContentText("No se ha podido generar la licencia, revise los datos nuevamente o llame a un administrador.");
+            alert.showAndWait(); 
+            limpiarCampos();
         }
     }
 
@@ -384,5 +386,6 @@ public class RenovarLicenciaController implements Initializable {
         observacionesTextarea.setText("");
         vigenciaTextfield.setText("");
         costoTextfield.setText("");
+        tablaLic.getItems().clear();
     }
 }

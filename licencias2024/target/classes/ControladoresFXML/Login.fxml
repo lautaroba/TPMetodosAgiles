@@ -10,14 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="pane-degradado" stylesheets="@../css/Log%20in.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.LoginController">
    <children>
-      <Button fx:id="cancelarButton" layoutX="586.0" layoutY="536.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Cancelar">
-         <font>
-            <Font name="Microsoft PhagsPa" size="21.0" />
-         </font>
-      </Button>
-      <Pane layoutX="225.0" layoutY="36.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="225.0" layoutY="36.0" prefHeight="500.0" prefWidth="350.0" styleClass="pane-transparente">
          <children>
             <VBox prefHeight="500.0" prefWidth="350.0">
                <children>
@@ -45,7 +40,7 @@
                         <Insets left="40.0" right="40.0" top="30.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button fx:id="aceptarButton" mnemonicParsing="false" onAction="#aceptar" prefHeight="51.0" prefWidth="427.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Login">
+                  <Button fx:id="aceptarButton" mnemonicParsing="false" onAction="#aceptar" prefHeight="51.0" prefWidth="427.0" styleClass="button-login" text="Log in">
                      <font>
                         <Font name="Microsoft PhagsPa" size="21.0" />
                      </font>

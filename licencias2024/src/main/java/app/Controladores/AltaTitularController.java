@@ -29,6 +29,8 @@ import app.DTOs.TitularDTO;
 import app.Enumeradores.FactorRH;
 import app.Enumeradores.GrupoSanguineo;
 import app.Enumeradores.TipoDocumento;
+import app.Excepciones.CamposIncompletosException;
+import app.Excepciones.MenorDeEdadException;
 import jakarta.persistence.EntityExistsException;
 
 public class AltaTitularController implements Initializable {
@@ -59,7 +61,6 @@ public class AltaTitularController implements Initializable {
     private RadioButton noRadioButton;
     @FXML
     private TextField nombreTextfield;
-
     @FXML
     private Label nombreUsuarioLabel;
     @FXML
@@ -80,7 +81,6 @@ public class AltaTitularController implements Initializable {
     private Label RHErrorLabel;
     @FXML
     private Label donanteErrorLabel;
-
     @FXML
     private TextArea observacionesTextarea;
 
@@ -115,8 +115,6 @@ public class AltaTitularController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.matches("\\d*")) {
-                    // Si el nuevo valor contiene caracteres no numéricos, reemplace el texto con el
-                    // antiguo valor
                     dniTextfield.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
@@ -143,7 +141,7 @@ public class AltaTitularController implements Initializable {
         stage.show();
     }
 
-    private boolean comprobarCampos() {
+    private void comprobarCampos() throws Exception {
         boolean bandera = false;
         if (tipoComboBox.getSelectionModel().isEmpty()) {
             tipoErrorLabel.setVisible(true);
@@ -199,43 +197,65 @@ public class AltaTitularController implements Initializable {
         } else {
             donanteErrorLabel.setVisible(false);
         }
-
-        if (bandera)
-            return false;
-        else
-            return true;
+        
+        if(bandera) 
+            throw new CamposIncompletosException();
     }
 
     @FXML
     private void aceptar(ActionEvent event) {
-
-        if (!comprobarCampos())
-            return;
-
         try {
+            comprobarCampos();
             titular = new TitularDTO(tipoComboBox.getValue(), Integer.parseInt(dniTextfield.getText()),
                     nombreTextfield.getText(), apellidoTextfield.getText(), fechaNacDatePicker.getValue(),
                     direccionTextfield.getText(),
                     grupoComboBox.getValue(), factorComboBox.getValue(),
                     siRadioButton.isSelected(), observacionesTextarea.getText());
-
             App.gestor.CrearTitular(titular);
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("Operacion se ha realizado con exito, el titular ha sido creado correctamente");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
-        } catch (EntityExistsException e) {
+            alert.showAndWait();
+            limpiarCampos();
+        } catch (CamposIncompletosException e){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText(
+                    "Uno o mas campos estan incompletos, por favor completelos e intente nuevamente");
+            alert.showAndWait();
+        }
+        catch(MenorDeEdadException e){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Sistema de licencias");
+            alert.setContentText(
+                    "El titular debe tener al menos 17 años para obtener una licencia de conducir");
+            alert.showAndWait();
+        }
+        catch (EntityExistsException e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText(
                     "Ya existe un titular con el numero de documento ingresado, por favor intente nuevamente");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            alert.showAndWait();
         } catch (Exception e) {
+            //e.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido crear el titular, revise los campos nuevamente");
-            alert.showAndWait(); // Mostrar la alerta y esperar a que el usuario la cierre
+            alert.showAndWait();
         }
     }
 
+    private void limpiarCampos(){
+        tipoComboBox.setValue(null);
+        dniTextfield.setText("");
+        nombreTextfield.setText("");
+        apellidoTextfield.setText("");
+        fechaNacDatePicker.setValue(null);
+        siRadioButton.setSelected(false);
+        noRadioButton.setSelected(false);
+        direccionTextfield.setText("");
+        factorComboBox.setValue(null);
+        observacionesTextarea.setText("");
+    }
 }

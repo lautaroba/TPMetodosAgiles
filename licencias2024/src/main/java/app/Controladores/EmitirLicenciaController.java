@@ -1,31 +1,11 @@
 package app.Controladores;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-
-import app.App;
-import app.DTOs.LicenciaDTO;
-import app.DTOs.TitularDTO;
-import app.Enumeradores.Clase;
-import app.Excepciones.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -35,8 +15,31 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.Node;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+
+import app.App;
+import app.DTOs.LicenciaDTO;
+import app.DTOs.TitularDTO;
+import app.Enumeradores.Clase;
+import app.Excepciones.*;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 public class EmitirLicenciaController implements Initializable {
 
@@ -96,8 +99,6 @@ public class EmitirLicenciaController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.matches("\\d*")) {
-                    // Si el nuevo valor contiene caracteres no numéricos, reemplace el texto con el
-                    // antiguo valor
                     buscarTextfield.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
@@ -106,10 +107,8 @@ public class EmitirLicenciaController implements Initializable {
 
     @FXML
     private void buscar() {
-
         try {
             titular = App.gestor.BuscarTitular(new TitularDTO(Integer.parseInt(buscarTextfield.getText())));
-
             tipoTextfield.setText(titular.tipoDocumento.toString());
             dniTextfield.setText(String.valueOf(titular.nroDNI));
             nombreTextfield.setText(titular.nombre);
@@ -120,14 +119,13 @@ public class EmitirLicenciaController implements Initializable {
             factorTextfield.setText(titular.factorRH.toString());
             observacionesTextarea.setText(titular.limitacion);
             donanteTextfield.setText(titular.donante ? "SI" : "NO");
-
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             limpiarCampos();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido encontrar el titular, reingrese el numero de documento");
-            alert.showAndWait(); 
+            alert.showAndWait();
         }
     }
 
@@ -162,10 +160,11 @@ public class EmitirLicenciaController implements Initializable {
             costoTotal = App.gestor.CalcularCostoLicencia(titular, claseComboBox.getValue());
             costoTextfield.setText(String.valueOf(costoTotal));
         } catch (Exception e) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Sistema de licencias");
-            alert.setContentText("Seleccione una clase valida.");
-            alert.showAndWait();
+            // Alert alert = new Alert(AlertType.ERROR);
+            // alert.setTitle("Sistema de licencias");
+            // alert.setContentText("Ha ocurrido un error, por favor intente nuevamente.");
+            // alert.showAndWait();
+            limpiarCampos();
         }
     }
 
@@ -181,31 +180,36 @@ public class EmitirLicenciaController implements Initializable {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("Licencia generada con exito.");
-            alert.showAndWait(); 
+            alert.showAndWait();
+            limpiarCampos();
         } catch (MenorDeEdadProfesionalException e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText(
                     "No se ha podido generar la licencia, no posee la edad suficiente para licencia profesional.");
-            alert.showAndWait(); 
+            alert.showAndWait();
+            limpiarCampos();
         } catch (NoObtuvoLicenciaBPreviaException e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText("No se ha podido generar la licencia, debe tener al menos 1 año de licencia B.");
-            alert.showAndWait(); 
+            alert.showAndWait();
+            limpiarCampos();
         } catch (YaPoseeLicenciaException e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
             alert.setContentText(
-                    "No se ha podido generar la licencia, ya existe una licencia con la clase solicitada activa.");
-            alert.showAndWait(); 
+                    "No se ha podido generar la licencia, ya existe una licencia con la clase solicitada o superior activa.");
+            alert.showAndWait();
+            limpiarCampos();
         } catch (Exception e) {
-            // limpiarCampos();
-            //e.printStackTrace();
+            // e.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Sistema de licencias");
-            alert.setContentText("No se ha podido generar la licencia, revise los datos nuevamente.");
-            alert.showAndWait(); 
+            alert.setContentText(
+                    "No se ha podido generar la licencia, revise los datos nuevamente o llame a un administrador.");
+            alert.showAndWait();
+            limpiarCampos();
         }
     }
 
@@ -224,7 +228,6 @@ public class EmitirLicenciaController implements Initializable {
     }
 
     private void ImprimirLicencia() {
-
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Seleccionar directorio para guardar PDFs");
         File selectedDirectory = directoryChooser.showDialog(stage);
@@ -234,27 +237,27 @@ public class EmitirLicenciaController implements Initializable {
         File fileCarnet = new File(selectedDirectory, titular.nombre + "_licencia.pdf");
         File fileComprobante = new File(selectedDirectory, titular.nombre + "_comprobante.pdf");
 
-        try (PDDocument documentLicencia = new PDDocument();
+        try (
+                PDDocument documentLicencia = new PDDocument();
                 PDDocument documentComprobante = new PDDocument()) {
-
             PDPage pageLicencia = new PDPage();
             documentLicencia.addPage(pageLicencia);
-
-            PDPage pageComprobante = new PDPage();
+            PDPage pageComprobante = new PDPage(PDRectangle.A4);
             documentComprobante.addPage(pageComprobante);
 
             try (PDPageContentStream contentStreamLicencia = new PDPageContentStream(documentLicencia, pageLicencia)) {
                 drawLicencia(contentStreamLicencia, documentLicencia);
             }
-
             try (PDPageContentStream contentStreamComprobante = new PDPageContentStream(documentComprobante,
                     pageComprobante)) {
+                InputStream imageStream = EmitirLicenciaController.class.getResourceAsStream("/images/logo.png");
+                PDImageXObject logo = PDImageXObject.createFromByteArray(documentComprobante,
+                        imageStream.readAllBytes(), "logo.png");
+                contentStreamComprobante.drawImage(logo, 20, 700, 150, 150);
                 drawComprobante(contentStreamComprobante);
             }
-
             documentLicencia.save(fileCarnet);
             documentComprobante.save(fileComprobante);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -272,32 +275,25 @@ public class EmitirLicenciaController implements Initializable {
 
         // Añadir título del carnet
         contentStreamLicencia.beginText();
-        contentStreamLicencia.setFont(new PDType1Font(Standard14Fonts.FontName.TIMES_ROMAN), 16);
+        contentStreamLicencia.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 16);
         contentStreamLicencia.newLineAtOffset(230, 725);
         contentStreamLicencia.showText("Licencia de Conducir");
         contentStreamLicencia.endText();
 
         // Añadir número de licencia
         addText(contentStreamLicencia, "N° Licencia: " + "ID", 200, 665, 12);
-
         // Añadir apellido
         addText(contentStreamLicencia, "Apellido: " + titular.apellido, 200, 650, 12);
-
         // Añadir nombre
         addText(contentStreamLicencia, "Nombre: " + titular.nombre, 200, 635, 12);
-
         // Añadir domicilio
         addText(contentStreamLicencia, "Domicilio: " + titular.direccion, 200, 620, 12);
-
         // Añadir fecha de nacimiento
         addText(contentStreamLicencia, "Fecha de nac.: " + titular.fechaDeNacimiento.toString(), 200, 605, 12);
-
         // Añadir fecha de otorgamiento
         addText(contentStreamLicencia, "Otorgamiento: " + licencia.fechaDeEmision.toString(), 200, 590, 12);
-
         // Añadir fecha de vencimiento
         addText(contentStreamLicencia, "Vencimiento: " + licencia.fechaDeExpiracion.toString(), 200, 575, 12);
-
         // Añadir clases
         addText(contentStreamLicencia, "Clases: " + licencia.clase.toString(), 400, 665, 12);
 
@@ -321,56 +317,134 @@ public class EmitirLicenciaController implements Initializable {
 
         // Añadir donante
         addText(contentStreamLicencia, "Donante: " + (licencia.titular.donante ? "Si" : "No"), 75, 350, 12);
-
         // Añadir grupo sanguineo
         addText(contentStreamLicencia, "Grupo Sanguineo: " + licencia.titular.grupoSanguineo.toString(), 75, 330, 12);
-
         // Añadir TipoDoc
         addText(contentStreamLicencia, "Tipo Doc: " + licencia.titular.tipoDocumento.toString(), 75, 310, 12);
-
         // Nro DNI
         addText(contentStreamLicencia, "Nro Doc: " + licencia.titular.nroDNI, 75, 290, 12);
-
         // Observaciones
         addText(contentStreamLicencia, "Observaciones: " + licencia.titular.limitacion, 75, 200, 6);
-
         // Descripción de clase
         addText(contentStreamLicencia, "Descripcion de clase: " + licencia.clase.getNombreClase(), 75, 180, 6);
     }
 
-    private void drawComprobante(PDPageContentStream contentStreamComprobante) throws IOException {
-        // Añadir título del comprobante
-        addText(contentStreamComprobante, "Comprobante de Pago", 230, 725, 20, true);
+    private void drawComprobante(PDPageContentStream contentStream) throws Exception {
 
-        // Añadir subtítulo
-        addText(contentStreamComprobante, "Datos de facturación:", 50, 650, 16, true);
+        contentStream.setNonStrokingColor(Color.LIGHT_GRAY);
+        contentStream.addRect(20, 140, 200, 360);
+        contentStream.fill();
+        contentStream.addRect(320, 140, 150, 360);
+        contentStream.fill();
 
-        contentStreamComprobante.setLineWidth(0.7f);
-        contentStreamComprobante.moveTo(50, 650);
-        contentStreamComprobante.lineTo(200, 649);
-        contentStreamComprobante.stroke();
+        contentStream.setNonStrokingColor(Color.BLACK);
 
-        // Añadir apellido
-        addText(contentStreamComprobante, "Apellido: " + licencia.titular.apellido, 50, 625, 16);
+        contentStream.beginText();
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 24);
+        contentStream.newLineAtOffset(200, 760);
+        contentStream.showText("FACTURA SIMPLIFICADA #1234");
+        contentStream.endText();
 
-        // Añadir nombre
-        addText(contentStreamComprobante, "Nombres: " + licencia.titular.nombre, 50, 600, 16);
+        // Company details
+        contentStream.beginText();
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
+        contentStream.newLineAtOffset(20, 700);
+        contentStream.showText("Compania: Sistema de Licencias UTN");
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.showText("Direccion: Lavaisse, 610");
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.showText("Localidad: Santa Fe (3000), Santa Fe, Argentina");
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.showText("Email: sistema.licencias@frsf.utn.edu.ar");
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.showText("Contacto: +54 9 342 4601579");
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
+        contentStream.showText("Fecha: " + LocalDate.now().toString());
+        contentStream.endText();
 
-        // Añadir tipoDoc
-        addText(contentStreamComprobante, "Tipo Doc: " + licencia.titular.tipoDocumento.toString(), 50, 575, 16);
+        // Customers details
+        contentStream.beginText();
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
+        contentStream.newLineAtOffset(20, 580);
+        contentStream.showText("Datos del cliente : ");
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.showText("Numero de identificacion: " + licencia.titular.nroDNI);
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.showText("Nombre completo: " + licencia.titular.nombre + " " + licencia.titular.apellido);
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.showText("Direccion: " + licencia.titular.direccion);
+        contentStream.endText();
 
-        // Añadir nroDoc
-        addText(contentStreamComprobante, "Nro Doc: " + licencia.titular.nroDNI, 50, 550, 16);
+        // Table header
+        contentStream.setLineWidth(0.5f);
+        contentStream.moveTo(20, 500);
+        contentStream.lineTo(580, 500);
+        contentStream.stroke();
 
-        // Añadir domicilio
-        addText(contentStreamComprobante, "Domicilio: " + licencia.titular.direccion, 50, 525, 16);
+        contentStream.beginText();
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
+        contentStream.newLineAtOffset(25, 480);
+        contentStream.showText("CONCEPTO");
+        contentStream.newLineAtOffset(200, 0);
+        contentStream.showText("PRECIO");
+        contentStream.newLineAtOffset(100, 0);
+        contentStream.showText("IMPUESTOS");
+        contentStream.newLineAtOffset(150, 0);
+        contentStream.showText("TOTAL");
+        contentStream.endText();
 
-        // Añadir monto
-        addText(contentStreamComprobante, "Importe operación: $" + (costoTotal - 8), 50, 500, 16);
+        int yPosition = 460;
+        contentStream.beginText();
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
+        contentStream.newLineAtOffset(25, yPosition);
+        contentStream.showText("Licencia clase " + licencia.clase.toString());
+        contentStream.newLineAtOffset(200, 0);
+        contentStream.showText("$ " + Integer.toString(costoTotal - 8));
+        contentStream.newLineAtOffset(100, 0);
+        contentStream.showText("$ 8");
+        contentStream.newLineAtOffset(150, 0);
+        contentStream.showText("$ " + Integer.toString(costoTotal));
+        contentStream.endText();
+        yPosition -= 20;
 
-        addText(contentStreamComprobante, "Importe gastos administrativos: $8", 50, 475, 16);
+        contentStream.setLineWidth(0.5f);
+        contentStream.moveTo(20, yPosition - 300);
+        contentStream.lineTo(580, yPosition - 300);
+        contentStream.stroke();
 
-        addText(contentStreamComprobante, "Importe total: $" + costoTotal, 50, 450, 16);
+        contentStream.beginText();
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 14);
+        contentStream.newLineAtOffset(20, yPosition - 320);
+        contentStream.showText("TOTAL");
+        contentStream.newLineAtOffset(450, 0);
+        contentStream.showText("$ " + costoTotal);
+        contentStream.endText();
+
+        contentStream.setLineWidth(0.5f);
+        contentStream.moveTo(20, yPosition - 340);
+        contentStream.lineTo(580, yPosition - 340);
+        contentStream.stroke();
+
+        // Payment info
+        contentStream.beginText();
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 10);
+        contentStream.setNonStrokingColor(Color.gray);
+        contentStream.newLineAtOffset(20, yPosition - 380);
+        contentStream.showText("Pagar por transferencia a SISTEMAS.LICENCIAS.MERCADO.PAGO o");
+        contentStream.newLineAtOffset(0, -15);
+        contentStream.showText("CBU: 4889287611100039782882");
+        contentStream.endText();
+
+        contentStream.beginText();
+        contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 8);
+        contentStream.setNonStrokingColor(Color.LIGHT_GRAY);
+        contentStream.newLineAtOffset(20, yPosition - 410);
+        contentStream.showText(
+                "Todas las facturas poseen una vigencia de 3 [TRES] dias, pasado ese tiempo devera generarse una nueva.");
+        contentStream.newLineAtOffset(0, -10);
+        contentStream.showText("Este documento posee validez de @SISTEMA DE LICENCIAS SA");
+        contentStream.endText();
     }
 
     private void addText(PDPageContentStream contentStream, String text, float x, float y, int fontSize)
@@ -382,7 +456,7 @@ public class EmitirLicenciaController implements Initializable {
             throws IOException {
         contentStream.beginText();
         contentStream.setFont(
-                new PDType1Font(bold ? Standard14Fonts.FontName.TIMES_BOLD : Standard14Fonts.FontName.TIMES_ROMAN),
+                new PDType1Font(bold ? Standard14Fonts.FontName.HELVETICA_BOLD : Standard14Fonts.FontName.HELVETICA),
                 fontSize);
         contentStream.newLineAtOffset(x, y);
         contentStream.showText(text);

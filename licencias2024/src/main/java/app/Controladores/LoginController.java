@@ -38,9 +38,6 @@ public class LoginController implements Initializable {
     @FXML
     private Button nuevoAdmButton;
 
-    @FXML
-    private Button cancelarButton;
-
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -98,12 +95,6 @@ public class LoginController implements Initializable {
                 alert.showAndWait();
             }
         }
-    }
-
-    @FXML
-    private void cancelar(ActionEvent event) {
-        Stage stage = (Stage) dniTextfield.getScene().getWindow();
-        stage.close();
     }
 
     public void menuPrincipal(ActionEvent event) throws IOException {

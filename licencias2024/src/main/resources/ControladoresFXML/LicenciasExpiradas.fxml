@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.LicenciasExpiradasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" styleClass="pane-degradado" stylesheets="@../css/ListadoLicenciasExpiradas.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.LicenciasExpiradasController">
    <children>
       <Pane layoutX="60.0" layoutY="119.0" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
@@ -30,12 +30,7 @@
             </TableView>
          </children>
       </Pane>
-      <Button fx:id="volverButton" layoutX="788.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Volver">
-         <font>
-            <Font name="Microsoft PhagsPa" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="aceptarButton" defaultButton="true" layoutX="980.0" layoutY="836.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Aceptar">
+      <Button fx:id="volverButton" layoutX="1006.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" styleClass="button-cancelar" text="Volver">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
@@ -62,7 +57,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: e0e0e0;" text="Log out" textFill="#ff7e7e">
+                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" styleClass="button-logout" text="Log out" textFill="#ff7e7e">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

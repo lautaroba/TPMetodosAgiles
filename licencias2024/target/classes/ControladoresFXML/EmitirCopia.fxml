@@ -19,9 +19,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.CopiaLicenciaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" styleClass="pane-degradado" stylesheets="@../css/EmitirCopia.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.CopiaLicenciaController">
    <children>
-      <Pane layoutX="50.0" layoutY="24.0" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
+      <Pane layoutX="90.0" layoutY="14.0" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="10.0">
                <children>
@@ -33,7 +33,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="137.0" text="Administrador:">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" text="Administrador:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -43,7 +43,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: e0e0e0;" text="Log out" textFill="#ff7e7e">
+                  <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="90.0" styleClass="button-logout" text="Log out" textFill="#ff7e7e">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -52,7 +52,7 @@
             </HBox>
          </children>
       </Pane>
-      <Pane layoutX="50.0" layoutY="100.0" prefHeight="155.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="90.0" layoutY="91.0" prefHeight="155.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
             <VBox alignment="CENTER" prefHeight="150.0" prefWidth="500.0" spacing="5.0">
                <children>
@@ -66,7 +66,7 @@
                         <Font name="Microsoft PhagsPa" size="18.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="buscarButton" defaultButton="true" mnemonicParsing="false" onAction="#buscar" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Buscar">
+                  <Button fx:id="buscarButton" defaultButton="true" mnemonicParsing="false" onAction="#buscar" prefHeight="50.0" prefWidth="220.0" styleClass="button-aceptar" text="Buscar">
                      <font>
                         <Font name="Microsoft PhagsPa" size="18.0" />
                      </font>
@@ -78,7 +78,7 @@
             </VBox>
          </children>
       </Pane>
-      <Pane layoutX="50.0" layoutY="268.0" prefHeight="550.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="90.0" layoutY="259.0" prefHeight="550.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
             <GridPane prefHeight="550.0" prefWidth="500.0">
                <columnConstraints>
@@ -221,17 +221,17 @@
             </GridPane>
          </children>
       </Pane>
-      <Button fx:id="volverButton" layoutX="798.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 10;" text="Volver">
+      <Button fx:id="volverButton" layoutX="798.0" layoutY="836.0" mnemonicParsing="false" onAction="#volver" prefHeight="50.0" prefWidth="180.0" styleClass="button-cancelar" text="Volver">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="emitirCopiaButton" defaultButton="true" layoutX="990.0" layoutY="836.0" mnemonicParsing="false" onAction="#emitirCopia" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-background-radius: 10;" text="Emitir Copia">
+      <Button fx:id="emitirCopiaButton" defaultButton="true" layoutX="990.0" layoutY="836.0" mnemonicParsing="false" onAction="#emitirCopia" prefHeight="50.0" prefWidth="180.0" styleClass="button-aceptar" text="Emitir Copia">
          <font>
             <Font name="Microsoft PhagsPa" size="18.0" />
          </font>
       </Button>
-      <Pane layoutX="570.0" layoutY="368.0" prefHeight="450.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="610.0" layoutY="359.0" prefHeight="450.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
                <children>
@@ -316,7 +316,7 @@
             </VBox>
          </children>
       </Pane>
-      <Pane layoutX="570.0" layoutY="100.0" prefHeight="253.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
+      <Pane layoutX="610.0" layoutY="91.0" prefHeight="253.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);">
          <children>
             <TableView fx:id="tablaLic" layoutX="15.0" layoutY="12.0" onMouseClicked="#seleccionar" prefHeight="230.0" prefWidth="470.0" tableMenuButtonVisible="true">
                <columns>

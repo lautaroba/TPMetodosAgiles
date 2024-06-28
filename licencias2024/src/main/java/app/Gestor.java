@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import app.DAOs.*;
 import app.DTOs.*;
@@ -72,7 +73,7 @@ public class Gestor {
 
     public void CrearAdministrador(AdministradorDTO administrador) throws Exception {
         int edad = Period.between(administrador.fechaDeNacimiento, LocalDate.now()).getYears();
-        if (edad < 17)
+        if (edad < 18)
             throw new MenorDeEdadException();
         else
             gestorAdministrador.CrearAdministrador(new Administrador(administrador));
@@ -250,6 +251,8 @@ public class Gestor {
         int costo = COSTO_TRAMITE_ADMINISTRATIVO;
         int categoria = clase.getNro();
 
+        if(clase == Clase.F)
+            return costo;
         if (edad < 21) {
             if (gestorLicencia.isPrimeraVez(titular, clase))
                 return costo += COSTOS_POR_CLASE_Y_EDAD[categoria][3];
@@ -315,7 +318,10 @@ public class Gestor {
             for (Licencia l : gestorLicencia.getLicenciaByTitularYFecha(titular.nroDNI, fecha)) {
                 lista.add(new LicenciaDTO(l));
             }
-            return lista;
+            if(lista.isEmpty())
+                throw new NoSuchElementException();
+            else
+                return lista;
         } catch (Exception e) {
             throw e;
         }

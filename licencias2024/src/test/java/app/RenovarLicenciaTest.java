@@ -19,112 +19,110 @@ import app.Enumeradores.TipoDocumento;
 
 public class RenovarLicenciaTest {
 
-    public static Gestor gestor;
+        public static Gestor gestor;
 
-    @BeforeAll
-    public static void setUp() {
-        gestor = new Gestor();
-    }
-
-    @AfterEach
-    public void close() {
-        gestor.dropDB();
-    }
-
-    @Test
-    public void TestRenovarLicenciaVencida() {
-        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
-                "direccion",
-                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
-        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
-                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
-                "limitaciones1");
-        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
-                LocalDate.of(2019, 1, 1), LocalDate.of(2020, 1, 1), Clase.A);
-        LicenciaDTO licencia2 = new LicenciaDTO(titular, administrador1,
-                LocalDate.of(2022, 1, 1), LocalDate.of(2024, 1, 1), Clase.A);
-        try {
-            gestor.CrearAdministrador(administrador1);
-            gestor.CrearTitular(titular);
-
-            gestor.CrearLicencia(licencia1);
-            gestor.RenovarLicencia(licencia2);
-        } catch (Exception e) {
-            e.printStackTrace();
+        @BeforeAll
+        public static void setUp() {
+                gestor = new Gestor();
         }
-        assertEquals(2, gestor.BuscarLicenciasTitular(titular, LocalDate.of(1, 1, 1)).size());
-    }
 
-    @Test
-    public void TestRenovarLicenciaVigenteConMasDe3Meses() {
-        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
-                "direccion",
-                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
-        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
-                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
-                "limitaciones1");
-        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
-                LocalDate.of(2020, 1, 1), LocalDate.of(2025, 1, 1), Clase.A);
-        LicenciaDTO licencia2 = new LicenciaDTO(titular, administrador1,
-                LocalDate.of(2024, 1, 1), LocalDate.of(2026, 1, 1), Clase.A);
-        try {
-            gestor.CrearAdministrador(administrador1);
-            gestor.CrearTitular(titular);
-
-            gestor.CrearLicencia(licencia1);
-            gestor.RenovarLicencia(licencia2);
-        } catch (Exception e) {
-            e.printStackTrace();
+        @AfterEach
+        public void close() {
+                gestor.dropDB();
         }
-        assertEquals(1, gestor.BuscarLicenciasTitular(titular, LocalDate.of(1, 1, 1)).size());
-    }
 
-    @Test
-    public void TestRenovarLicenciaVigenteConMenosDe3Meses() {
-        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
-                "direccion",
-                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
-        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
-                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
-                "limitaciones1");
-        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
-                LocalDate.of(2020, 1, 1), LocalDate.of(2024, 7, 1), Clase.A);
-        LicenciaDTO licencia2 = new LicenciaDTO(titular, administrador1,
-                LocalDate.of(2024, 1, 1), LocalDate.of(2026, 1, 1), Clase.A);
-        try {
-            gestor.CrearAdministrador(administrador1);
-            gestor.CrearTitular(titular);
-
-            gestor.CrearLicencia(licencia1);
-            gestor.RenovarLicencia(licencia2);
-        } catch (Exception e) {
-            e.printStackTrace();
+        @Test
+        public void TestRenovarLicenciaVencida() {
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                                "direccion",
+                                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+                TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                                "limitaciones1");
+                LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                                LocalDate.of(2019, 1, 1), LocalDate.of(2020, 1, 1), Clase.A);
+                LicenciaDTO licencia2 = new LicenciaDTO(titular, administrador1,
+                                LocalDate.of(2022, 1, 1), LocalDate.of(2024, 1, 1), Clase.A);
+                try {
+                        gestor.CrearAdministrador(administrador1);
+                        gestor.CrearTitular(titular);
+                        gestor.CrearLicencia(licencia1);
+                        gestor.RenovarLicencia(licencia2);
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+                assertEquals(2, gestor.BuscarLicenciasTitular(titular, LocalDate.of(1, 1, 1)).size());
         }
-        assertEquals(2, gestor.BuscarLicenciasTitular(titular, LocalDate.of(1, 1, 1)).size());
-    }
 
-    @Test
-    public void TestRenovarLicenciaSuperiorTeniendoUnaInferiorVigente() {
-        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
-                "direccion",
-                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
-        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
-                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
-                "limitaciones1");
-        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
-                LocalDate.of(2020, 1, 1), LocalDate.of(2024, 7, 1), Clase.B);
-        LicenciaDTO licencia2 = new LicenciaDTO(titular, administrador1,
-                LocalDate.of(2024, 1, 1), LocalDate.of(2026, 1, 1), Clase.C);
-        try {
-            gestor.CrearAdministrador(administrador1);
-            gestor.CrearTitular(titular);
+        @Test
+        public void TestRenovarLicenciaVigenteConMasDe3Meses() {
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                                "direccion",
+                                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+                TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                                "limitaciones1");
+                LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                                LocalDate.of(2020, 1, 1), LocalDate.of(2025, 1, 1), Clase.A);
+                LicenciaDTO licencia2 = new LicenciaDTO(titular, administrador1,
+                                LocalDate.of(2024, 1, 1), LocalDate.of(2026, 1, 1), Clase.A);
+                try {
+                        gestor.CrearAdministrador(administrador1);
+                        gestor.CrearTitular(titular);
 
-            gestor.CrearLicencia(licencia1);
-            gestor.RenovarLicencia(licencia2);
-        } catch (Exception e) {
-            e.printStackTrace();
+                        gestor.CrearLicencia(licencia1);
+                        gestor.RenovarLicencia(licencia2);
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+                assertEquals(1, gestor.BuscarLicenciasTitular(titular, LocalDate.of(1, 1, 1)).size());
         }
-        assertEquals(2, gestor.BuscarLicenciasTitular(titular, LocalDate.of(1, 1, 1)).size());
-        assertEquals(1, gestor.BuscarLicenciasTitular(titular, LocalDate.now().plusDays(1)).size());
-    }
+
+        @Test
+        public void TestRenovarLicenciaVigenteConMenosDe3Meses() {
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                                "direccion",
+                                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+                TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                                "limitaciones1");
+                LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                                LocalDate.of(2020, 1, 1), LocalDate.of(2024, 7, 1), Clase.A);
+                LicenciaDTO licencia2 = new LicenciaDTO(titular, administrador1,
+                                LocalDate.of(2024, 1, 1), LocalDate.of(2026, 1, 1), Clase.A);
+                try {
+                        gestor.CrearAdministrador(administrador1);
+                        gestor.CrearTitular(titular);
+                        gestor.CrearLicencia(licencia1);
+                        gestor.RenovarLicencia(licencia2);
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+                assertEquals(2, gestor.BuscarLicenciasTitular(titular, LocalDate.of(1, 1, 1)).size());
+        }
+
+        @Test
+        public void TestRenovarLicenciaSuperiorTeniendoUnaInferiorVigente() {
+                AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                                "direccion",
+                                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+                TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                                "limitaciones1");
+                LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                                LocalDate.of(2020, 1, 1), LocalDate.of(2024, 7, 1), Clase.B);
+                LicenciaDTO licencia2 = new LicenciaDTO(titular, administrador1,
+                                LocalDate.of(2024, 1, 1), LocalDate.of(2026, 1, 1), Clase.C);
+                try {
+                        gestor.CrearAdministrador(administrador1);
+                        gestor.CrearTitular(titular);
+
+                        gestor.CrearLicencia(licencia1);
+                        gestor.RenovarLicencia(licencia2);
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+                assertEquals(2, gestor.BuscarLicenciasTitular(titular, LocalDate.of(1, 1, 1)).size());
+                assertEquals(1, gestor.BuscarLicenciasTitular(titular, LocalDate.now().plusDays(1)).size());
+        }
 }

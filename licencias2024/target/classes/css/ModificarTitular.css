@@ -1,0 +1,62 @@
+.button-aceptar {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 10;
+    -fx-font-family: "Microsoft PhagsPa Bold";
+    -fx-font-size: 20px;
+}
+
+.button-aceptar:hover {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #0078D4;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    transition: -fx-background-color 0.5s ease,
+                -fx-scale-x 0.5s ease,
+                -fx-scale-y 0.5s ease;
+}
+
+.button-cancelar {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 10;
+    -fx-font-family: "Microsoft PhagsPa Bold";
+    -fx-font-size: 20px;
+}
+
+.button-cancelar:hover {
+    -fx-background-color: #D1D1D1;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    transition: -fx-background-color 0.5s ease,
+                -fx-scale-x 0.5s ease,
+                -fx-scale-y 0.5s ease;
+}
+
+.button-logout {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 10;
+    -fx-text-fill: #ff7e7e;
+    -fx-font-family: "Microsoft PhagsPa Bold";
+    -fx-font-size: 12px;
+}
+
+.button-logout:hover {
+    -fx-background-color: #ff7e7e;
+    -fx-text-fill: #e0e0e0;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    transition: -fx-background-color 0.5s ease,
+                -fx-scale-x 0.5s ease,
+                -fx-scale-y 0.5s ease;
+}
+
+.pane-degradado {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 70%, #00BFFF, #0078D4);
+}
+
+.pane-transparente {
+    -fx-background-color:  #ffffff;
+    -fx-background-radius:  10;
+    -fx-border-color:  #e0e0e0;
+    -fx-border-radius:  10;
+    -fx-effect:  dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 0);
+}
