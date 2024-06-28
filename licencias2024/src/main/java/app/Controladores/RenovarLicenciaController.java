@@ -47,6 +47,10 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+/*
+ * TAREA: Interfaz de renovar licencia
+ */
+
 public class RenovarLicenciaController implements Initializable {
 
     @FXML
@@ -387,5 +391,6 @@ public class RenovarLicenciaController implements Initializable {
         vigenciaTextfield.setText("");
         costoTextfield.setText("");
         tablaLic.getItems().clear();
+        dniTextfield.setText("");
     }
 }

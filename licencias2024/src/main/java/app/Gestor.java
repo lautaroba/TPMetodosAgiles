@@ -19,10 +19,10 @@ public class Gestor {
 
     private static final int COSTO_TRAMITE_ADMINISTRATIVO = 8;
     private static final int[][] COSTOS_POR_CLASE_Y_EDAD = { { 40, 30, 25, 20 },
-            { 40, 30, 25, 20 },
-            { 47, 35, 30, 23 },
-            { 59, 44, 39, 29 },
-            { 40, 30, 25, 20 } };
+                                                            { 40, 30, 25, 20 },
+                                                            { 47, 35, 30, 23 },
+                                                            { 59, 44, 39, 29 },
+                                                            { 40, 30, 25, 20 } };
 
     private EntityManagerFactory entityManagerFactory;
     public AdministradorDAO gestorAdministrador;
@@ -46,6 +46,10 @@ public class Gestor {
 
     }
 
+/*
+ * TAREA: Logica de alta de titular
+ */
+
     public void CrearTitular(TitularDTO titular) throws Exception {
         int edad = Period.between(titular.fechaDeNacimiento, LocalDate.now()).getYears();
         if (edad < 17)
@@ -53,6 +57,10 @@ public class Gestor {
         else
             gestorTitular.CrearTitular(new Titular(titular));
     }
+
+/*
+ * TAREA: Logica de modificar titular
+ */
 
     public void ModificarTitular(TitularDTO titular) {
         try {
@@ -71,6 +79,10 @@ public class Gestor {
         }
     }
 
+/*
+ * TAREA: Logica de crear administrador
+ */
+
     public void CrearAdministrador(AdministradorDTO administrador) throws Exception {
         int edad = Period.between(administrador.fechaDeNacimiento, LocalDate.now()).getYears();
         if (edad < 18)
@@ -79,6 +91,10 @@ public class Gestor {
             gestorAdministrador.CrearAdministrador(new Administrador(administrador));
     }
 
+/*
+ * TAREA: Logica de modificar administrador
+ */
+
     public void ModificarAdministrador(AdministradorDTO administrador) {
         try {
             gestorAdministrador.ModificarAdministrador(new Administrador(administrador));
@@ -86,6 +102,10 @@ public class Gestor {
             throw e;
         }
     }
+
+/*
+ * TAREA: Logica de emitir licencia
+ */
 
     public void CrearLicencia(LicenciaDTO licencia) throws Exception {
         try {
@@ -119,6 +139,10 @@ public class Gestor {
         else
             return false;
     }
+
+/*
+ * TAREA: Logica de renovar licencia
+ */
 
     public void RenovarLicencia(LicenciaDTO licencia) throws Exception {
         // se puede renovar hasta cn 3 meses antes que caduque la nueva
@@ -214,21 +238,6 @@ public class Gestor {
         return false;
     }
 
-    // public void verificarLicenciaMayorActiva(LicenciaDTO licencia, LocalDate
-    // fecha) throws Exception {
-    // if (licencia.clase == Clase.B) {
-    // checkLicenciaMayor(licencia, Clase.C, fecha);
-    // checkLicenciaMayor(licencia, Clase.D1, fecha);
-    // checkLicenciaMayor(licencia, Clase.D2, fecha);
-    // checkLicenciaMayor(licencia, Clase.E, fecha);
-    // } else if (licencia.clase == Clase.C) {
-    // checkLicenciaMayor(licencia, Clase.D2, fecha);
-    // checkLicenciaMayor(licencia, Clase.E, fecha);
-    // } else if (licencia.clase == Clase.D1) {
-    // checkLicenciaMayor(licencia, Clase.D2, fecha);
-    // }
-    // }
-
     public void checkLicenciaMayor(LicenciaDTO licencia, Clase clase, LocalDate fecha) throws Exception {
         for (Licencia l : gestorLicencia.getLicenciaByTitularYFecha(licencia.titular.nroDNI, fecha)) {
             if (l.getClase() == clase) {
@@ -246,7 +255,11 @@ public class Gestor {
         }
     }
 
-    public int CalcularCostoLicencia(TitularDTO titular, Clase clase) throws Exception {
+/*
+ * TAREA: Logica de calcular costo licencia
+ */
+
+    public int CalcularCostoLicencia(TitularDTO titular, Clase clase) {
         int edad = Period.between(titular.fechaDeNacimiento, LocalDate.now()).getYears();
         int costo = COSTO_TRAMITE_ADMINISTRATIVO;
         int categoria = clase.getNro();
@@ -269,6 +282,10 @@ public class Gestor {
         }
     }
 
+/*
+ * TAREA: Logica de calcular vigencia licencia
+ */
+
     public int CalcularVigenciaLicencia(TitularDTO titular, Clase clase) {
         int edad = Period.between(titular.fechaDeNacimiento, LocalDate.now()).getYears();
 
@@ -288,6 +305,10 @@ public class Gestor {
         }
     }
 
+/*
+ * TAREA: Logica de listado licencias expiradas
+ */
+
     public List<LicenciaDTO> ListadoLicenciasExpiradas() {
         try {
             List<LicenciaDTO> lista = new ArrayList<>();
@@ -299,6 +320,10 @@ public class Gestor {
             throw e;
         }
     }
+
+/*
+ * TAREA: Logica de listado licencias vigentes
+ */
 
     public List<LicenciaDTO> ListadoLicenciasVigentes() {
         try {
@@ -327,7 +352,11 @@ public class Gestor {
         }
     }
 
-    // TEMPORAL, BORRAR!!
+
+/*
+ * Ayuda para los test cases
+ */
+
     public void dropDB() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

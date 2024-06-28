@@ -24,17 +24,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+/*
+ * TAREA: Interfaz de log in
+ */
+
 public class LoginController implements Initializable {
 
     @FXML
     private TextField dniTextfield;
-
     @FXML
     private PasswordField pwTextfield;
-
     @FXML
     private Button aceptarButton;
-
     @FXML
     private Button nuevoAdmButton;
 

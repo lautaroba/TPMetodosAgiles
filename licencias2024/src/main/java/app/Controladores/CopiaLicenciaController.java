@@ -48,6 +48,9 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+/*
+ * TAREA: Interfaz de emitir copia licencia
+ */
 public class CopiaLicenciaController implements Initializable {
 
     @FXML

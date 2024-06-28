@@ -27,6 +27,10 @@ import app.DTOs.AdministradorDTO;
 import app.Enumeradores.Sexo;
 import app.Enumeradores.TipoDocumento;
 
+/*
+ * TAREA: Interfaz de modificar administrador
+ */
+
 public class ModificarAdmController implements Initializable {
 
     @FXML
@@ -135,5 +139,6 @@ public class ModificarAdmController implements Initializable {
         sexoComboBox.setValue(null);
         emailTextfield.setText("");
         pwField.setText("");
+        dniTextfield.setText("");
     }
 }

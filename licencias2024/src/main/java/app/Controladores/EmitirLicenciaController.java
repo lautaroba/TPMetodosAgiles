@@ -41,6 +41,10 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+/*
+ * TAREA: Interfaz de emitir licencia
+ */
+
 public class EmitirLicenciaController implements Initializable {
 
     @FXML
@@ -477,5 +481,6 @@ public class EmitirLicenciaController implements Initializable {
         vigenciaTextfield.setText("");
         costoTextfield.setText("");
         claseComboBox.setValue(null);
+        dniTextfield.setText("");
     }
 }

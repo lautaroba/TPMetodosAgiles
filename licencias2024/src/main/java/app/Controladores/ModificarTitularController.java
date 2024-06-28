@@ -31,6 +31,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+/*
+ * TAREA: Interfaz de modificar titular
+ */
+
 public class ModificarTitularController implements Initializable {
 
     @FXML
@@ -251,5 +255,6 @@ public class ModificarTitularController implements Initializable {
         direccionTextfield.setText("");
         factorComboBox.setValue(null);
         observacionesTextarea.setText("");
+        dniTextfield.setText("");
     }
 }

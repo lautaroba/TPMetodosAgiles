@@ -28,6 +28,10 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+/*
+ * TAREA: Interfaz de listado de licencias expiradas
+ */
+
 public class LicenciasExpiradasController implements Initializable {
     @FXML
     private TableColumn<LicenciaDTO, String> apellido;

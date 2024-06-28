@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" styleClass="pane-degradado" stylesheets="@../css/Menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controladores.MenuController">
@@ -69,7 +70,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="listadoExpiradasButton" onAction="#listadoExpiradas" prefHeight="251.0" prefWidth="441.0" styleClass="button-menu" text="Licencias Expiradas" wrapText="true" GridPane.rowIndex="1">
+                  <Button fx:id="listadoExpiradasButton" onAction="#listadoExpiradas" prefHeight="251.0" prefWidth="441.0" styleClass="button-menu" text="Licencias Expiradas" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -81,7 +82,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ListadoVigentesButton" onAction="#listadoVigentes" prefHeight="266.0" prefWidth="416.0" styleClass="button-menu" text="Licencias Vigentes" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="ListadoVigentesButton" onAction="#listadoVigentes" prefHeight="266.0" prefWidth="416.0" styleClass="button-menu" text="Licencias Vigentes" wrapText="true" GridPane.columnIndex="1">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -93,7 +94,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="darDeAltaButton" onAction="#darDeAlta" prefHeight="242.0" prefWidth="452.0" styleClass="button-menu" text="Dar de Alta" wrapText="true">
+                  <Button fx:id="darDeAltaButton" onAction="#darDeAlta" prefHeight="242.0" prefWidth="452.0" styleClass="button-menu" text="Dar de Alta" wrapText="true" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -105,7 +106,7 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="modificarDatosButton" onAction="#modificarDatos" prefHeight="224.0" prefWidth="390.0" styleClass="button-menu" text="Modificar Datos" wrapText="true" GridPane.columnIndex="1">
+                  <Button fx:id="modificarDatosButton" onAction="#modificarDatos" prefHeight="224.0" prefWidth="390.0" styleClass="button-menu" text="Modificar Datos" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
                            <image>
@@ -117,6 +118,32 @@
                         <Font name="Microsoft PhagsPa Bold" size="20.0" />
                      </font>
                   </Button>
+                  <Button prefHeight="224.0" prefWidth="390.0" styleClass="button-menu" text="Eliminar Titular" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/eliminartitular.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Microsoft PhagsPa Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <VBox alignment="TOP_CENTER" GridPane.columnIndex="2">
+                     <children>
+                        <ImageView fitHeight="155.0" fitWidth="205.0" opacity="0.4" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="nombreUsuarioLabel1" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.4" prefHeight="30.0" prefWidth="226.0" text="Sistema de Licencias UTN">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
             </GridPane>
          </children>

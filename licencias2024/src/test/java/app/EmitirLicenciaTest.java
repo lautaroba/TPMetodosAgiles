@@ -18,6 +18,38 @@ import app.Enumeradores.GrupoSanguineo;
 import app.Enumeradores.Sexo;
 import app.Enumeradores.TipoDocumento;
 
+/*
+ *          * Test Cases Emitir Licencia
+ * 
+ * 1- menor de 21 años intenta sacar licencia profesional
+ * 2- mayor de 65 años intenta sacar licencia profesional
+ * 3- persona sin B previa intenta sacar profesional
+ * 4- persona con B previa sin un año intenta sacar profesional
+ * 5- persona con *(Clase X) obtenida y vencida intenta sacarla nuevamente.
+ * 6- persona con *(Clase X) obtenida y vigente intenta sacarla nuevamente.
+ * 7- persona con todas las licencias posibles (A, B(vencida), C(vencida), D1(vencida) D2, E, F, G)
+ * 8- persona mejora una licencia, clase B a clase C
+ * 9- persona mejora una licencia 2, clase B a clase D1
+ * 10- persona mejora una licencia 3, clase B a clase C a clase E
+ * 
+ * 
+ *          * Test Cases Calcular costo
+ * 1- Clase A
+ * 2- Clase B
+ * 3- Clase C
+ * 4- Clase D1
+ * 5- Clase D2
+ * 6- Clase E
+ * 7- Clase F
+ * 8- Clase G
+ * 
+ * 
+ *          * Test Cases Calcular vigencia
+ * 
+ * 
+ */
+
+
 public class EmitirLicenciaTest {
 
     public static Gestor gestor;
@@ -29,7 +61,7 @@ public class EmitirLicenciaTest {
 
     @AfterEach
     public void close() {
-        //gestor.dropDB();
+        gestor.dropDB();
     }
 
     @Test
@@ -263,5 +295,289 @@ public class EmitirLicenciaTest {
             e.printStackTrace();
         }
         assertEquals(1, gestor.BuscarLicenciasTitular(titularConTodasLasLicencias, LocalDate.now().plusDays(1)).size());
+    }
+
+
+    @Test
+    public void TestCalcularCostoClaseA() {
+
+        Clase clase = Clase.A;
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                "direccion",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), clase);
+        
+        // MENOR A 21 PRIMERA VEZ
+        titular.fechaDeNacimiento = LocalDate.of(2005, 1, 1);
+        assertEquals(20+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MENOR A 21 SEGUNDA VEZ
+        try {
+                gestor.CrearAdministrador(administrador1);
+                gestor.CrearTitular(titular);
+                gestor.CrearLicencia(licencia1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        assertEquals(25+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(40+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(30+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(25+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(20+8, gestor.CalcularCostoLicencia(titular, clase));
+    }
+
+    @Test
+    public void TestCalcularCostoClaseB() {
+
+        Clase clase = Clase.B;
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                "direccion",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), clase);
+        
+        // MENOR A 21 PRIMERA VEZ
+        titular.fechaDeNacimiento = LocalDate.of(2005, 1, 1);
+        assertEquals(20+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MENOR A 21 SEGUNDA VEZ
+        try {
+                gestor.CrearAdministrador(administrador1);
+                gestor.CrearTitular(titular);
+                gestor.CrearLicencia(licencia1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        assertEquals(25+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(40+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(30+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(25+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(20+8, gestor.CalcularCostoLicencia(titular, clase));
+    }
+
+    @Test
+    public void TestCalcularCostoClaseC() {
+
+        Clase clase = Clase.C;
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(47+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(35+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(30+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(23+8, gestor.CalcularCostoLicencia(titular, clase));
+    }
+
+    @Test
+    public void TestCalcularCostoClaseD1() {
+
+        Clase clase = Clase.D1;
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(40+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(30+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(25+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(20+8, gestor.CalcularCostoLicencia(titular, clase));
+    }
+
+    @Test
+    public void TestCalcularCostoClaseD2() {
+
+        Clase clase = Clase.D2;
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(47+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(35+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(30+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(23+8, gestor.CalcularCostoLicencia(titular, clase));
+    }
+
+    @Test
+    public void TestCalcularCostoClaseE() {
+
+        Clase clase = Clase.E;
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(59+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(44+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(39+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(29+8, gestor.CalcularCostoLicencia(titular, clase));
+    }
+
+    @Test
+    public void TestCalcularCostoClaseF() {
+
+        Clase clase = Clase.F;
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                "direccion",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), Clase.F);
+        
+        // MENOR A 21 PRIMERA VEZ
+        titular.fechaDeNacimiento = LocalDate.of(2005, 1, 1);
+        assertEquals(0+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MENOR A 21 SEGUNDA VEZ
+        try {
+                gestor.CrearAdministrador(administrador1);
+                gestor.CrearTitular(titular);
+                gestor.CrearLicencia(licencia1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        assertEquals(0+8, gestor.CalcularCostoLicencia(titular, clase));
+
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(0+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(0+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(0+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(0+8, gestor.CalcularCostoLicencia(titular, clase));
+    }
+
+    @Test
+    public void TestCalcularCostoClaseG() {
+
+        Clase clase = Clase.G;
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                "direccion",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), Clase.G);
+        
+        // MENOR A 21 PRIMERA VEZ
+        titular.fechaDeNacimiento = LocalDate.of(2005, 1, 1);
+        assertEquals(20+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MENOR A 21 SEGUNDA VEZ
+        try {
+                gestor.CrearAdministrador(administrador1);
+                gestor.CrearTitular(titular);
+                gestor.CrearLicencia(licencia1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        assertEquals(25+8, gestor.CalcularCostoLicencia(titular, clase));
+
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(40+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(30+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(25+8, gestor.CalcularCostoLicencia(titular, clase));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(20+8, gestor.CalcularCostoLicencia(titular, clase));
+    }
+
+
+    @Test
+    public void TestCalcularVigencia() {
+        AdministradorDTO administrador1 = new AdministradorDTO(1, "Jhon", "Doe", LocalDate.of(2000, 1, 1),
+                "direccion",
+                "unemail@email.com", "a", TipoDocumento.DNI, Sexo.Masculino);
+        TitularDTO titular = new TitularDTO(TipoDocumento.DNI, 1, "Juan", "Gonzalez",
+                LocalDate.of(2000, 1, 1), "direccion", GrupoSanguineo.A, FactorRH.Negativo, true,
+                "limitaciones1");
+        LicenciaDTO licencia1 = new LicenciaDTO(titular, administrador1,
+                LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), Clase.B);
+        
+        // MENOR A 21 PRIMERA VEZ
+        titular.fechaDeNacimiento = LocalDate.of(2005, 1, 1);
+        assertEquals(1, gestor.CalcularVigenciaLicencia(titular, Clase.B));
+        // MENOR A 21 SEGUNDA VEZ
+        try {
+                gestor.CrearAdministrador(administrador1);
+                gestor.CrearTitular(titular);
+                gestor.CrearLicencia(licencia1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        assertEquals(3, gestor.CalcularVigenciaLicencia(titular, Clase.B));
+
+        // MAYOR A 21
+        titular.fechaDeNacimiento = LocalDate.of(2000, 1, 1);
+        assertEquals(5, gestor.CalcularVigenciaLicencia(titular, Clase.B));
+        // MAYOR A 46
+        titular.fechaDeNacimiento = LocalDate.of(1977, 1, 1);
+        assertEquals(4, gestor.CalcularVigenciaLicencia(titular, Clase.B));
+        // MAYOR A 60
+        titular.fechaDeNacimiento = LocalDate.of(1963, 1, 1);
+        assertEquals(3, gestor.CalcularVigenciaLicencia(titular, Clase.B));
+        // MAYOR A 70
+        titular.fechaDeNacimiento = LocalDate.of(1953, 1, 1);
+        assertEquals(1, gestor.CalcularVigenciaLicencia(titular, Clase.B));
     }
 }

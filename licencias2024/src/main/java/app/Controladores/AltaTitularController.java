@@ -33,6 +33,10 @@ import app.Excepciones.CamposIncompletosException;
 import app.Excepciones.MenorDeEdadException;
 import jakarta.persistence.EntityExistsException;
 
+/*
+ * TAREA: Interfaz de alta de titular
+ */
+
 public class AltaTitularController implements Initializable {
 
     @FXML
@@ -257,5 +261,6 @@ public class AltaTitularController implements Initializable {
         direccionTextfield.setText("");
         factorComboBox.setValue(null);
         observacionesTextarea.setText("");
+        grupoComboBox.setValue(null);
     }
 }

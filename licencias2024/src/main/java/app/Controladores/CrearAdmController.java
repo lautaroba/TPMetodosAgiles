@@ -31,6 +31,10 @@ import app.Excepciones.CamposIncompletosException;
 import app.Excepciones.MenorDeEdadException;
 import jakarta.persistence.EntityExistsException;
 
+/*
+ * TAREA: Interfaz de crear administrador
+ */
+
 public class CrearAdmController implements Initializable {
 
     @FXML

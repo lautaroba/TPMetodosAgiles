@@ -27,6 +27,10 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+/*
+ * TAREA: Interfaz de licencias vigentes
+ */
+
 public class LicenciasVigentesController implements Initializable {
 
     @FXML

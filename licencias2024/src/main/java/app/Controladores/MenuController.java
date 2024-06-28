@@ -16,41 +16,34 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/*
+ * TAREA: Interfaz de menu principal
+ */
+
 public class MenuController implements Initializable {
 
     @FXML
     private Button emitirLicenciaButton;
-
     @FXML
     private Button emitirCopiaButton;
-
     @FXML
     private Button cancelarButton;
-
     @FXML
     private Button renovarLicenciaButton;
-
     @FXML
     private Button imprimirLicenciaButton;
-
     @FXML
     private Button listadoExpiradasButton;
-
     @FXML
     private Button listadoVigentesButton;
-
     @FXML
     private Button logoutButton;
-
     @FXML
     private Button darDeAltaButton;
-
     @FXML
     private Button modificarDatosButton;
-
     @FXML
     private Button eliminarUnTitularButton;
-
     @FXML
     private Label nombreUsuarioLabel;
 
